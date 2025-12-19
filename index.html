@@ -70,7 +70,7 @@
         /* --- LAYOUT GERAL --- */
         .category-section {
             max-width: 1200px;
-            margin: 0 auto 80px; /* Mais espaço entre seções */
+            margin: 0 auto 80px; 
             padding: 0 20px;
         }
 
@@ -84,21 +84,21 @@
             letter-spacing: 1px;
         }
 
-        /* --- NOVO: LAYOUT DESTAQUE (Card Esquerda + Galeria Direita) --- */
+        /* --- FEATURED LAYOUT --- */
         .featured-wrapper {
             display: grid;
-            grid-template-columns: 1fr 1fr; /* Divide em 2 colunas */
+            grid-template-columns: 1fr 1fr; 
             gap: 20px;
-            align-items: stretch; /* Estica para terem a mesma altura */
+            align-items: stretch; 
         }
 
-        /* A Galeria 2x2 */
+        /* Galeria 2x2 */
         .gallery-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             grid-template-rows: 1fr 1fr;
             gap: 15px;
-            height: 350px; /* Altura total da galeria */
+            height: 350px; 
         }
 
         .gallery-item {
@@ -109,13 +109,9 @@
             position: relative;
             cursor: pointer;
             transition: transform 0.3s ease, border-color 0.3s ease;
-            
-            /* Para centralizar o ícone de placeholder */
             display: flex;
             align-items: center;
             justify-content: center;
-            
-            /* Configuração para quando você colocar imagem de fundo */
             background-size: cover;
             background-position: center;
         }
@@ -133,11 +129,11 @@
         }
         .gallery-item:hover i { color: var(--accent-purple); }
 
-        /* --- EFEITO FLIP 3D (Ajustado para altura da galeria) --- */
+        /* --- EFEITO FLIP AUTOMÁTICO (TEMPO AJUSTADO) --- */
         .flip-container {
             background-color: transparent;
             width: 100%;
-            height: 350px; /* Mesma altura da galeria */
+            height: 350px; 
             perspective: 1000px;
         }
 
@@ -146,13 +142,27 @@
             width: 100%;
             height: 100%;
             text-align: center;
-            transition: transform 0.8s;
             transform-style: preserve-3d;
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            
+            /* AUMENTADO PARA 15 SEGUNDOS TOTAL */
+            animation: autoFlip 15s infinite ease-in-out;
         }
 
-        .flip-container:hover .flip-inner { transform: rotateY(180deg); }
+        /* AJUSTE DOS TEMPOS: Mais tempo no verso (Explorer) */
+        @keyframes autoFlip {
+            0%, 25% { transform: rotateY(0); }       /* Imagem por ~3.7s */
+            30%, 95% { transform: rotateY(180deg); } /* Explorer por ~10s */
+            100% { transform: rotateY(360deg); }     /* Volta */
+        }
+
+        /* Pausa no mouse over */
+        .flip-container:hover .flip-inner {
+            animation: none;
+            transform: rotateY(180deg);
+            transition: transform 0.5s ease;
+        }
 
         .flip-front, .flip-back {
             position: absolute;
@@ -165,34 +175,25 @@
             overflow: hidden;
         }
 
+        /* FRENTE: IMAGEM */
         .flip-front {
-            background: var(--card-bg);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .flip-front .browser-header {
-            flex-shrink: 0;
-            background: #252525;
-            padding: 10px 15px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            border-bottom: 1px solid #333;
-        }
-
-        .flip-back {
             background-color: #000;
-            color: white;
-            transform: rotateY(180deg);
             background-size: cover;
             background-position: top center;
+        }
+
+        /* VERSO: TEXTO ROXO */
+        .flip-back {
+            background: linear-gradient(135deg, #1a002b, #4b0082);
+            color: white;
+            transform: rotateY(180deg);
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
         }
 
-        /* --- MOCKUP PADRÃO (Outras Seções) --- */
+        /* --- GRID PADRÃO (Outras seções) --- */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -243,16 +244,17 @@
         .browser-mockup:hover .overlay { opacity: 1; }
 
         .btn-view {
-            padding: 10px 25px;
+            padding: 12px 30px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 700;
             text-transform: uppercase;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             color: #000;
             background: #fff;
             transform: translateY(10px);
             transition: transform 0.3s ease;
+            cursor: pointer;
         }
         .browser-mockup:hover .btn-view { transform: translateY(0); }
 
@@ -276,15 +278,9 @@
 
         footer { text-align: center; font-size: 0.8rem; color: #444; margin-top: 40px; }
 
-        /* RESPONSIVO */
         @media (max-width: 900px) {
-            .featured-wrapper {
-                grid-template-columns: 1fr; /* Vira uma coluna só no celular */
-            }
-            .gallery-grid {
-                height: auto; /* Altura automática */
-                grid-template-rows: 150px 150px; /* Define altura fixa das linhas */
-            }
+            .featured-wrapper { grid-template-columns: 1fr; }
+            .gallery-grid { height: auto; grid-template-rows: 150px 150px; }
         }
     </style>
 </head>
@@ -307,47 +303,33 @@
                 
                 <div class="flip-container">
                     <div class="flip-inner">
-                        <div class="flip-front">
-                            <div class="browser-header">
-                                <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
-                            </div>
-                            <div class="preview-area" style="background: linear-gradient(135deg, #1a002b, #4b0082); display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
-                                <i class="fas fa-feather-pointed" style="font-size: 4rem; color: var(--accent-purple); opacity: 0.8; margin-bottom: 15px;"></i>
-                                <h3 style="color: #fff; font-size: 1.5rem;">Kingdom & Quill</h3>
-                                <p style="color: #ccc; font-size: 0.9rem;">Interactive Storytelling</p>
-                                <span style="font-size: 0.7rem; color: #aaa; margin-top: 15px; border: 1px solid #aaa; padding: 3px 10px; border-radius: 4px;">HOVER TO PREVIEW</span>
-                            </div>
+                        
+                        <div class="flip-front" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/home-KQ.jpg');">
+                            <div style="background: linear-gradient(to bottom, transparent 80%, rgba(0,0,0,0.8)); width: 100%; height: 100%;"></div>
                         </div>
 
-                        <div class="flip-back" style="background-image: url('print-kingdom.jpg');">
-                            <div style="background: rgba(0,0,0,0.7); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column;">
-                                <h3 style="margin-bottom: 15px; color: #fff;">Ready to explore?</h3>
-                                <a href="https://tstelles.github.io/kingdom-quill/" target="_blank" class="btn-view" style="transform: translateY(0); background: var(--accent-purple); color: #fff; border: none;">
-                                    Visit Live Site
-                                </a>
-                            </div>
+                        <div class="flip-back">
+                            <i class="fas fa-feather-pointed" style="font-size: 3rem; color: var(--accent-purple); text-shadow: 0 0 10px rgba(157, 0, 255, 0.5); margin-bottom: 20px;"></i>
+                            
+                            <h3 style="color: #fff; font-size: 1.8rem; margin-bottom: 5px;">Kingdom & Quill</h3>
+                            
+                            <p style="color: #ddd; font-size: 1rem; font-style: italic; letter-spacing: 1px; margin-bottom: 25px;">
+                                Ink. Spirit. Legacy.
+                            </p>
+                            
+                            <a href="https://tstelles.github.io/kingdom-quill/" target="_blank" class="btn-view" style="transform: translateY(0); border: none; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+                                Explorer
+                            </a>
                         </div>
+
                     </div>
                 </div>
 
                 <div class="gallery-grid">
-                    
-                    <div class="gallery-item" title="Detail 1">
-                        <i class="far fa-image"></i>
-                    </div>
-
-                    <div class="gallery-item" title="Detail 2">
-                        <i class="far fa-image"></i>
-                    </div>
-
-                    <div class="gallery-item" title="Detail 3">
-                        <i class="far fa-image"></i>
-                    </div>
-
-                    <div class="gallery-item" title="Detail 4">
-                        <i class="far fa-image"></i>
-                    </div>
-
+                    <div class="gallery-item" title="Detail 1"><i class="far fa-image"></i></div>
+                    <div class="gallery-item" title="Detail 2"><i class="far fa-image"></i></div>
+                    <div class="gallery-item" title="Detail 3"><i class="far fa-image"></i></div>
+                    <div class="gallery-item" title="Detail 4"><i class="far fa-image"></i></div>
                 </div>
 
             </div>

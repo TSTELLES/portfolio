@@ -55,30 +55,22 @@
             margin: 0 auto;
         }
 
-        /* Estilo da Assinatura (Simples) */
         .creator-signature {
             display: inline-block;
             margin-top: 20px;
             text-decoration: none;
-            color: rgba(255, 255, 255, 0.4); /* Cinza sutil */
+            color: rgba(255, 255, 255, 0.4);
             font-size: 0.9rem;
             font-weight: 400;
             transition: color 0.3s ease;
         }
+        .creator-signature:hover { color: #fff; }
+        .creator-signature i { margin-right: 8px; font-size: 1.1rem; }
 
-        .creator-signature:hover {
-            color: #fff; /* Fica branco ao passar o mouse */
-        }
-
-        .creator-signature i {
-            margin-right: 8px;
-            font-size: 1.1rem;
-        }
-
-        /* --- SEÇÕES E CATEGORIAS --- */
+        /* --- LAYOUT GERAL --- */
         .category-section {
             max-width: 1200px;
-            margin: 0 auto 60px;
+            margin: 0 auto 80px; /* Mais espaço entre seções */
             padding: 0 20px;
         }
 
@@ -92,30 +84,95 @@
             letter-spacing: 1px;
         }
 
-        /* Grid */
-        .grid-container {
+        /* --- NOVO: LAYOUT DESTAQUE (Card Esquerda + Galeria Direita) --- */
+        .featured-wrapper {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: 1fr 1fr; /* Divide em 2 colunas */
+            gap: 20px;
+            align-items: stretch; /* Estica para terem a mesma altura */
         }
 
-        /* Mockup */
-        .browser-mockup {
-            background: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
+        /* A Galeria 2x2 */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 15px;
+            height: 350px; /* Altura total da galeria */
+        }
+
+        .gallery-item {
+            background-color: #1a1a1a;
             border: 1px solid #333;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            
+            /* Para centralizar o ícone de placeholder */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            /* Configuração para quando você colocar imagem de fundo */
+            background-size: cover;
+            background-position: center;
         }
 
-        .browser-mockup:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+        .gallery-item:hover {
+            border-color: var(--accent-purple);
+            transform: scale(1.02);
+            z-index: 2;
         }
 
-        .browser-header {
+        .gallery-item i {
+            font-size: 1.5rem;
+            color: #444;
+            transition: color 0.3s;
+        }
+        .gallery-item:hover i { color: var(--accent-purple); }
+
+        /* --- EFEITO FLIP 3D (Ajustado para altura da galeria) --- */
+        .flip-container {
+            background-color: transparent;
+            width: 100%;
+            height: 350px; /* Mesma altura da galeria */
+            perspective: 1000px;
+        }
+
+        .flip-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .flip-container:hover .flip-inner { transform: rotateY(180deg); }
+
+        .flip-front, .flip-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            border: 1px solid #333;
+            overflow: hidden;
+        }
+
+        .flip-front {
+            background: var(--card-bg);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .flip-front .browser-header {
+            flex-shrink: 0;
             background: #252525;
             padding: 10px 15px;
             display: flex;
@@ -124,10 +181,42 @@
             border-bottom: 1px solid #333;
         }
 
-        .dot { width: 8px; height: 8px; border-radius: 50%; }
-        .dot.red { background: #ff5f56; }
-        .dot.yellow { background: #ffbd2e; }
-        .dot.green { background: #27c93f; }
+        .flip-back {
+            background-color: #000;
+            color: white;
+            transform: rotateY(180deg);
+            background-size: cover;
+            background-position: top center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* --- MOCKUP PADRÃO (Outras Seções) --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .browser-mockup {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+            border: 1px solid #333;
+        }
+        .browser-mockup:hover { transform: translateY(-5px); }
+        
+        .browser-header {
+            background: #252525;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border-bottom: 1px solid #333;
+        }
         
         .preview-area {
             height: 220px;
@@ -151,7 +240,6 @@
             opacity: 0;
             transition: opacity 0.3s ease;
         }
-
         .browser-mockup:hover .overlay { opacity: 1; }
 
         .btn-view {
@@ -166,42 +254,45 @@
             transform: translateY(10px);
             transition: transform 0.3s ease;
         }
-
         .browser-mockup:hover .btn-view { transform: translateY(0); }
 
+        .dot { width: 8px; height: 8px; border-radius: 50%; }
+        .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
         .card-info { padding: 20px; }
         .card-info h3 { font-size: 1.1rem; margin-bottom: 5px; color: #fff; }
         .card-info p { font-size: 0.8rem; color: #777; margin-bottom: 0; }
         .tag { font-size: 0.65rem; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; display: inline-block; margin-top: 10px; }
 
-        /* --- TEMAS --- */
-        .theme-quill .preview-area { background: linear-gradient(135deg, #1a002b, #4b0082); }
-        .theme-quill .tag { color: var(--accent-purple); border: 1px solid var(--accent-purple); }
-        .theme-quill .btn-view { background: var(--accent-purple); color: white; }
-
+        /* CORES */
         .theme-red .preview-area { background: linear-gradient(135deg, #2b0000, #800000); }
         .theme-red .tag { color: var(--accent-red); border: 1px solid var(--accent-red); }
-        
         .theme-navy .preview-area { background: linear-gradient(135deg, #001122, #003366); }
         .theme-navy .tag { color: var(--accent-navy); border: 1px solid var(--accent-navy); }
-        
         .theme-gold .preview-area { background: linear-gradient(135deg, #221a00, #664400); }
         .theme-gold .tag { color: var(--accent-gold); border: 1px solid var(--accent-gold); }
-
         .theme-design .preview-area { background: #1a1a1a; background-image: radial-gradient(#333 1px, transparent 1px); background-size: 10px 10px; }
         .theme-design .tag { color: #888; border: 1px dashed #444; }
         .theme-design i { color: #333; }
 
         footer { text-align: center; font-size: 0.8rem; color: #444; margin-top: 40px; }
+
+        /* RESPONSIVO */
+        @media (max-width: 900px) {
+            .featured-wrapper {
+                grid-template-columns: 1fr; /* Vira uma coluna só no celular */
+            }
+            .gallery-grid {
+                height: auto; /* Altura automática */
+                grid-template-rows: 150px 150px; /* Define altura fixa das linhas */
+            }
+        }
     </style>
 </head>
 <body>
 
     <header>
         <h1>FEATURED <span style="font-weight: 300; opacity: 0.5;">PROJECTS</span></h1>
-        
         <p class="subtitle">Web Projects & Interactive Experiences</p>
-        
         <a href="https://github.com/tstelles" target="_blank" class="creator-signature">
             <i class="fab fa-github"></i> tstelles
         </a>
@@ -211,21 +302,52 @@
         
         <section class="category-section">
             <h2 class="section-title" style="border-color: var(--accent-purple);">Published Sites</h2>
-            <div class="grid-container">
+            
+            <div class="featured-wrapper">
                 
-                <div class="browser-mockup theme-quill">
-                    <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
-                    <div class="preview-area">
-                        <i class="fas fa-feather-pointed" style="font-size: 3rem; color: var(--accent-purple); opacity: 0.5;"></i>
-                        <div class="overlay">
-                            <a href="https://tstelles.github.io/kingdom-quill/" target="_blank" class="btn-view">Visit Live Site</a>
+                <div class="flip-container">
+                    <div class="flip-inner">
+                        <div class="flip-front">
+                            <div class="browser-header">
+                                <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                            </div>
+                            <div class="preview-area" style="background: linear-gradient(135deg, #1a002b, #4b0082); display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+                                <i class="fas fa-feather-pointed" style="font-size: 4rem; color: var(--accent-purple); opacity: 0.8; margin-bottom: 15px;"></i>
+                                <h3 style="color: #fff; font-size: 1.5rem;">Kingdom & Quill</h3>
+                                <p style="color: #ccc; font-size: 0.9rem;">Interactive Storytelling</p>
+                                <span style="font-size: 0.7rem; color: #aaa; margin-top: 15px; border: 1px solid #aaa; padding: 3px 10px; border-radius: 4px;">HOVER TO PREVIEW</span>
+                            </div>
+                        </div>
+
+                        <div class="flip-back" style="background-image: url('print-kingdom.jpg');">
+                            <div style="background: rgba(0,0,0,0.7); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                                <h3 style="margin-bottom: 15px; color: #fff;">Ready to explore?</h3>
+                                <a href="https://tstelles.github.io/kingdom-quill/" target="_blank" class="btn-view" style="transform: translateY(0); background: var(--accent-purple); color: #fff; border: none;">
+                                    Visit Live Site
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <div class="card-info">
-                        <h3>Kingdom & Quill</h3>
-                        <p>Interactive storytelling platform.</p>
-                        <span class="tag">Live Project</span>
+                </div>
+
+                <div class="gallery-grid">
+                    
+                    <div class="gallery-item" title="Detail 1">
+                        <i class="far fa-image"></i>
                     </div>
+
+                    <div class="gallery-item" title="Detail 2">
+                        <i class="far fa-image"></i>
+                    </div>
+
+                    <div class="gallery-item" title="Detail 3">
+                        <i class="far fa-image"></i>
+                    </div>
+
+                    <div class="gallery-item" title="Detail 4">
+                        <i class="far fa-image"></i>
+                    </div>
+
                 </div>
 
             </div>

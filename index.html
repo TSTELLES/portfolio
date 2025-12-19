@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PORTFOLIO HUB | T.S. Telles</title>
+    <title>LUXELAND | Premium Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
@@ -21,6 +21,8 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Poppins', sans-serif;
             background-color: var(--bg-dark);
@@ -29,11 +31,11 @@
             padding-bottom: 80px;
         }
 
-        /* Header */
+        /* --- HEADER --- */
         header {
             text-align: center;
             padding: 80px 20px 60px;
-            background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 80%);
+            background: radial-gradient(circle at center, #222 0%, #0a0a0a 70%);
             border-bottom: 1px solid var(--section-border);
             margin-bottom: 40px;
         }
@@ -52,7 +54,27 @@
             margin: 0 auto;
         }
 
-        /* Section Styling */
+        /* Estilo da Assinatura (Simples) */
+        .creator-signature {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.4); /* Cinza sutil */
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .creator-signature:hover {
+            color: #fff; /* Fica branco ao passar o mouse */
+        }
+
+        .creator-signature i {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+
+        /* --- SEÇÕES E CATEGORIAS --- */
         .category-section {
             max-width: 1200px;
             margin: 0 auto 60px;
@@ -76,7 +98,7 @@
             gap: 30px;
         }
 
-        /* O Mockup (Browser Window) */
+        /* Mockup */
         .browser-mockup {
             background: var(--card-bg);
             border-radius: 12px;
@@ -107,13 +129,13 @@
         .dot.green { background: #27c93f; }
         
         .preview-area {
-            height: 200px;
+            height: 220px;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             background-size: cover;
-            background-position: top center; /* Ajuste para prints */
+            background-position: top center;
             background-color: #111;
         }
 
@@ -151,14 +173,11 @@
         .card-info p { font-size: 0.8rem; color: #777; margin-bottom: 0; }
         .tag { font-size: 0.65rem; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; display: inline-block; margin-top: 10px; }
 
-        /* --- CORES ESPECÍFICAS --- */
-        
-        /* Kingdom Quill */
+        /* --- TEMAS --- */
         .theme-quill .preview-area { background: linear-gradient(135deg, #1a002b, #4b0082); }
         .theme-quill .tag { color: var(--accent-purple); border: 1px solid var(--accent-purple); }
         .theme-quill .btn-view { background: var(--accent-purple); color: white; }
 
-        /* Templates */
         .theme-red .preview-area { background: linear-gradient(135deg, #2b0000, #800000); }
         .theme-red .tag { color: var(--accent-red); border: 1px solid var(--accent-red); }
         
@@ -168,7 +187,6 @@
         .theme-gold .preview-area { background: linear-gradient(135deg, #221a00, #664400); }
         .theme-gold .tag { color: var(--accent-gold); border: 1px solid var(--accent-gold); }
 
-        /* Designs (Placeholder Style) */
         .theme-design .preview-area { background: #1a1a1a; background-image: radial-gradient(#333 1px, transparent 1px); background-size: 10px 10px; }
         .theme-design .tag { color: #888; border: 1px dashed #444; }
         .theme-design i { color: #333; }
@@ -179,111 +197,119 @@
 <body>
 
     <header>
-        <h1>MY PORTFOLIO</h1>
-        <p class="subtitle">Front-End Developer & UI Designer</p>
+        <h1>LUXELAND <span style="font-weight: 300; opacity: 0.5;">COLLECTION</span></h1>
+        <p class="subtitle">High-conversion landing pages engineered for premium products.</p>
+        
+        <a href="https://github.com/tstelles" target="_blank" class="creator-signature">
+            <i class="fab fa-github"></i> tstelles
+        </a>
     </header>
 
-    <section class="category-section">
-        <h2 class="section-title">Published Sites</h2>
-        <div class="grid-container">
-            
-            <div class="browser-mockup theme-quill">
-                <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
-                <div class="preview-area">
-                    <i class="fas fa-feather-pointed" style="font-size: 3rem; color: var(--accent-purple); opacity: 0.5;"></i>
-                    <div class="overlay">
-                        <a href="https://tstelles.github.io/kingdom-quill/" target="_blank" class="btn-view">Visit Live Site</a>
+    <div id="portfolio">
+        
+        <section class="category-section">
+            <h2 class="section-title" style="border-color: var(--accent-purple);">Published Sites</h2>
+            <div class="grid-container">
+                
+                <div class="browser-mockup theme-quill">
+                    <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                    <div class="preview-area">
+                        <i class="fas fa-feather-pointed" style="font-size: 3rem; color: var(--accent-purple); opacity: 0.5;"></i>
+                        <div class="overlay">
+                            <a href="https://tstelles.github.io/kingdom-quill/" target="_blank" class="btn-view">Visit Live Site</a>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <h3>Kingdom & Quill</h3>
+                        <p>Interactive storytelling platform.</p>
+                        <span class="tag">Live Project</span>
                     </div>
                 </div>
-                <div class="card-info">
-                    <h3>Kingdom & Quill</h3>
-                    <p>Interactive storytelling platform.</p>
-                    <span class="tag">Live Project</span>
-                </div>
+
             </div>
+        </section>
 
-        </div>
-    </section>
+        <section class="category-section">
+            <h2 class="section-title">Complete Site Models</h2>
+            <div class="grid-container">
+                
+                <div class="browser-mockup theme-red">
+                    <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                    <div class="preview-area">
+                        <i class="fas fa-bolt" style="font-size: 2.5rem; color: var(--accent-red); opacity: 0.5;"></i>
+                        <div class="overlay"><a href="red_metallic.html" target="_blank" class="btn-view">View Template</a></div>
+                    </div>
+                    <div class="card-info">
+                        <h3>Red Metallic Edition</h3>
+                        <p>High-energy sales landing page.</p>
+                        <span class="tag">HTML5 / CSS3</span>
+                    </div>
+                </div>
 
-    <section class="category-section">
-        <h2 class="section-title">Complete Site Models</h2>
-        <div class="grid-container">
-            
-            <div class="browser-mockup theme-red">
-                <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
-                <div class="preview-area">
-                    <i class="fas fa-bolt" style="font-size: 2.5rem; color: var(--accent-red); opacity: 0.5;"></i>
-                    <div class="overlay"><a href="red_metallic.html" target="_blank" class="btn-view">View Template</a></div>
+                <div class="browser-mockup theme-navy">
+                    <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                    <div class="preview-area">
+                        <i class="fas fa-microchip" style="font-size: 2.5rem; color: var(--accent-navy); opacity: 0.5;"></i>
+                        <div class="overlay"><a href="navy_metallic.html" target="_blank" class="btn-view">View Template</a></div>
+                    </div>
+                    <div class="card-info">
+                        <h3>Navy Tech Edition</h3>
+                        <p>Corporate & Trust focused layout.</p>
+                        <span class="tag">HTML5 / CSS3</span>
+                    </div>
                 </div>
-                <div class="card-info">
-                    <h3>Red Metallic Edition</h3>
-                    <p>High-energy sales landing page.</p>
-                    <span class="tag">HTML5 / CSS3</span>
+
+                <div class="browser-mockup theme-gold">
+                    <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                    <div class="preview-area">
+                        <i class="fas fa-crown" style="font-size: 2.5rem; color: var(--accent-gold); opacity: 0.5;"></i>
+                        <div class="overlay"><a href="gold_template.html" target="_blank" class="btn-view">View Template</a></div>
+                    </div>
+                    <div class="card-info">
+                        <h3>Dark Gold Edition</h3>
+                        <p>Luxury & Premium product page.</p>
+                        <span class="tag">HTML5 / CSS3</span>
+                    </div>
                 </div>
+
             </div>
+        </section>
 
-            <div class="browser-mockup theme-navy">
-                <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
-                <div class="preview-area">
-                    <i class="fas fa-microchip" style="font-size: 2.5rem; color: var(--accent-navy); opacity: 0.5;"></i>
-                    <div class="overlay"><a href="navy_metallic.html" target="_blank" class="btn-view">View Template</a></div>
+        <section class="category-section">
+            <h2 class="section-title" style="border-color: #555;">Designs & UI Concepts</h2>
+            <div class="grid-container">
+                
+                <div class="browser-mockup theme-design">
+                    <div class="browser-header"><div class="dot" style="background:#444"></div><div class="dot" style="background:#444"></div></div>
+                    <div class="preview-area">
+                        <i class="far fa-image" style="font-size: 2rem; opacity: 0.2;"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3 style="color: #666;">UI Concept #01</h3>
+                        <p>Dashboard interface mockup.</p>
+                        <span class="tag">Figma / Sketch</span>
+                    </div>
                 </div>
-                <div class="card-info">
-                    <h3>Navy Tech Edition</h3>
-                    <p>Corporate & Trust focused layout.</p>
-                    <span class="tag">HTML5 / CSS3</span>
+
+                <div class="browser-mockup theme-design">
+                    <div class="browser-header"><div class="dot" style="background:#444"></div><div class="dot" style="background:#444"></div></div>
+                    <div class="preview-area">
+                        <i class="far fa-image" style="font-size: 2rem; opacity: 0.2;"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3 style="color: #666;">Mobile App UI</h3>
+                        <p>Finance application concept.</p>
+                        <span class="tag">Adobe XD</span>
+                    </div>
                 </div>
+
             </div>
+        </section>
 
-            <div class="browser-mockup theme-gold">
-                <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
-                <div class="preview-area">
-                    <i class="fas fa-crown" style="font-size: 2.5rem; color: var(--accent-gold); opacity: 0.5;"></i>
-                    <div class="overlay"><a href="gold_template.html" target="_blank" class="btn-view">View Template</a></div>
-                </div>
-                <div class="card-info">
-                    <h3>Dark Gold Edition</h3>
-                    <p>Luxury & Premium product page.</p>
-                    <span class="tag">HTML5 / CSS3</span>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <section class="category-section">
-        <h2 class="section-title" style="border-color: #555;">Designs & UI Concepts</h2>
-        <div class="grid-container">
-            
-            <div class="browser-mockup theme-design">
-                <div class="browser-header"><div class="dot" style="background:#444"></div><div class="dot" style="background:#444"></div></div>
-                <div class="preview-area">
-                    <i class="far fa-image" style="font-size: 2rem; opacity: 0.2;"></i>
-                </div>
-                <div class="card-info">
-                    <h3 style="color: #666;">UI Concept #01</h3>
-                    <p>Dashboard interface mockup.</p>
-                    <span class="tag">Figma / Sketch</span>
-                </div>
-            </div>
-
-            <div class="browser-mockup theme-design">
-                <div class="browser-header"><div class="dot" style="background:#444"></div><div class="dot" style="background:#444"></div></div>
-                <div class="preview-area">
-                    <i class="far fa-image" style="font-size: 2rem; opacity: 0.2;"></i>
-                </div>
-                <div class="card-info">
-                    <h3 style="color: #666;">Mobile App UI</h3>
-                    <p>Finance application concept.</p>
-                    <span class="tag">Adobe XD</span>
-                </div>
-            </div>
-
-        </div>
-    </section>
+    </div>
 
     <footer>
-        <p>© 2025 T.S. Telles Portfolio. All rights reserved.</p>
+        <p>© 2025 LuxeLand Components. All rights reserved.</p>
     </footer>
 
 </body>

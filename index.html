@@ -106,7 +106,7 @@
             border-radius: 8px;
             overflow: hidden;
             position: relative;
-            cursor: pointer;
+            cursor: pointer; /* Mãozinha para indicar clique */
             transition: transform 0.3s ease, border-color 0.3s ease;
             background-size: cover;
             background-position: center;
@@ -120,7 +120,7 @@
             box-shadow: 0 5px 15px rgba(157, 0, 255, 0.2);
         }
 
-        /* --- NOVO EFEITO: CINEMATIC FADE (Substitui o Flip) --- */
+        /* --- CINEMATIC FADE (Substitui Flip) --- */
         .cinematic-card {
             position: relative;
             width: 100%;
@@ -132,7 +132,6 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        /* Camada do Site (Fica no fundo) */
         .cinematic-card .bg-site {
             position: absolute;
             top: 0; left: 0;
@@ -140,14 +139,11 @@
             z-index: 1;
         }
 
-        /* Camada de Informação (Overlay Roxo) */
         .cinematic-card .info-overlay {
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
             z-index: 2;
-            
-            /* Design do Overlay */
             background: linear-gradient(135deg, rgba(26,0,43,0.95), rgba(75,0,130,0.95));
             color: white;
             display: flex;
@@ -155,37 +151,33 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            
-            /* Animação Automática */
-            opacity: 0; /* Começa invisível */
+            opacity: 0; 
             animation: autoFade 12s infinite ease-in-out;
             transition: opacity 0.5s ease;
         }
 
-        /* O Ciclo da Animação (12 segundos) */
         @keyframes autoFade {
-            0%, 40% { opacity: 0; }  /* Mostra o Site (40% do tempo) */
-            50%, 90% { opacity: 1; } /* Mostra o Texto (40% do tempo) */
-            100% { opacity: 0; }     /* Fade out */
+            0%, 40% { opacity: 0; }  
+            50%, 90% { opacity: 1; } 
+            100% { opacity: 0; }     
         }
 
-        /* Quando passar o mouse, força aparecer o Texto e Botão */
         .cinematic-card:hover .info-overlay {
             opacity: 1;
-            animation: none; /* Para o loop automático */
+            animation: none;
         }
 
-        /* --- Iframe Thumbnail (Estabilizado) --- */
+        /* --- Iframe Thumbnail --- */
         .live-thumbnail {
             width: 400%;  
             height: 400%; 
             border: 0;
             transform: scale(0.25); 
             transform-origin: 0 0;  
-            pointer-events: none; /* Impede travar o mouse */
+            pointer-events: none; 
         }
 
-        /* --- BOTÃO EXPLORER ROXO --- */
+        /* --- BOTÃO EXPLORER --- */
         .btn-square-purple {
             background-color: var(--accent-purple);
             color: #fff;
@@ -208,7 +200,53 @@
             box-shadow: 0 8px 20px rgba(157, 0, 255, 0.6);
         }
 
-        /* --- GRID PADRÃO (SEÇÕES 2 e 3) --- */
+        /* --- LIGHTBOX (JANELA QUE AMPLIA A FOTO) --- */
+        .lightbox-modal {
+            display: none; /* Escondido por padrão */
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            animation: zoomIn 0.3s;
+        }
+
+        @keyframes zoomIn {
+            from {transform:scale(0)} 
+            to {transform:scale(1)}
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .close-lightbox:hover,
+        .close-lightbox:focus {
+            color: var(--accent-purple);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* --- GRID PADRÃO --- */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -319,7 +357,6 @@
             <div class="featured-wrapper">
                 
                 <div class="cinematic-card">
-                    
                     <div class="bg-site">
                         <iframe 
                             src="KingdomandQuill.html" 
@@ -330,13 +367,10 @@
 
                     <div class="info-overlay">
                         <i class="fas fa-feather-pointed" style="font-size: 3rem; color: var(--accent-purple); text-shadow: 0 0 10px rgba(157, 0, 255, 0.5); margin-bottom: 20px;"></i>
-                        
                         <h3 style="color: #fff; font-size: 1.8rem; margin-bottom: 5px;">Kingdom & Quill</h3>
-                        
                         <p style="color: #ddd; font-size: 1rem; font-style: italic; letter-spacing: 1px; margin-bottom: 10px;">
                             Ink. Spirit. Legacy.
                         </p>
-                        
                         <a href="KingdomandQuill.html" target="_blank" class="btn-square-purple">
                             Explorer
                         </a>
@@ -435,6 +469,46 @@
     <footer>
         <p>© 2025 T.S. Telles Portfolio. All rights reserved.</p>
     </footer>
+
+    <div id="lightbox" class="lightbox-modal">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <script>
+        // Pega os elementos
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const closeBtn = document.querySelector('.close-lightbox');
+
+        // Adiciona evento de clique em CADA item da galeria
+        galleryItems.forEach(item => {
+            item.addEventListener('click', function() {
+                // Pega a URL da imagem que está no background-image
+                const style = window.getComputedStyle(this);
+                const bgImage = style.backgroundImage;
+                
+                // Limpa a string "url("...")" para pegar só o link
+                const url = bgImage.slice(5, -2); // Remove 'url("' e '")'
+                
+                lightbox.style.display = "flex";
+                lightboxImg.src = url;
+            });
+        });
+
+        // Fechar ao clicar no X
+        closeBtn.onclick = function() {
+            lightbox.style.display = "none";
+        }
+
+        // Fechar ao clicar fora da imagem
+        lightbox.onclick = function(event) {
+            if (event.target === lightbox) {
+                lightbox.style.display = "none";
+            }
+        }
+    </script>
 
 </body>
 </html>

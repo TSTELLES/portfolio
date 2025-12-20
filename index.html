@@ -354,7 +354,7 @@
         .overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85); /* Fundo mais escuro para o In Progress */
+            background: rgba(0,0,0,0.85);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -376,11 +376,10 @@
             background: #fff;
             transform: translateY(10px);
             transition: transform 0.3s ease;
-            cursor: default; /* Cursor padrão para itens não clicáveis */
+            cursor: default;
         }
         .browser-mockup:hover .btn-view { transform: translateY(0); }
 
-        /* Botão ativo (para os templates reais) */
         .btn-active { cursor: pointer; }
 
         .dot { width: 8px; height: 8px; border-radius: 50%; }
@@ -396,7 +395,6 @@
         .theme-navy .tag { color: var(--accent-navy); border: 1px solid var(--accent-navy); }
         .theme-gold .tag { color: var(--accent-gold); border: 1px solid var(--accent-gold); }
         
-        /* Tema In Progress */
         .theme-design .tag { color: var(--accent-gold); border: 1px solid var(--accent-gold); }
         .theme-design i { color: #444; transition: color 0.3s;}
         .theme-design:hover i { color: var(--accent-gold); opacity: 0.8; }
@@ -485,6 +483,25 @@
                     <div class="card-info"><h3>Dark Gold Edition</h3><p>Luxury & Premium product page.</p><span class="tag">HTML5 / CSS3</span></div>
                 </div>
             </div>
+
+            <div class="project-details" style="border-left-color: var(--accent-gold);">
+                <h3>Gold Metallic — <span style="font-weight: 400; color: #888;">Premium Landing Page Template</span></h3>
+                
+                <div class="detail-block">
+                    <span class="detail-label" style="color: var(--accent-gold);">Overview:</span>
+                    <p class="detail-text">
+                        A luxury-focused landing page template designed to communicate exclusivity, value, and premium positioning. Gold Metallic is ideal for high-end products, memberships, digital courses, and exclusive offers that require a strong sense of prestige and trust.
+                    </p>
+                </div>
+
+                <div class="detail-block">
+                    <span class="detail-label" style="color: var(--accent-gold);">Technical Specs:</span>
+                    <p class="detail-text">
+                        Built with clean HTML, CSS, and lightweight animations, the template is fully responsive and easy to customize, making it suitable for marketers and developers who need a polished, conversion-oriented presentation without unnecessary complexity.
+                    </p>
+                </div>
+            </div>
+
         </section>
 
         <section class="category-section">
@@ -494,71 +511,43 @@
                 <div class="browser-mockup theme-design">
                     <div class="browser-header"><div class="dot" style="background:#444"></div><div class="dot" style="background:#444"></div></div>
                     <div class="preview-placeholder"><i class="fas fa-chart-line" style="font-size: 2rem; opacity: 0.2;"></i><div class="overlay"><span class="btn-view">Coming Soon</span></div></div>
-                    <div class="card-info">
-                        <h3 style="color: #666;">SaaS Dashboard</h3>
-                        <p>Analytics interface mockup.</p>
-                        <span class="tag">In Progress</span>
-                    </div>
+                    <div class="card-info"><h3 style="color: #666;">SaaS Dashboard</h3><p>Analytics interface mockup.</p><span class="tag">In Progress</span></div>
                 </div>
 
                 <div class="browser-mockup theme-design">
                     <div class="browser-header"><div class="dot" style="background:#444"></div><div class="dot" style="background:#444"></div></div>
                     <div class="preview-placeholder"><i class="fas fa-mobile-alt" style="font-size: 2rem; opacity: 0.2;"></i><div class="overlay"><span class="btn-view">Coming Soon</span></div></div>
-                    <div class="card-info">
-                        <h3 style="color: #666;">FinTech App UI</h3>
-                        <p>Finance application concept.</p>
-                        <span class="tag">In Progress</span>
-                    </div>
+                    <div class="card-info"><h3 style="color: #666;">FinTech App UI</h3><p>Finance application concept.</p><span class="tag">In Progress</span></div>
                 </div>
 
                 <div class="browser-mockup theme-design">
                     <div class="browser-header"><div class="dot" style="background:#444"></div><div class="dot" style="background:#444"></div></div>
                     <div class="preview-placeholder"><i class="fas fa-shopping-bag" style="font-size: 2rem; opacity: 0.2;"></i><div class="overlay"><span class="btn-view">Coming Soon</span></div></div>
-                    <div class="card-info">
-                        <h3 style="color: #666;">Modern E-Commerce</h3>
-                        <p>Fashion store layout.</p>
-                        <span class="tag">In Progress</span>
-                    </div>
+                    <div class="card-info"><h3 style="color: #666;">Modern E-Commerce</h3><p>Fashion store layout.</p><span class="tag">In Progress</span></div>
                 </div>
 
                 <div class="browser-mockup theme-design">
                     <div class="browser-header"><div class="dot" style="background:#444"></div><div class="dot" style="background:#444"></div></div>
                     <div class="preview-placeholder"><i class="fas fa-building" style="font-size: 2rem; opacity: 0.2;"></i><div class="overlay"><span class="btn-view">Coming Soon</span></div></div>
-                    <div class="card-info">
-                        <h3 style="color: #666;">Real Estate Portal</h3>
-                        <p>Property listing platform.</p>
-                        <span class="tag">In Progress</span>
-                    </div>
+                    <div class="card-info"><h3 style="color: #666;">Real Estate Portal</h3><p>Property listing platform.</p><span class="tag">In Progress</span></div>
                 </div>
 
                 <div class="browser-mockup theme-design">
                     <div class="browser-header"><div class="dot" style="background:#444"></div><div class="dot" style="background:#444"></div></div>
                     <div class="preview-placeholder"><i class="fas fa-heart-pulse" style="font-size: 2rem; opacity: 0.2;"></i><div class="overlay"><span class="btn-view">Coming Soon</span></div></div>
-                    <div class="card-info">
-                        <h3 style="color: #666;">Health & Care</h3>
-                        <p>Medical clinic website.</p>
-                        <span class="tag">In Progress</span>
-                    </div>
+                    <div class="card-info"><h3 style="color: #666;">Health & Care</h3><p>Medical clinic website.</p><span class="tag">In Progress</span></div>
                 </div>
 
                 <div class="browser-mockup theme-design">
                     <div class="browser-header"><div class="dot" style="background:#444"></div><div class="dot" style="background:#444"></div></div>
                     <div class="preview-placeholder"><i class="fas fa-utensils" style="font-size: 2rem; opacity: 0.2;"></i><div class="overlay"><span class="btn-view">Coming Soon</span></div></div>
-                    <div class="card-info">
-                        <h3 style="color: #666;">Gourmet Booking</h3>
-                        <p>Restaurant reservation system.</p>
-                        <span class="tag">In Progress</span>
-                    </div>
+                    <div class="card-info"><h3 style="color: #666;">Gourmet Booking</h3><p>Restaurant reservation system.</p><span class="tag">In Progress</span></div>
                 </div>
 
                 <div class="browser-mockup theme-design">
                     <div class="browser-header"><div class="dot" style="background:#444"></div><div class="dot" style="background:#444"></div></div>
                     <div class="preview-placeholder"><i class="fas fa-cube" style="font-size: 2rem; opacity: 0.2;"></i><div class="overlay"><span class="btn-view">Coming Soon</span></div></div>
-                    <div class="card-info">
-                        <h3 style="color: #666;">NFT Marketplace</h3>
-                        <p>Digital asset showcase.</p>
-                        <span class="tag">In Progress</span>
-                    </div>
+                    <div class="card-info"><h3 style="color: #666;">NFT Marketplace</h3><p>Digital asset showcase.</p><span class="tag">In Progress</span></div>
                 </div>
 
             </div>

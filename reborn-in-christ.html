@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reborn in Christ — To The Glory</title>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MCMK8L0CNN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-MCMK8L0CNN');
+    </script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Sets Inter font as default */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1222; /* Dark Blue Almost Black Background (Fallback) */
+            position: relative;
+            min-height: 100vh;
+        }
+        /* New style for blurred background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://raw.githubusercontent.com/TSTELLES/kingdom-quill/main/to-the-glory-cover.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: blur(15px); /* High blur level */
+            transform: scale(1.1); /* Scale to prevent white edges after blurring */
+            z-index: -2; /* Place behind everything */
+        }
+        
+        /* Add a semi-transparent dark layer over the blurred background, but below the content */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(13, 18, 34, 0.85); /* Original background color with 85% opacity */
+            z-index: -1; /* Place above blurred background, but below content */
+        }
+        /* Ensure page content stays in front of the background */
+        .max-w-4xl {
+            position: relative;
+            z-index: 1; 
+        }
+
+        /* TRANSPARENT BACKGROUND CLASS FOR ALL BLOCKS */
+        .bg-transparent-block {
+            background-color: rgba(0, 0, 0, 0.5); /* Transparent Black (50% opacity) */
+            backdrop-filter: blur(4px); /* Smooths transition (if supported) */
+        }
+
+        /* TRANSPARENT BACKGROUND CLASS FOR PLAYER */
+        .bg-transparent-player {
+            background-color: rgba(0, 0, 0, 0.6); /* 60% Transparent Black for players */
+            transition: box-shadow 0.3s;
+            height: 64px; 
+        }
+        .bg-transparent-player:hover {
+             box-shadow: 0 0 10px rgba(252, 163, 17, 0.4); /* Subtle gold glow on hover */
+        }
+
+        /* --------------------------------- */
+        /* UNIFORM CTA BUTTON STYLES */
+        /* --------------------------------- */
+        .cta-button-uniform {
+            background-color: transparent;
+            border: 2px solid #fca311;
+            color: #fca311;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 12px 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .cta-button-uniform:hover {
+            background-color: #fca31120;
+            transform: translateY(-1px);
+            box-shadow: 0 0 10px rgba(252, 163, 17, 0.4);
+        }
+
+        /* NEON GOLD CLASS (For Reborn in Christ in the title) */
+        .text-neon-gold {
+            color: #fff; 
+            text-shadow: 
+                0 0 5px #fca311,
+                0 0 10px #fca311,
+                0 0 20px #fca311;
+            font-weight: bold;
+        }
+        /* NEON WHITE CLASS (For K&Q Presents and Reborn in Christ in the body) */
+        .text-neon-white {
+            color: #ffffff; 
+            text-shadow: 
+                0 0 5px #ffffff,
+                0 0 10px #ffffff,
+                0 0 20px #ffffff;
+            font-weight: bold;
+        }
+        /* CORRECTED NEON YELLOW CLASS (For New York) */
+        .text-neon-yellow-glow {
+            color: #fff897; /* Very light yellow for base color */
+            text-shadow: 
+                0 0 5px #FFC300, 
+                0 0 10px #FFC300,
+                0 0 20px #FFC300;
+            font-weight: bold;
+        }
+        
+        /* NEW NEON GLOW CLASSES FOR BOOK TEXT */
+        .text-neon-pink-glow {
+            color: #ff69b4; 
+            text-shadow: 
+                0 0 4px #ff69b4,
+                0 0 8px #ff69b4,
+                0 0 12px #ff69b4;
+            font-weight: bold;
+        }
+        .text-neon-white-glow {
+            color: #ffffff; 
+            text-shadow: 
+                0 0 4px #ffffff,
+                0 0 8px #ffffff,
+                0 0 12px #ffffff;
+            font-weight: bold;
+        }
+
+        /* ORIGINAL SPECIFIC COLORS (MAINTAINED, BUT REPLACED IN SPANS) */
+        .text-pink {
+            color: #ff69b4; /* Pink */
+        }
+        .text-white-plain {
+            color: #fff; /* Plain White */
+        }
+
+        /* CLASS FOR BOOK TITLE (MONOTYPE/CURSIVE) */
+        .font-book-title {
+            font-family: 'Monotype Corsiva', 'Apple Chancery', cursive;
+            font-style: italic;
+            font-size: 1.1em;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body class="min-h-screen antialiased">
+
+    <div class="max-w-4xl mx-auto p-4 md:p-8">
+
+        <header class="text-center py-8">
+            <p class="text-sm font-semibold uppercase tracking-widest text-neon-white mb-2">K&Q Presents</p>
+            <h1 class="text-4xl sm:text-6xl font-extrabold text-neon-gold mb-4 leading-tight">
+                REBORN IN CHRIST
+            </h1>
+            <h2 class="text-xl sm:text-2xl text-gray-300 font-light">
+                To The Glory
+                <br>
+                Music that accompanies those who choose change.
+            </h2>
+        </header>
+
+        <section id="hero" class="bg-transparent-block p-6 rounded-2xl shadow-2xl mb-12">
+            <div class="flex flex-col md:flex-row gap-8 items-center">
+                <div class="w-full md:w-1/2 flex justify-center">
+                    <img
+                        src="https://raw.githubusercontent.com/TSTELLES/kingdom-quill/main/to-the-glory-cover.jpg"
+                        alt="[Album Cover Image]"
+                        class="w-full max-w-xs md:max-w-sm rounded-2xl shadow-lg"
+                        onerror="this.onerror=null; this.src='https://placehold.co/400x400/1E40AF/FFFFFF?text=Image+Unavailable';"
+                    >
+                </div>
+
+                <div class="w-full md:w-1/2 text-white">
+                    <p class="text-lg mb-4 italic border-l-4 border-accent pl-3">
+                        “Reborn in Christ” is not just music—it is a manifesto of faith. These songs were written for people who wish to live the true Gospel, who want a new identity built on the truth of salvation and to bring the name of the Lord to all who haven't heard.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="previews" class="mb-12 bg-transparent-block p-6 rounded-2xl shadow-xl">
+            
+            <button id="toggle-previews-btn" onclick="togglePreviews()" class="w-full flex items-center justify-center text-neon-gold hover:text-white transition-colors duration-200">
+                <h3 class="text-3xl font-bold">Listen to Previews Here</h3>
+                <svg id="chevron-icon" class="w-6 h-6 ml-4 transform transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </button>
+
+            <div id="preview-content" class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 hidden">
+                
+                <div id="player-1" class="audio-player bg-transparent-player p-0 rounded-2xl flex items-center justify-center relative overflow-hidden h-20" data-track-name="Track 1: Redemption (Spotify Embed)">
+                    <div class="spotify-embed-container w-full h-full">
+                        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/7K2UNdCTlp1axXkGrmPDf6?utm_source=generator&theme=0" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
+                </div>
+                
+                <div id="player-2" class="audio-player bg-transparent-player p-0 rounded-2xl flex items-center justify-center relative overflow-hidden h-20" data-track-name="Track 2: Urban Beginning (Spotify Embed)">
+                     <div class="spotify-embed-container w-full h-full">
+                        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/72bU4g6nSQE6wFu22LtdXR?utm_source=generator&theme=0" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <div id="player-3" class="audio-player bg-transparent-player p-0 rounded-2xl flex items-center justify-center relative overflow-hidden h-20" data-track-name="Track 3: Found Purpose (Spotify Embed)">
+                     <div class="spotify-embed-container w-full h-full">
+                        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/4kWts5korf4qtY8qrkb7wS?utm_source=generator&theme=0" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
+                </div>
+                
+                <div id="player-4" class="audio-player bg-transparent-player p-0 rounded-2xl flex items-center justify-center relative overflow-hidden h-20" data-track-name="Track 4: Ascension (Spotify Embed)">
+                    <div class="spotify-embed-container w-full h-full">
+                        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/537ydfvBzEt2JKAYIzbhhj?utm_source=generator&theme=0" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <div id="player-5" class="audio-player bg-transparent-player p-0 rounded-2xl flex items-center justify-center relative overflow-hidden h-20" data-track-name="Track 5: Fall (Spotify Embed)">
+                     <div class="spotify-embed-container w-full h-full">
+                        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/0jM5VXccLPSLQNRCAw2tVw?utm_source=generator&theme=0" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
+                </div>
+                
+                <div id="player-6" class="audio-player bg-transparent-player p-0 rounded-2xl flex items-center justify-center relative overflow-hidden h-20" data-track-name="Track 6: Identity (Spotify Embed)">
+                    <div class="spotify-embed-container w-full h-full">
+                        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/4NGOdiN6lDrvECZWCJQt1A?utm_source=generator&theme=0" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <div id="player-7" class="audio-player bg-transparent-player p-0 rounded-2xl flex items-center justify-center relative overflow-hidden h-20" data-track-name="Track 7: The Prayer in the City (Spotify Embed)">
+                    <div class="spotify-embed-container w-full h-full">
+                        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/7ILG3Gw0dnGQ8bZ69FjvLt?utm_source=generator&theme=0" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
+                </div>
+                
+                <div id="player-8" class="audio-player bg-transparent-player p-0 rounded-2xl flex items-center justify-center relative overflow-hidden h-20" data-track-name="Track 8: New Covenant (Spotify Embed)">
+                     <div class="spotify-embed-container w-full h-full">
+                        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/5sJcMgKo7ij7tkd0Ymk47L?utm_source=generator&theme=0" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+            </div>
+            </section>
+        <section id="story" class="mb-12 text-gray-200 bg-transparent-block p-6 rounded-2xl shadow-xl">
+            <h3 class="text-3xl font-bold text-center text-neon-gold mb-6">The Emotional Bridge: Book & Music</h3>
+
+            <p class="mb-4 leading-relaxed">
+                <span class="text-neon-white">Reborn in Christ</span> brings the prayers from the universe of 
+                <span class="text-neon-pink-glow font-book-title">Welcome</span>
+                <span class="text-neon-white-glow font-book-title"> to </span>
+                <span class="text-neon-yellow-glow font-book-title">New York</span>
+                as declarations of truth—about who God is and who we are in Him. Here, emotions and pain are transformed into strength, faith, and identity.
+            </p>
+            <p class="mb-4 leading-relaxed">
+                The album gathers eight tracks that combine an urban atmosphere, epic energy, and emotional intensity, always sustained by clear, clean, and encouraging Christian messages.
+            </p>
+             <p class="leading-relaxed font-semibold">
+                If your faith is alive, if you have chosen to follow Christ in motion, this sound is for you. And if you are truly reborn, feed your mind and spirit with words that come from the heart and point directly to the Lord.
+            </p>
+        </section>
+        
+        <section id="features" class="mb-12 bg-transparent-block p-6 rounded-2xl shadow-xl">
+             <h3 class="text-3xl font-bold text-center text-neon-gold mb-6">What This Project Delivers</h3>
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-200">
+                
+                <div class="border-l-4 border-accent pl-4">
+                    <p class="font-bold text-xl mb-1 text-white">Powerful Message</p>
+                    <p class="text-sm">A project celebrating spiritual transformation and rebirth, offering true content for those who live their faith seriously.</p>
+                </div>
+                
+                <div class="border-l-4 border-accent pl-4">
+                    <p class="font-bold text-xl mb-1 text-white">Sound Innovation</p>
+                    <p class="text-sm">Composition and production via AI, carefully crafted to deliver something clean, emotional, and accessible.</p>
+                </div>
+                
+                <div class="border-l-4 border-accent pl-4">
+                    <p class="font-bold text-xl mb-1 text-white">8 Immersion Tracks</p>
+                    <p class="text-sm">Original songs inspired by the narrative arcs and the depth of 
+                        <span class="text-neon-pink-glow font-book-title">Welcome</span>
+                        <span class="text-neon-white-glow font-book-title"> to </span>
+                        <span class="text-neon-yellow-glow font-book-title">New York</span>, creating a coherent and engaging experience.
+                    </p>
+                </div>
+                
+                <div class="border-l-4 border-accent pl-4">
+                    <p class="font-bold text-xl mb-1 text-white">Expansive Soundscape</p>
+                    <p class="text-sm">Detailed production, with textures and layers that create depth and elevate the musical journey.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="creators" class="mb-12 text-center text-gray-200">
+            <h3 class="text-3xl font-bold text-neon-gold mb-8">The Messengers of Art</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-transparent-block p-6 rounded-2xl shadow-xl">
+                    <h4 class="text-2xl font-bold text-white mb-2">To The Glory</h4>
+                    <p class="text-sm italic mb-3">The Discreet and Powerful Messenger</p>
+                    <p class="leading-relaxed">
+                        To The Glory interprets the songs, firmly conveying the message of redemption with authenticity and depth.
+                    </p>
+                </div>
+                <div class="bg-transparent-block p-6 rounded-2xl shadow-xl">
+                    <h4 class="text-2xl font-bold text-white mb-2">Kingdom & Quill</h4>
+                    <p class="text-sm italic mb-3">The Production Signature</p>
+                    <p class="leading-relaxed">
+                        Kingdom & Quill signs the production with the spiritual maturity of all its content: strong, elegant, and geared towards the Christian audience seeking excellence.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="cta" class="text-center p-4">
+            
+            <h3 class="text-3xl sm:text-4xl font-extrabold text-neon-gold mb-12">
+                Ready to dive completely into the melodies?
+            </h3>
+
+            <img src="https://raw.githubusercontent.com/TSTELLES/kingdom-quill/main/to-the-glory-cover.jpg" alt="[Album Cover Image]" class="w-56 h-56 mx-auto rounded-lg mb-6 shadow-lg">
+
+            <div class="flex flex-col items-center gap-3 mx-auto max-w-xs sm:max-w-sm">
+                
+                <a href="https://open.spotify.com/intl-pt/album/7qKonVV222xlSNxLD9AtlM?referral=labelaffiliate&utm_source=1110lHbRBH3&utm_medium=Indie_CDBaby&utm_campaign=labelaffiliate" target="_blank" class="cta-button-uniform rounded-full">
+                    Spotify
+                </a>
+                
+                <a href="https://music.apple.com/br/album/reborn-in-christ/1858025145" target="_blank" class="cta-button-uniform rounded-full">
+                    Apple Music
+                </a>
+                
+                <a href="https://tidal.com/album/478078534" target="_blank" class="cta-button-uniform rounded-full">
+                    Tidal
+                </a>
+                
+                <a href="https://www.deezer.com/br/album/867804412" target="_blank" class="cta-button-uniform rounded-full">
+                    Deezer
+                </a>
+                
+                <a href="https://music.amazon.com.br/albums/B0G4N3T874?tag=fndcmpgns-20&referrer=https%3A%2F%2Ffound.ee%2F&webplayerDetailPagePath=https%3A%2F%2Fmusic.amazon.com.br%2Falbums%2FB0G4N3T874&hasSeenMusicAuthPage=true&referer=https%3A%2F%2Fmusic.amazon.com%2Falbums%2FB0G4N3T874%3Ftag%3Dfndcmpgns-20&referrer=https%3A%2F%2Fwww.amazon.com.br%2F" target="_blank" class="cta-button-uniform rounded-full">
+                    Amazon Music
+                </a>
+                
+                <a href="https://music.youtube.com/watch?v=Lf6NuBKMmkQ" target="_blank" class="cta-button-uniform rounded-full">
+                    YouTube Music
+                </a>
+            </div>
+            
+        </section>
+
+        <footer class="text-center py-6 text-gray-500 text-sm">
+            © 2025 To The Glory | Kingdom & Quill. All rights reserved.
+        </footer>
+
+    </div>
+    
+    <script>
+        // Function to toggle the visibility of the preview tracks
+        function togglePreviews() {
+            const content = document.getElementById('preview-content');
+            const icon = document.getElementById('chevron-icon');
+
+            if (content.classList.contains('hidden')) {
+                // Show content (Expand)
+                content.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                // Hide content (Collapse)
+                content.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        // NOTE: The JavaScript logic for custom players is no longer needed
+        // as we rely on external Spotify embeds. Keeping the function definition clean.
+    </script>
+</body>
+</html>

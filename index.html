@@ -120,58 +120,69 @@
             box-shadow: 0 5px 15px rgba(157, 0, 255, 0.2);
         }
 
-        /* --- FLIP AUTOMÁTICO (SEÇÃO 1) --- */
-        .flip-container {
-            background-color: transparent;
-            width: 100%;
-            height: 350px; 
-            perspective: 1000px;
-        }
-
-        .flip-inner {
+        /* --- NOVO EFEITO: CINEMATIC FADE (Substitui o Flip) --- */
+        .cinematic-card {
             position: relative;
             width: 100%;
-            height: 100%;
-            text-align: center;
-            transform-style: preserve-3d;
+            height: 350px;
             border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            animation: autoFlip 15s infinite ease-in-out;
-        }
-
-        @keyframes autoFlip {
-            0%, 25% { transform: rotateY(0); }       
-            30%, 95% { transform: rotateY(180deg); } 
-            100% { transform: rotateY(360deg); }     
-        }
-
-        .flip-container:hover .flip-inner {
-            animation: none;
-            transform: rotateY(180deg);
-            transition: transform 0.5s ease;
-        }
-
-        .flip-front, .flip-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            border-radius: 12px;
-            border: 1px solid #333;
             overflow: hidden;
+            background-color: #000;
+            border: 1px solid #333;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        .flip-front { background-color: #000; overflow: hidden; position: relative; }
-        
-        .flip-back {
-            background: linear-gradient(135deg, #1a002b, #4b0082);
+        /* Camada do Site (Fica no fundo) */
+        .cinematic-card .bg-site {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1;
+        }
+
+        /* Camada de Informação (Overlay Roxo) */
+        .cinematic-card .info-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 2;
+            
+            /* Design do Overlay */
+            background: linear-gradient(135deg, rgba(26,0,43,0.95), rgba(75,0,130,0.95));
             color: white;
-            transform: rotateY(180deg);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            text-align: center;
+            
+            /* Animação Automática */
+            opacity: 0; /* Começa invisível */
+            animation: autoFade 12s infinite ease-in-out;
+            transition: opacity 0.5s ease;
+        }
+
+        /* O Ciclo da Animação (12 segundos) */
+        @keyframes autoFade {
+            0%, 40% { opacity: 0; }  /* Mostra o Site (40% do tempo) */
+            50%, 90% { opacity: 1; } /* Mostra o Texto (40% do tempo) */
+            100% { opacity: 0; }     /* Fade out */
+        }
+
+        /* Quando passar o mouse, força aparecer o Texto e Botão */
+        .cinematic-card:hover .info-overlay {
+            opacity: 1;
+            animation: none; /* Para o loop automático */
+        }
+
+        /* --- Iframe Thumbnail (Estabilizado) --- */
+        .live-thumbnail {
+            width: 400%;  
+            height: 400%; 
+            border: 0;
+            transform: scale(0.25); 
+            transform-origin: 0 0;  
+            pointer-events: none; /* Impede travar o mouse */
         }
 
         /* --- BOTÃO EXPLORER ROXO --- */
@@ -188,6 +199,8 @@
             border: 1px solid rgba(255,255,255,0.3);
             box-shadow: 0 5px 15px rgba(0,0,0,0.4);
             transition: all 0.3s ease;
+            margin-top: 15px;
+            display: inline-block;
         }
         .btn-square-purple:hover {
             background-color: #b04dff;
@@ -221,22 +234,11 @@
             border-bottom: 1px solid #333;
         }
         
-        /* --- ESTILO PARA MINIATURA VIVA (IFRAME) --- */
         .preview-area {
             height: 220px;
             position: relative;
             background-color: #111;
             overflow: hidden; 
-        }
-        
-        /* O Truque do Iframe Scale */
-        .live-thumbnail {
-            width: 400%;  
-            height: 400%; 
-            border: 0;
-            transform: scale(0.25); 
-            transform-origin: 0 0;  
-            pointer-events: none;   
         }
 
         .preview-placeholder {
@@ -316,28 +318,28 @@
             
             <div class="featured-wrapper">
                 
-                <div class="flip-container">
-                    <div class="flip-inner">
-                        
-                        <div class="flip-front">
-                            <iframe 
-                                src="KingdomandQuill.html" 
-                                class="live-thumbnail" 
-                                style="width: 400%; height: 400%; transform: scale(0.25); transform-origin: 0 0; border: none; pointer-events: none;">
-                            </iframe>
-                            <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 30%; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); pointer-events: none;"></div>
-                        </div>
+                <div class="cinematic-card">
+                    
+                    <div class="bg-site">
+                        <iframe 
+                            src="KingdomandQuill.html" 
+                            class="live-thumbnail">
+                        </iframe>
+                        <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 30%; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); pointer-events: none;"></div>
+                    </div>
 
-                        <div class="flip-back">
-                            <i class="fas fa-feather-pointed" style="font-size: 3rem; color: var(--accent-purple); text-shadow: 0 0 10px rgba(157, 0, 255, 0.5); margin-bottom: 20px;"></i>
-                            <h3 style="color: #fff; font-size: 1.8rem; margin-bottom: 5px;">Kingdom & Quill</h3>
-                            <p style="color: #ddd; font-size: 1rem; font-style: italic; letter-spacing: 1px; margin-bottom: 25px;">
-                                Ink. Spirit. Legacy.
-                            </p>
-                            <a href="KingdomandQuill.html" target="_blank" class="btn-square-purple">
-                                Explorer
-                            </a>
-                        </div>
+                    <div class="info-overlay">
+                        <i class="fas fa-feather-pointed" style="font-size: 3rem; color: var(--accent-purple); text-shadow: 0 0 10px rgba(157, 0, 255, 0.5); margin-bottom: 20px;"></i>
+                        
+                        <h3 style="color: #fff; font-size: 1.8rem; margin-bottom: 5px;">Kingdom & Quill</h3>
+                        
+                        <p style="color: #ddd; font-size: 1rem; font-style: italic; letter-spacing: 1px; margin-bottom: 10px;">
+                            Ink. Spirit. Legacy.
+                        </p>
+                        
+                        <a href="KingdomandQuill.html" target="_blank" class="btn-square-purple">
+                            Explorer
+                        </a>
                     </div>
                 </div>
 

@@ -344,8 +344,10 @@
             to { transform: translateY(0); opacity: 1; }
         }
 
+        /* Cores das Bordas dos Modais */
         .modal-purple { border-top: 4px solid var(--accent-purple); }
         .modal-gold { border-top: 4px solid var(--accent-gold); }
+        .modal-navy { border-top: 4px solid var(--accent-navy); } /* NOVO: Estilo Navy */
 
         .modal-close {
             position: absolute;
@@ -369,8 +371,11 @@
         .modal-label { 
             font-weight: 700; text-transform: uppercase; font-size: 0.85rem; display: block; margin-bottom: 5px; 
         }
+        
+        /* Cores dos Labels nos Modais */
         .modal-purple .modal-label { color: var(--accent-purple); }
         .modal-gold .modal-label { color: var(--accent-gold); }
+        .modal-navy .modal-label { color: var(--accent-navy); } /* NOVO */
         
         .modal-text { color: #ccc; font-size: 0.95rem; line-height: 1.6; }
 
@@ -534,6 +539,7 @@
                         <div class="overlay">
                             <div class="overlay-actions">
                                 <a href="navy_metallic_template.html" target="_blank" class="btn-view btn-active">View Template</a>
+                                <button class="btn-info" onclick="openTextModal('modal-navy')"><i class="fas fa-plus"></i> Details</button>
                             </div>
                         </div>
                     </div>
@@ -640,6 +646,16 @@
             <div class="modal-block"><span class="modal-label">Challenge:</span><p class="modal-text">Design an engaging, interactive web platform for a Christian audience, featuring multilingual Bible versions for over ten countries, devotional and literary materials, and music across multiple platforms, while keeping navigation simple and intuitive for all users.</p></div>
             <div class="modal-block"><span class="modal-label">Approach:</span><p class="modal-text">Developed a fully responsive HTML/CSS website with interactive elements. Focused on a clean layout, intuitive navigation, and a modern color palette to reflect creativity and professionalism. Integrated audio samples to allow users to preview content.</p></div>
             <div class="modal-block"><span class="modal-label">Result:</span><p class="modal-text">A polished, user-friendly web experience that showcases proficiency in front-end design, responsive layouts, and interactive, user-focused interfaces.</p></div>
+        </div>
+    </div>
+
+    <div id="modal-navy" class="text-modal-overlay" onclick="closeTextModal('modal-navy')">
+        <div class="text-modal-content modal-navy" onclick="event.stopPropagation()">
+            <span class="modal-close" onclick="closeTextModal('modal-navy')">&times;</span>
+            <h3 class="modal-title">Navy Metallic <span style="font-size: 0.8rem; color: #888; display: block; margin-top: 5px;">Template Overview</span></h3>
+            
+            <div class="modal-block"><span class="modal-label">Concept:</span><p class="modal-text">A modern, high-contrast landing page template created to convey trust, technology, and professionalism. Navy Metallic is well-suited for SaaS products, digital services, software tools, and corporate-focused campaigns.</p></div>
+            <div class="modal-block"><span class="modal-label">Technical Specs:</span><p class="modal-text">The layout emphasizes clarity, hierarchy, and readability, combined with subtle metallic animation effects. Fully responsive and built with clean front-end code, this template offers a reliable foundation for professional and tech-oriented projects.</p></div>
         </div>
     </div>
 

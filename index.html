@@ -284,7 +284,6 @@
             display: inline-block;
         }
         
-        /* Botões dentro do overlay do browser */
         .overlay-actions {
             display: flex;
             flex-direction: column;
@@ -347,7 +346,8 @@
         /* Cores das Bordas dos Modais */
         .modal-purple { border-top: 4px solid var(--accent-purple); }
         .modal-gold { border-top: 4px solid var(--accent-gold); }
-        .modal-navy { border-top: 4px solid var(--accent-navy); } /* NOVO: Estilo Navy */
+        .modal-navy { border-top: 4px solid var(--accent-navy); }
+        .modal-red { border-top: 4px solid var(--accent-red); } /* NOVO: Estilo Red */
 
         .modal-close {
             position: absolute;
@@ -375,7 +375,8 @@
         /* Cores dos Labels nos Modais */
         .modal-purple .modal-label { color: var(--accent-purple); }
         .modal-gold .modal-label { color: var(--accent-gold); }
-        .modal-navy .modal-label { color: var(--accent-navy); } /* NOVO */
+        .modal-navy .modal-label { color: var(--accent-navy); }
+        .modal-red .modal-label { color: var(--accent-red); } /* NOVO */
         
         .modal-text { color: #ccc; font-size: 0.95rem; line-height: 1.6; }
 
@@ -526,6 +527,7 @@
                         <div class="overlay">
                             <div class="overlay-actions">
                                 <a href="red_metallic_template.html" target="_blank" class="btn-view btn-active">View Template</a>
+                                <button class="btn-info" onclick="openTextModal('modal-red')"><i class="fas fa-plus"></i> Details</button>
                             </div>
                         </div>
                     </div>
@@ -646,6 +648,16 @@
             <div class="modal-block"><span class="modal-label">Challenge:</span><p class="modal-text">Design an engaging, interactive web platform for a Christian audience, featuring multilingual Bible versions for over ten countries, devotional and literary materials, and music across multiple platforms, while keeping navigation simple and intuitive for all users.</p></div>
             <div class="modal-block"><span class="modal-label">Approach:</span><p class="modal-text">Developed a fully responsive HTML/CSS website with interactive elements. Focused on a clean layout, intuitive navigation, and a modern color palette to reflect creativity and professionalism. Integrated audio samples to allow users to preview content.</p></div>
             <div class="modal-block"><span class="modal-label">Result:</span><p class="modal-text">A polished, user-friendly web experience that showcases proficiency in front-end design, responsive layouts, and interactive, user-focused interfaces.</p></div>
+        </div>
+    </div>
+
+    <div id="modal-red" class="text-modal-overlay" onclick="closeTextModal('modal-red')">
+        <div class="text-modal-content modal-red" onclick="event.stopPropagation()">
+            <span class="modal-close" onclick="closeTextModal('modal-red')">&times;</span>
+            <h3 class="modal-title">Red Metallic <span style="font-size: 0.8rem; color: #888; display: block; margin-top: 5px;">Template Overview</span></h3>
+            
+            <div class="modal-block"><span class="modal-label">Concept:</span><p class="modal-text">A bold, high-energy landing page template designed to drive attention and action. Red Metallic is ideal for limited-time offers, launches, promotions, and conversion-focused sales pages where urgency plays a key role.</p></div>
+            <div class="modal-block"><span class="modal-label">Technical Specs:</span><p class="modal-text">Featuring strong visual contrast, dynamic metallic effects, and a responsive layout, the template is optimized for impact while remaining clean, lightweight, and easy to adapt to different products and campaigns.</p></div>
         </div>
     </div>
 

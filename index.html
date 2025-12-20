@@ -101,14 +101,19 @@
             height: 350px; 
         }
 
+        /* Estilo Base para Itens da Grade */
         .gallery-item {
             background-color: #1a1a1a;
             border: 1px solid #333;
             border-radius: 8px;
             overflow: hidden;
             position: relative;
-            cursor: pointer;
             transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* Estilo específico para itens que são IMAGENS (para o lightbox) */
+        .gallery-image-item {
+            cursor: pointer;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -165,6 +170,7 @@
 
         .cinematic-card:hover .info-overlay { opacity: 1; animation: none; }
 
+        /* Classe essencial para as miniaturas live */
         .live-thumbnail {
             width: 400%; height: 400%; border: 0;
             transform: scale(0.25); transform-origin: 0 0; pointer-events: none; 
@@ -347,7 +353,7 @@
         .modal-purple { border-top: 4px solid var(--accent-purple); }
         .modal-gold { border-top: 4px solid var(--accent-gold); }
         .modal-navy { border-top: 4px solid var(--accent-navy); }
-        .modal-red { border-top: 4px solid var(--accent-red); } /* NOVO: Estilo Red */
+        .modal-red { border-top: 4px solid var(--accent-red); }
 
         .modal-close {
             position: absolute;
@@ -376,7 +382,7 @@
         .modal-purple .modal-label { color: var(--accent-purple); }
         .modal-gold .modal-label { color: var(--accent-gold); }
         .modal-navy .modal-label { color: var(--accent-navy); }
-        .modal-red .modal-label { color: var(--accent-red); } /* NOVO */
+        .modal-red .modal-label { color: var(--accent-red); }
         
         .modal-text { color: #ccc; font-size: 0.95rem; line-height: 1.6; }
 
@@ -508,10 +514,16 @@
                 </div>
 
                 <div class="gallery-grid">
-                    <div class="gallery-item" title="Literature" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/literature.jpg');"></div>
-                    <div class="gallery-item" title="Devotionals" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/Devotionals.jpg');"></div>
-                    <div class="gallery-item" title="Album" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/Album.jpg');"></div>
-                    <div class="gallery-item" title="WTNY" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/wtny.jpg');"></div>
+                    <div class="gallery-item" style="padding: 0;">
+                        <div style="width: 100%; height: 100%; position: relative; overflow: hidden;">
+                             <iframe src="books.html" class="live-thumbnail" style="background:#000;"></iframe>
+                        </div>
+                        <a href="books.html" target="_blank" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; cursor: pointer;"></a>
+                    </div>
+
+                    <div class="gallery-item gallery-image-item" title="Devotionals" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/Devotionals.jpg');"></div>
+                    <div class="gallery-item gallery-image-item" title="Album" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/Album.jpg');"></div>
+                    <div class="gallery-item gallery-image-item" title="WTNY" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/wtny.jpg');"></div>
                 </div>
             </div>
         </section>
@@ -690,16 +702,20 @@
         // Lógica do Lightbox de Imagens
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
-        const galleryItems = document.querySelectorAll('.gallery-item');
+        // Seleciona APENAS os itens que são imagens estáticas
+        const galleryImageItems = document.querySelectorAll('.gallery-image-item');
         const closeBtn = document.querySelector('.close-lightbox');
 
-        galleryItems.forEach(item => {
+        galleryImageItems.forEach(item => {
             item.addEventListener('click', function() {
                 const style = window.getComputedStyle(this);
                 const bgImage = style.backgroundImage;
-                const url = bgImage.slice(5, -2);
-                lightbox.style.display = "flex";
-                lightboxImg.src = url;
+                // Garante que existe uma imagem de fundo antes de abrir
+                if (bgImage && bgImage !== 'none') {
+                    const url = bgImage.slice(5, -2);
+                    lightbox.style.display = "flex";
+                    lightboxImg.src = url;
+                }
             });
         });
 

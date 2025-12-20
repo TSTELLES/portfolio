@@ -101,14 +101,19 @@
             height: 350px; 
         }
 
+        /* Item Genérico da Galeria */
         .gallery-item {
             background-color: #1a1a1a;
             border: 1px solid #333;
             border-radius: 8px;
             overflow: hidden;
             position: relative;
-            cursor: pointer;
             transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* Classe ESPECÍFICA para itens que abrem Lightbox (Imagens) */
+        .gallery-image-item {
+            cursor: pointer;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -121,7 +126,7 @@
             box-shadow: 0 5px 15px rgba(157, 0, 255, 0.2);
         }
 
-        /* Faz o overlay aparecer no hover da galeria */
+        /* Faz o overlay aparecer no hover */
         .gallery-item:hover .overlay {
             opacity: 1;
         }
@@ -212,6 +217,9 @@
             font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.3s ease;
+            /* Garante que o botão fique acima da camada de clique do lightbox */
+            position: relative; 
+            z-index: 20; 
         }
         .btn-info:hover {
             background: rgba(255,255,255,0.1);
@@ -335,17 +343,18 @@
             border: 1px solid #333;
             max-width: 600px;
             width: 100%;
-            /* CORREÇÃO DO TAMANHO: Adicionado max-height e scroll */
+            /* SCROLL E TAMANHO CORRIGIDO */
             max-height: 90vh; 
             overflow-y: auto;
+            
             padding: 40px;
             border-radius: 12px;
             position: relative;
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
             animation: slideUp 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
-        
-        /* Estilo da Barra de Rolagem do Modal */
+
+        /* Estilo da barra de rolagem */
         .text-modal-content::-webkit-scrollbar { width: 8px; }
         .text-modal-content::-webkit-scrollbar-track { background: #111; border-radius: 4px; }
         .text-modal-content::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
@@ -356,7 +365,6 @@
             to { transform: translateY(0); opacity: 1; }
         }
 
-        /* Cores das Bordas dos Modais */
         .modal-purple { border-top: 4px solid var(--accent-purple); }
         .modal-gold { border-top: 4px solid var(--accent-gold); }
         .modal-navy { border-top: 4px solid var(--accent-navy); }
@@ -369,7 +377,7 @@
             color: #666;
             cursor: pointer;
             transition: color 0.3s;
-            z-index: 20; /* Garante que o fechar fique sobre o scroll */
+            z-index: 20;
         }
         .modal-close:hover { color: #fff; }
 
@@ -379,7 +387,7 @@
             margin-bottom: 20px;
             border-bottom: 1px solid #222;
             padding-bottom: 15px;
-            padding-right: 30px; /* Espaço para o botão fechar não sobrepor */
+            padding-right: 30px; 
         }
 
         .modal-block { margin-bottom: 15px; }
@@ -387,7 +395,6 @@
             font-weight: 700; text-transform: uppercase; font-size: 0.85rem; display: block; margin-bottom: 5px; 
         }
         
-        /* Cores dos Labels nos Modais */
         .modal-purple .modal-label { color: var(--accent-purple); }
         .modal-gold .modal-label { color: var(--accent-gold); }
         .modal-navy .modal-label { color: var(--accent-navy); }
@@ -454,6 +461,32 @@
             border: 1px solid rgba(255, 215, 0, 0.2);
         }
 
+        /* --- LIGHTBOX --- */
+        .lightbox-modal {
+            display: none; position: fixed; z-index: 9999;
+            left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            justify-content: center; align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .lightbox-content {
+            max-width: 90%; max-height: 90%;
+            border-radius: 4px; box-shadow: 0 0 30px rgba(0,0,0,0.8);
+            animation: zoomIn 0.3s;
+        }
+
+        @keyframes zoomIn {
+            from {transform:scale(0.8); opacity: 0;} to {transform:scale(1); opacity: 1;}
+        }
+
+        .close-lightbox {
+            position: absolute; top: 20px; right: 35px;
+            color: #f1f1f1; font-size: 40px; font-weight: bold;
+            transition: 0.3s; cursor: pointer;
+        }
+        .close-lightbox:hover { color: var(--accent-red); }
+
         footer { text-align: center; font-size: 0.8rem; color: #444; margin-top: 100px; padding-bottom: 60px; }
 
         @media (max-width: 900px) {
@@ -493,33 +526,33 @@
                         
                         <div class="btn-group">
                             <a href="KingdomandQuill.html" target="_blank" class="btn-square-purple">Explorer</a>
-                            <button class="btn-info" onclick="openTextModal('modal-kq')"><i class="fas fa-plus"></i> Info</button>
+                            <button class="btn-info" onclick="openTextModal('modal-kq'); event.stopPropagation();"><i class="fas fa-plus"></i> Info</button>
                         </div>
                     </div>
                 </div>
 
                 <div class="gallery-grid">
-                    <div class="gallery-item" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/literature.jpg'); background-size: cover; background-position: center;">
+                    <div class="gallery-item gallery-image-item" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/literature.jpg'); background-size: cover; background-position: center;">
                         <div class="overlay">
-                            <button class="btn-info" onclick="openTextModal('modal-lit')"><i class="fas fa-plus"></i> Info</button>
+                            <button class="btn-info" onclick="openTextModal('modal-lit'); event.stopPropagation();"><i class="fas fa-plus"></i> Info</button>
                         </div>
                     </div>
 
-                    <div class="gallery-item" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/Devotionals.jpg'); background-size: cover; background-position: center;">
+                    <div class="gallery-item gallery-image-item" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/Devotionals.jpg'); background-size: cover; background-position: center;">
                         <div class="overlay">
-                            <button class="btn-info" onclick="openTextModal('modal-dev')"><i class="fas fa-plus"></i> Info</button>
+                            <button class="btn-info" onclick="openTextModal('modal-dev'); event.stopPropagation();"><i class="fas fa-plus"></i> Info</button>
                         </div>
                     </div>
                     
-                    <div class="gallery-item" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/Album.jpg'); background-size: cover; background-position: center;">
+                    <div class="gallery-item gallery-image-item" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/Album.jpg'); background-size: cover; background-position: center;">
                         <div class="overlay">
-                            <button class="btn-info" onclick="openTextModal('modal-album')"><i class="fas fa-plus"></i> Info</button>
+                            <button class="btn-info" onclick="openTextModal('modal-album'); event.stopPropagation();"><i class="fas fa-plus"></i> Info</button>
                         </div>
                     </div>
 
-                    <div class="gallery-item" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/wtny.jpg'); background-size: cover; background-position: center;">
+                    <div class="gallery-item gallery-image-item" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/wtny.jpg'); background-size: cover; background-position: center;">
                         <div class="overlay">
-                            <button class="btn-info" onclick="openTextModal('modal-wtny')"><i class="fas fa-plus"></i> Info</button>
+                            <button class="btn-info" onclick="openTextModal('modal-wtny'); event.stopPropagation();"><i class="fas fa-plus"></i> Info</button>
                         </div>
                     </div>
                 </div>
@@ -537,7 +570,7 @@
                         <div class="overlay">
                             <div class="overlay-actions">
                                 <a href="red_metallic_template.html" target="_blank" class="btn-view btn-active">View Template</a>
-                                <button class="btn-info" onclick="openTextModal('modal-red')"><i class="fas fa-plus"></i> Details</button>
+                                <button class="btn-info" onclick="openTextModal('modal-red'); event.stopPropagation();"><i class="fas fa-plus"></i> Details</button>
                             </div>
                         </div>
                     </div>
@@ -551,7 +584,7 @@
                         <div class="overlay">
                             <div class="overlay-actions">
                                 <a href="navy_metallic_template.html" target="_blank" class="btn-view btn-active">View Template</a>
-                                <button class="btn-info" onclick="openTextModal('modal-navy')"><i class="fas fa-plus"></i> Details</button>
+                                <button class="btn-info" onclick="openTextModal('modal-navy'); event.stopPropagation();"><i class="fas fa-plus"></i> Details</button>
                             </div>
                         </div>
                     </div>
@@ -565,7 +598,7 @@
                         <div class="overlay">
                             <div class="overlay-actions">
                                 <a href="gold_template.html" target="_blank" class="btn-view btn-active">View Template</a>
-                                <button class="btn-info" onclick="openTextModal('modal-gold')"><i class="fas fa-plus"></i> Details</button>
+                                <button class="btn-info" onclick="openTextModal('modal-gold'); event.stopPropagation();"><i class="fas fa-plus"></i> Details</button>
                             </div>
                         </div>
                     </div>
@@ -665,21 +698,21 @@
         <div class="text-modal-content modal-purple" onclick="event.stopPropagation()">
             <span class="modal-close" onclick="closeTextModal('modal-lit')">&times;</span>
             <h3 class="modal-title">Literature Section</h3>
-            <p class="modal-text">Content coming soon...</p>
+            <p class="modal-text">Project details coming soon...</p>
         </div>
     </div>
     <div id="modal-dev" class="text-modal-overlay" onclick="closeTextModal('modal-dev')">
         <div class="text-modal-content modal-purple" onclick="event.stopPropagation()">
             <span class="modal-close" onclick="closeTextModal('modal-dev')">&times;</span>
             <h3 class="modal-title">Devotionals Section</h3>
-            <p class="modal-text">Content coming soon...</p>
+            <p class="modal-text">Project details coming soon...</p>
         </div>
     </div>
     <div id="modal-album" class="text-modal-overlay" onclick="closeTextModal('modal-album')">
         <div class="text-modal-content modal-purple" onclick="event.stopPropagation()">
             <span class="modal-close" onclick="closeTextModal('modal-album')">&times;</span>
             <h3 class="modal-title">Music Album</h3>
-            <p class="modal-text">Content coming soon...</p>
+            <p class="modal-text">Project details coming soon...</p>
         </div>
     </div>
 
@@ -741,7 +774,37 @@
         </div>
     </div>
 
+    <div id="lightbox" class="lightbox-modal">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
     <script>
+        // Lógica do Lightbox de Imagens
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        // Agora seleciona apenas os itens que tem a classe 'gallery-image-item'
+        const galleryImageItems = document.querySelectorAll('.gallery-image-item');
+        const closeBtn = document.querySelector('.close-lightbox');
+
+        galleryImageItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const style = window.getComputedStyle(this);
+                const bgImage = style.backgroundImage;
+                // Só abre se tiver imagem de fundo
+                if (bgImage && bgImage !== 'none') {
+                    const url = bgImage.slice(5, -2);
+                    lightbox.style.display = "flex";
+                    lightboxImg.src = url;
+                }
+            });
+        });
+
+        closeBtn.onclick = function() { lightbox.style.display = "none"; }
+        lightbox.onclick = function(event) {
+            if (event.target === lightbox) { lightbox.style.display = "none"; }
+        }
+
         // Lógica dos Modais de Texto
         function openTextModal(id) {
             document.getElementById(id).style.display = "flex";

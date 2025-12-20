@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA | Pricing Plans</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root {
+            /* Same Aura Palette */
+            --bg-deep: #030014;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-glass: rgba(255, 255, 255, 0.05);
+            --border-glass: rgba(255, 255, 255, 0.1);
+            
+            --text-white: #ffffff;
+            --text-gray: #a1a1aa;
+            
+            --accent-cyan: #00f2ea;
+            --accent-purple: #7f00ff;
+            --accent-pink: #ff0080;
+            
+            --gradient-text: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+            --gradient-btn: linear-gradient(90deg, #7f00ff 0%, #e100ff 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; }
+
+        /* --- BACKGROUND FX --- */
+        .ambient-light {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.4;
+            animation: floatOrb 20s infinite alternate;
+        }
+        .orb-1 { width: 600px; height: 600px; background: var(--accent-purple); top: -20%; left: 30%; opacity: 0.3; }
+        
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, 30px) scale(1.05); }
+        }
+
+        /* --- UTILS --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .text-gradient { background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .text-center { text-align: center; }
+
+        /* --- NAVBAR (Same as Landing) --- */
+        nav {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-glass);
+            background: rgba(3, 0, 20, 0.8);
+            backdrop-filter: blur(20px);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -1px; display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none;}
+        .nav-links a { color: var(--text-gray); text-decoration: none; font-weight: 500; margin-left: 30px; transition: 0.3s; }
+        .nav-links a:hover { color: #fff; }
+
+        /* --- PRICING HEADER --- */
+        .pricing-header {
+            padding: 100px 0 60px;
+            text-align: center;
+        }
+        .pricing-header h1 { font-size: 3.5rem; margin-bottom: 20px; line-height: 1.1; }
+        .pricing-header p { color: var(--text-gray); font-size: 1.2rem; max-width: 600px; margin: 0 auto; }
+
+        /* --- TOGGLE SWITCH --- */
+        .pricing-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 40px;
+        }
+        .toggle-label { font-weight: 600; font-size: 0.9rem; color: #fff; }
+        .toggle-label.dimmed { color: var(--text-gray); }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 56px;
+            height: 30px;
+        }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 3px;
+            background-color: var(--accent-cyan);
+            transition: .4s;
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-cyan);
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+            background-color: var(--accent-purple);
+            box-shadow: 0 0 10px var(--accent-purple);
+        }
+        .discount-pill {
+            background: rgba(0, 242, 234, 0.1);
+            color: var(--accent-cyan);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: 1px solid rgba(0, 242, 234, 0.3);
+        }
+
+        /* --- PRICING CARDS --- */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            padding: 60px 0 100px;
+            align-items: center; /* Center vertically so the middle card can pop */
+        }
+
+        .pricing-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 40px;
+            position: relative;
+            transition: 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.06);
+        }
+
+        /* Featured Card Styling */
+        .pricing-card.featured {
+            background: linear-gradient(180deg, rgba(127, 0, 255, 0.1) 0%, rgba(3, 0, 20, 0.8) 100%);
+            border: 1px solid var(--accent-purple);
+            box-shadow: 0 0 40px rgba(127, 0, 255, 0.2);
+            padding: 50px 40px; /* Slightly larger */
+            z-index: 2;
+            transform: scale(1.05);
+        }
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-5px);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -15px; left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-btn);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(127, 0, 255, 0.4);
+        }
+
+        .plan-name { font-size: 1.1rem; color: var(--text-gray); margin-bottom: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;}
+        .plan-price { font-size: 3.5rem; font-weight: 800; color: #fff; font-family: 'Outfit'; margin-bottom: 5px; }
+        .plan-price span { font-size: 1rem; color: var(--text-gray); font-weight: 400; }
+        .plan-desc { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 30px; border-bottom: 1px solid var(--border-glass); padding-bottom: 30px; }
+
+        .feature-list { list-style: none; margin-bottom: 30px; flex-grow: 1; }
+        .feature-list li { margin-bottom: 15px; color: #ddd; font-size: 0.95rem; display: flex; align-items: center; gap: 10px; }
+        .feature-list li i { color: var(--accent-cyan); }
+        .pricing-card.featured .feature-list li i { color: var(--accent-purple); }
+
+        .btn-card {
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .btn-outline {
+            border: 1px solid var(--border-glass);
+            color: #fff;
+            background: transparent;
+        }
+        .btn-outline:hover { background: rgba(255,255,255,0.1); }
+        
+        .btn-solid {
+            background: var(--gradient-btn);
+            color: #fff;
+            border: none;
+            box-shadow: 0 0 20px rgba(127, 0, 255, 0.4);
+        }
+        .btn-solid:hover {
+            box-shadow: 0 0 30px rgba(127, 0, 255, 0.6);
+        }
+
+        /* --- FAQ SECTION --- */
+        .faq-section { padding: 80px 0; max-width: 800px; margin: 0 auto; }
+        .faq-header { text-align: center; margin-bottom: 50px; }
+        
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #fff;
+        }
+        .faq-question i { color: var(--accent-purple); transition: 0.3s; }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 20px;
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+        .faq-item.active .faq-answer { padding-bottom: 20px; max-height: 200px; }
+        .faq-item.active .faq-question i { transform: rotate(180deg); }
+
+        /* --- FOOTER --- */
+        footer { border-top: 1px solid var(--border-glass); padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 0.9rem; margin-top: 80px; }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .pricing-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+            .pricing-card.featured { transform: scale(1); }
+            .pricing-card.featured:hover { transform: translateY(-5px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-light">
+        <div class="orb orb-1"></div>
+    </div>
+
+    <nav>
+        <div class="container nav-content">
+            <a href="Modern-SaaS-Template.html" class="logo">
+                <i class="fas fa-cube" style="color: var(--accent-cyan);"></i> AURA
+            </a>
+            <div class="nav-links" style="display: flex;">
+                <a href="Modern-SaaS-Template.html">Home</a>
+                <a href="#" style="color:#fff;">Pricing</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pricing-header">
+        <div class="container">
+            <h1 class="text-gradient">Simple, transparent pricing</h1>
+            <p>No hidden fees. No credit card required to start. Cancel anytime.</p>
+
+            <div class="pricing-toggle">
+                <span class="toggle-label" id="monthly-label">Monthly</span>
+                <label class="switch">
+                    <input type="checkbox" id="pricing-toggle-checkbox">
+                    <span class="slider"></span>
+                </label>
+                <span class="toggle-label dimmed" id="yearly-label">Yearly</span>
+                <span class="discount-pill">Save 20%</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="pricing-grid">
+            
+            <div class="pricing-card">
+                <div class="plan-name">Starter</div>
+                <div class="plan-price" data-monthly="0" data-yearly="0">$0<span>/mo</span></div>
+                <p class="plan-desc">Perfect for individuals and hobby projects.</p>
+                
+                <ul class="feature-list">
+                    <li><i class="fas fa-check"></i> Up to 3 Projects</li>
+                    <li><i class="fas fa-check"></i> Community Support</li>
+                    <li><i class="fas fa-check"></i> 1GB Storage</li>
+                    <li><i class="fas fa-check"></i> Basic Analytics</li>
+                </ul>
+                
+                <a href="#" class="btn-card btn-outline">Get Started</a>
+            </div>
+
+            <div class="pricing-card featured">
+                <div class="popular-badge">Most Popular</div>
+                <div class="plan-name" style="color: var(--accent-purple);">Pro</div>
+                <div class="plan-price" data-monthly="29" data-yearly="24">$29<span>/mo</span></div>
+                <p class="plan-desc">For growing teams that need more power.</p>
+                
+                <ul class="feature-list">
+                    <li><i class="fas fa-check"></i> Unlimited Projects</li>
+                    <li><i class="fas fa-check"></i> Priority Support</li>
+                    <li><i class="fas fa-check"></i> 100GB Storage</li>
+                    <li><i class="fas fa-check"></i> Advanced Analytics</li>
+                    <li><i class="fas fa-check"></i> Remove Aura Branding</li>
+                </ul>
+                
+                <a href="#" class="btn-card btn-solid">Start Free Trial</a>
+            </div>
+
+            <div class="pricing-card">
+                <div class="plan-name">Enterprise</div>
+                <div class="plan-price" data-monthly="99" data-yearly="79">$99<span>/mo</span></div>
+                <p class="plan-desc">Custom solutions for large organizations.</p>
+                
+                <ul class="feature-list">
+                    <li><i class="fas fa-check"></i> Everything in Pro</li>
+                    <li><i class="fas fa-check"></i> Dedicated Account Manager</li>
+                    <li><i class="fas fa-check"></i> SSO & SAML</li>
+                    <li><i class="fas fa-check"></i> Unlimited Storage</li>
+                    <li><i class="fas fa-check"></i> Custom Contracts</li>
+                </ul>
+                
+                <a href="#" class="btn-card btn-outline">Contact Sales</a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container faq-section">
+        <div class="faq-header">
+            <h2>Frequently Asked Questions</h2>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Can I cancel my subscription anytime? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer">Yes, you can cancel your subscription at any time. Your access will remain active until the end of the billing period.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Is there a free trial for the Pro plan? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer">Absolutely! We offer a 14-day free trial for the Pro plan so you can explore all the advanced features before committing.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">What payment methods do you accept? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer">We accept all major credit cards (Visa, Mastercard, Amex) and PayPal. For Enterprise plans, we also support wire transfers.</div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Aura Template. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- PRICING TOGGLE LOGIC ---
+        const checkbox = document.getElementById('pricing-toggle-checkbox');
+        const monthlyLabel = document.getElementById('monthly-label');
+        const yearlyLabel = document.getElementById('yearly-label');
+        const prices = document.querySelectorAll('.plan-price');
+
+        checkbox.addEventListener('change', function() {
+            if(this.checked) {
+                // Yearly Mode
+                yearlyLabel.classList.remove('dimmed');
+                monthlyLabel.classList.add('dimmed');
+                prices.forEach(price => {
+                    const yearlyVal = price.getAttribute('data-yearly');
+                    price.innerHTML = `$${yearlyVal}<span>/mo</span>`;
+                });
+            } else {
+                // Monthly Mode
+                monthlyLabel.classList.remove('dimmed');
+                yearlyLabel.classList.add('dimmed');
+                prices.forEach(price => {
+                    const monthlyVal = price.getAttribute('data-monthly');
+                    price.innerHTML = `$${monthlyVal}<span>/mo</span>`;
+                });
+            }
+        });
+
+        // --- FAQ ACCORDION LOGIC ---
+        const faqs = document.querySelectorAll('.faq-item');
+        faqs.forEach(faq => {
+            faq.querySelector('.faq-question').addEventListener('click', () => {
+                faq.classList.toggle('active');
+            });
+        });
+    </script>
+
+</body>
+</html>

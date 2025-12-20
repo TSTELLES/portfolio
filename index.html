@@ -101,19 +101,14 @@
             height: 350px; 
         }
 
-        /* Estilo Base para Itens da Grade */
         .gallery-item {
             background-color: #1a1a1a;
             border: 1px solid #333;
             border-radius: 8px;
             overflow: hidden;
             position: relative;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        /* Estilo específico para itens que são IMAGENS (para o lightbox) */
-        .gallery-image-item {
             cursor: pointer;
+            transition: transform 0.3s ease, border-color 0.3s ease;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -124,6 +119,11 @@
             transform: scale(1.02);
             z-index: 2;
             box-shadow: 0 5px 15px rgba(157, 0, 255, 0.2);
+        }
+
+        /* Faz o overlay aparecer no hover da galeria */
+        .gallery-item:hover .overlay {
+            opacity: 1;
         }
 
         /* --- CINEMATIC FADE --- */
@@ -170,13 +170,12 @@
 
         .cinematic-card:hover .info-overlay { opacity: 1; animation: none; }
 
-        /* Classe essencial para as miniaturas live */
         .live-thumbnail {
             width: 400%; height: 400%; border: 0;
             transform: scale(0.25); transform-origin: 0 0; pointer-events: none; 
         }
 
-        /* Botões do Card */
+        /* Botões */
         .btn-group {
             display: flex;
             gap: 15px;
@@ -204,7 +203,6 @@
             box-shadow: 0 8px 20px rgba(157, 0, 255, 0.6);
         }
 
-        /* Botão + Info */
         .btn-info {
             background: transparent;
             border: 1px solid rgba(255,255,255,0.5);
@@ -378,13 +376,14 @@
             font-weight: 700; text-transform: uppercase; font-size: 0.85rem; display: block; margin-bottom: 5px; 
         }
         
-        /* Cores dos Labels nos Modais */
         .modal-purple .modal-label { color: var(--accent-purple); }
         .modal-gold .modal-label { color: var(--accent-gold); }
         .modal-navy .modal-label { color: var(--accent-navy); }
         .modal-red .modal-label { color: var(--accent-red); }
         
         .modal-text { color: #ccc; font-size: 0.95rem; line-height: 1.6; }
+        .modal-list { color: #ccc; font-size: 0.95rem; line-height: 1.6; padding-left: 20px; margin: 0; }
+        .modal-list li { margin-bottom: 5px; }
 
         /* --- SEÇÃO SOBRE MIM --- */
         .about-section {
@@ -514,32 +513,28 @@
                 </div>
 
                 <div class="gallery-grid">
-                    <div class="gallery-item" style="padding: 0;">
-                        <div style="width: 100%; height: 100%; position: relative; overflow: hidden;">
-                             <iframe src="books.html" class="live-thumbnail" style="background:#000;"></iframe>
+                    <div class="gallery-item" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/literature.jpg'); background-size: cover; background-position: center;">
+                        <div class="overlay">
+                            <button class="btn-info" onclick="openTextModal('modal-kq')"><i class="fas fa-plus"></i> Info</button>
                         </div>
-                        <a href="books.html" target="_blank" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; cursor: pointer;"></a>
                     </div>
 
-                    <div class="gallery-item" style="padding: 0;">
-                        <div style="width: 100%; height: 100%; position: relative; overflow: hidden;">
-                             <iframe src="devotionals.html" class="live-thumbnail" style="background:#000;"></iframe>
+                    <div class="gallery-item" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/Devotionals.jpg'); background-size: cover; background-position: center;">
+                        <div class="overlay">
+                            <button class="btn-info" onclick="openTextModal('modal-kq')"><i class="fas fa-plus"></i> Info</button>
                         </div>
-                        <a href="devotionals.html" target="_blank" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; cursor: pointer;"></a>
                     </div>
                     
-                    <div class="gallery-item" style="padding: 0;">
-                        <div style="width: 100%; height: 100%; position: relative; overflow: hidden;">
-                                <iframe src="reborn-in-christ.html" class="live-thumbnail" style="background:#000;"></iframe>
+                    <div class="gallery-item" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/Album.jpg'); background-size: cover; background-position: center;">
+                        <div class="overlay">
+                            <button class="btn-info" onclick="openTextModal('modal-kq')"><i class="fas fa-plus"></i> Info</button>
                         </div>
-                        <a href="reborn-in-christ.html" target="_blank" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; cursor: pointer;"></a>
                     </div>
 
-                    <div class="gallery-item" style="padding: 0;">
-                        <div style="width: 100%; height: 100%; position: relative; overflow: hidden;">
-                                <iframe src="welcome-to-ny.html" class="live-thumbnail" style="background:#000;"></iframe>
+                    <div class="gallery-item" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/wtny.jpg'); background-size: cover; background-position: center;">
+                        <div class="overlay">
+                            <button class="btn-info" onclick="openTextModal('modal-wtny')"><i class="fas fa-plus"></i> Info</button>
                         </div>
-                        <a href="welcome-to-ny.html" target="_blank" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; cursor: pointer;"></a>
                     </div>
                 </div>
             </div>
@@ -680,6 +675,34 @@
         </div>
     </div>
 
+    <div id="modal-wtny" class="text-modal-overlay" onclick="closeTextModal('modal-wtny')">
+        <div class="text-modal-content modal-purple" onclick="event.stopPropagation()">
+            <span class="modal-close" onclick="closeTextModal('modal-wtny')">&times;</span>
+            <h3 class="modal-title">Welcome to New York <span style="font-size: 0.8rem; color: #888; display: block; margin-top: 5px;">Interactive Book Sales Page</span></h3>
+            
+            <div class="modal-block">
+                <span class="modal-label">Overview:</span>
+                <p class="modal-text">A fully customized, high-impact sales page developed to promote a fiction book release through an immersive, cinematic web experience. The project combines storytelling, conversion strategy, and front-end design to create an emotionally engaging landing page focused on reader retention and platform redirection.</p>
+            </div>
+            
+            <div class="modal-block">
+                <span class="modal-label">Key Features:</span>
+                <ul class="modal-list">
+                    <li>Custom neon UI system with animated text effects and visual hierarchy</li>
+                    <li>Responsive design optimized for desktop, tablet, and mobile devices</li>
+                    <li>Integrated video sections (Vimeo embeds) for trailers and visual storytelling</li>
+                    <li>Interactive audio player built with JavaScript for preview content</li>
+                    <li>Conversion-oriented CTA structure linking to external platforms</li>
+                </ul>
+            </div>
+
+            <div class="modal-block">
+                <span class="modal-label">Technical Details:</span>
+                <p class="modal-text">Built with semantic HTML, modern CSS, and vanilla JavaScript, the page features a responsive layout, animated neon typography, dynamic video backgrounds, and interactive elements designed to guide the user through the narrative and purchasing journey.</p>
+            </div>
+        </div>
+    </div>
+
     <div id="modal-red" class="text-modal-overlay" onclick="closeTextModal('modal-red')">
         <div class="text-modal-content modal-red" onclick="event.stopPropagation()">
             <span class="modal-close" onclick="closeTextModal('modal-red')">&times;</span>
@@ -710,37 +733,7 @@
         </div>
     </div>
 
-    <div id="lightbox" class="lightbox-modal">
-        <span class="close-lightbox">&times;</span>
-        <img class="lightbox-content" id="lightbox-img">
-    </div>
-
     <script>
-        // Lógica do Lightbox de Imagens
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        // Seleciona APENAS os itens que são imagens estáticas
-        const galleryImageItems = document.querySelectorAll('.gallery-image-item');
-        const closeBtn = document.querySelector('.close-lightbox');
-
-        galleryImageItems.forEach(item => {
-            item.addEventListener('click', function() {
-                const style = window.getComputedStyle(this);
-                const bgImage = style.backgroundImage;
-                // Garante que existe uma imagem de fundo antes de abrir
-                if (bgImage && bgImage !== 'none') {
-                    const url = bgImage.slice(5, -2);
-                    lightbox.style.display = "flex";
-                    lightboxImg.src = url;
-                }
-            });
-        });
-
-        closeBtn.onclick = function() { lightbox.style.display = "none"; }
-        lightbox.onclick = function(event) {
-            if (event.target === lightbox) { lightbox.style.display = "none"; }
-        }
-
         // Lógica dos Modais de Texto
         function openTextModal(id) {
             document.getElementById(id).style.display = "flex";

@@ -200,12 +200,15 @@
             box-shadow: 0 8px 20px rgba(157, 0, 255, 0.6);
         }
 
-        /* --- SEÇÃO SOBRE MIM --- */
+        /* --- SEÇÃO SOBRE MIM (AJUSTES DE ESPAÇAMENTO) --- */
         .about-section {
             background-color: #0f0f0f;
             border-top: 1px solid #222;
             border-bottom: 1px solid #222;
-            padding: 80px 20px;
+            
+            /* AUMENTADO: Padding maior para descer o conteúdo */
+            padding: 120px 20px 100px;
+            
             margin-bottom: 0;
         }
         
@@ -213,7 +216,7 @@
             max-width: 900px;
             margin: 0 auto;
             display: flex;
-            align-items: center;
+            align-items: flex-start; /* Alinhamento ao topo para melhor controle */
             gap: 50px;
         }
 
@@ -229,15 +232,22 @@
             flex-shrink: 0;
             overflow: hidden;
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+            
+            /* Pequeno ajuste para alinhar com o texto que desceu */
+            margin-top: 10px; 
         }
 
-        /* Classe para a imagem da foto */
         .about-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
         
+        .about-content {
+            /* AUMENTADO: Empurra o texto para baixo */
+            padding-top: 25px;
+        }
+
         .about-content h2 {
             font-size: 2rem;
             color: #fff;

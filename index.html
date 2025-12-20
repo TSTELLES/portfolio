@@ -501,6 +501,15 @@
         .theme-red .btn-view:hover {
              background-color: #cc0000; 
         }
+
+        /* ESTILO ESPECÍFICO PARA O BOTÃO VIEW PURPLE (SAAS) - NOVO */
+        .theme-purple .btn-view {
+             background-color: var(--accent-purple);
+             color: #fff; 
+        }
+        .theme-purple .btn-view:hover {
+             background-color: #b04dff; 
+        }
         
         /* Botão Info redondo para Overlay */
         .btn-info-round {
@@ -531,6 +540,7 @@
         .theme-red .tag { color: var(--accent-red); border: 1px solid var(--accent-red); }
         .theme-navy .tag { color: var(--accent-navy); border: 1px solid var(--accent-navy); }
         .theme-gold .tag { color: var(--accent-gold); border: 1px solid var(--accent-gold); }
+        .theme-purple .tag { color: var(--accent-purple); border: 1px solid var(--accent-purple); } /* NOVO */
         .theme-design .tag { color: #888; border: 1px dashed #444; }
         .theme-design i { color: #333; }
  
@@ -661,6 +671,24 @@
                     <div class="card-info">
                        <h3>Dark Gold Edition</h3>
                        <p>Luxury & Premium product page.</p>
+                        <span class="tag">HTML5 / CSS3</span>
+                    </div>
+                </div>
+
+                <div class="browser-mockup theme-purple">
+                    <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                    <div class="preview-area">
+                        <iframe src="Modern-SaaS-Template.html" class="live-thumbnail"></iframe>
+                        <div class="overlay">
+                            <div class="overlay-btns">
+                                <a href="Modern-SaaS-Template.html" target="_blank" class="btn-view">View</a>
+                                <button id="btn-open-saas" class="btn-info-round">Info</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                       <h3>Aura | Modern SaaS</h3>
+                       <p>The Operating System for your Workflow.</p>
                         <span class="tag">HTML5 / CSS3</span>
                     </div>
                 </div>
@@ -819,6 +847,26 @@
             </div>
         </div>
     </div>
+
+    <div id="info-modal-saas" class="modal-overlay">
+        <div class="info-modal-content" style="border-left: 4px solid var(--accent-purple);">
+            <span class="close-btn" id="close-info-saas">&times;</span>
+            
+            <h2 style="color: var(--accent-purple);">Aura | Modern SaaS</h2>
+            <h3>Modern SaaS Template</h3>
+
+            <div class="info-block">
+                <p class="info-text" style="font-style: italic; color: #fff; margin-bottom: 20px;">The Operating System for your Workflow.</p>
+
+                <p class="info-text">Aura unifies your tools, streamlines your processes, and empowers your team to build faster. Designed for modern companies.</p>
+            </div>
+
+            <div class="info-block">
+                <span class="info-label" style="color: var(--accent-purple);">Highlights:</span>
+                <p class="info-text">Features a highly responsive bento grid layout, CSS-only 3D mockups, glassmorphism effects, and dynamic scroll animations. Built for scale and conversion.</p>
+            </div>
+        </div>
+    </div>
  
     <script>
         // --- LÓGICA DO LIGHTBOX DE IMAGEM ---
@@ -871,6 +919,14 @@
         btnOpenRed.onclick = function() { infoModalRed.style.display = "flex"; }
         closeInfoRedBtn.onclick = function() { infoModalRed.style.display = "none"; }
 
+        // --- LÓGICA DO MODAL DE INFO (SAAS) - NOVO ---
+        const infoModalSaas = document.getElementById('info-modal-saas');
+        const btnOpenSaas = document.getElementById('btn-open-saas');
+        const closeInfoSaasBtn = document.getElementById('close-info-saas');
+
+        btnOpenSaas.onclick = function() { infoModalSaas.style.display = "flex"; }
+        closeInfoSaasBtn.onclick = function() { infoModalSaas.style.display = "none"; }
+
         // --- FECHAR QUALQUER MODAL CLICANDO FORA ---
         window.onclick = function(event) {
             if (event.target === lightbox) { lightbox.style.display = "none"; }
@@ -878,6 +934,7 @@
             if (event.target === infoModalGold) { infoModalGold.style.display = "none"; }
             if (event.target === infoModalNavy) { infoModalNavy.style.display = "none"; }
             if (event.target === infoModalRed) { infoModalRed.style.display = "none"; }
+            if (event.target === infoModalSaas) { infoModalSaas.style.display = "none"; }
         }
     </script>
  

@@ -236,7 +236,7 @@
             transform: translateY(-3px);
         }
  
-        /* --- SEÇÃO SOBRE MIM --- */
+        /* --- SEÇÃO SOBRE MIM (AJUSTADO PARA ALINHAMENTO) --- */
         .about-section {
             background-color: #0f0f0f;
             border-top: 1px solid #222;
@@ -249,7 +249,7 @@
             max-width: 900px;
             margin: 0 auto;
             display: flex;
-            align-items: flex-start; 
+            align-items: flex-start; /* Mantém alinhado ao topo */
             gap: 50px;
         }
  
@@ -265,7 +265,7 @@
             flex-shrink: 0;
             overflow: hidden;
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
-            margin-top: 10px;
+            /* margin-top removido para alinhar com o texto */
         }
  
         .about-img {
@@ -275,7 +275,7 @@
         }
         
         .about-content {
-            padding-top: 80px; /* Copy rebaixada */
+            /* padding-top removido para alinhar com a imagem */
         }
  
         .about-content h2 {
@@ -283,6 +283,7 @@
             color: #fff;
             margin-bottom: 15px;
             text-transform: uppercase;
+            line-height: 1; /* Garante que o título não tenha altura de linha extra no topo */
         }
         
         .about-content p {
@@ -495,7 +496,7 @@
         /* ESTILO ESPECÍFICO PARA O BOTÃO VIEW RED */
         .theme-red .btn-view {
              background-color: var(--accent-red);
-             color: #000; /* Preto para manter padrão, ou #fff se preferir contraste com vermelho */
+             color: #000; 
         }
         .theme-red .btn-view:hover {
              background-color: #cc0000; 
@@ -535,12 +536,19 @@
  
         footer { text-align: center; font-size: 0.8rem; color: #444; margin-top: 100px; padding-bottom: 60px; }
  
+        /* --- MEDIA QUERY MOBILE (AJUSTADA) --- */
         @media (max-width: 900px) {
             .featured-wrapper { grid-template-columns: 1fr; }
             .gallery-grid { height: auto; grid-template-rows: 150px 150px; }
-            .about-container { flex-direction: column; text-align: center; gap: 30px; }
+            
+            /* Ajuste da seção About no Mobile */
+            .about-container { 
+                flex-direction: column; 
+                text-align: center; 
+                gap: 30px; 
+                align-items: center; /* Garante que a foto fique centralizada horizontalmente */
+            }
             .skills-list { justify-content: center; }
-            .about-content { padding-top: 0; }
         }
     </style>
 </head>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA | Contact Us</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root {
+            /* Aura Design System */
+            --bg-deep: #030014;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-glass: rgba(255, 255, 255, 0.05);
+            --border-glass: rgba(255, 255, 255, 0.1);
+            
+            --text-white: #ffffff;
+            --text-gray: #a1a1aa;
+            
+            --accent-cyan: #00f2ea;
+            --accent-purple: #7f00ff;
+            --accent-pink: #ff0080;
+            
+            --gradient-text: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+            --gradient-btn: linear-gradient(90deg, #7f00ff 0%, #e100ff 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Outfit', sans-serif; }
+
+        /* --- BACKGROUND FX --- */
+        .ambient-light {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.4;
+            animation: floatOrb 20s infinite alternate;
+        }
+        .orb-1 { width: 500px; height: 500px; background: var(--accent-pink); bottom: -100px; left: -100px; opacity: 0.2; }
+        .orb-2 { width: 400px; height: 400px; background: var(--accent-cyan); top: 0; right: 0; opacity: 0.25; animation-delay: -5s; }
+
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(40px, -40px) scale(1.1); }
+        }
+
+        /* --- UTILS --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .text-gradient { background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        /* --- NAVBAR --- */
+        nav {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-glass);
+            background: rgba(3, 0, 20, 0.8);
+            backdrop-filter: blur(20px);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -1px; display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none;}
+        .nav-links a { color: var(--text-gray); text-decoration: none; font-weight: 500; margin-left: 30px; transition: 0.3s; }
+        .nav-links a:hover { color: #fff; }
+
+        /* --- CONTACT SECTION --- */
+        .contact-section {
+            padding: 100px 0;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        /* Left Side: Info */
+        .contact-info h1 { font-size: 3.5rem; margin-bottom: 20px; line-height: 1.1; }
+        .contact-info p { color: var(--text-gray); font-size: 1.1rem; margin-bottom: 40px; }
+
+        .info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            padding: 25px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: 0.3s;
+        }
+        .info-card:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.2); }
+        
+        .icon-box {
+            width: 50px; height: 50px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem;
+            color: var(--accent-cyan);
+        }
+        .info-text h4 { font-size: 1.1rem; margin-bottom: 5px; }
+        .info-text span { color: var(--text-gray); font-size: 0.9rem; }
+
+        /* Right Side: Form */
+        .contact-form-wrapper {
+            background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .form-group { margin-bottom: 20px; }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid var(--border-glass);
+            padding: 12px 16px;
+            border-radius: 8px;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 15px rgba(0, 242, 234, 0.1);
+            background: rgba(0, 242, 234, 0.02);
+        }
+
+        .form-textarea { resize: vertical; min-height: 120px; }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--gradient-btn);
+            color: #fff;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 5px 20px rgba(127, 0, 255, 0.3);
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(127, 0, 255, 0.5);
+        }
+        .btn-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* --- FOOTER --- */
+        footer { border-top: 1px solid var(--border-glass); padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 0.9rem; margin-top: auto; }
+
+        @media (max-width: 900px) {
+            .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+            .contact-info h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-light">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <nav>
+        <div class="container nav-content">
+            <a href="Modern-SaaS-Template.html" class="logo">
+                <i class="fas fa-cube" style="color: var(--accent-cyan);"></i> AURA
+            </a>
+            <div class="nav-links" style="display: flex;">
+                <a href="Modern-SaaS-Template.html">Home</a>
+                <a href="aura_pricing.html">Pricing</a>
+                <a href="#" style="color:#fff;">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="contact-section">
+        <div class="container contact-grid">
+            
+            <div class="contact-info">
+                <h1 class="text-gradient">Let's build the future together.</h1>
+                <p>Have a question about Aura? Need a custom Enterprise plan? Our team is ready to help you optimize your workflow.</p>
+
+                <div class="info-card">
+                    <div class="icon-box"><i class="fas fa-envelope"></i></div>
+                    <div class="info-text">
+                        <h4>Email Us</h4>
+                        <span>hello@aura-template.com</span>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="icon-box" style="color: var(--accent-purple);"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="info-text">
+                        <h4>Headquarters</h4>
+                        <span>123 Innovation Dr, San Francisco, CA</span>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="icon-box" style="color: var(--accent-pink);"><i class="fab fa-discord"></i></div>
+                    <div class="info-text">
+                        <h4>Community</h4>
+                        <span>Join our Discord Server</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form-wrapper">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-input" placeholder="John Doe" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Work Email</label>
+                        <input type="email" class="form-input" placeholder="john@company.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Subject</label>
+                        <select class="form-input" style="cursor: pointer;">
+                            <option>Sales Inquiry</option>
+                            <option>Technical Support</option>
+                            <option>Partnership</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Message</label>
+                        <textarea class="form-textarea" placeholder="Tell us how we can help..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit" id="submitBtn">
+                        <span>Send Message</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Aura Template. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- FORM SIMULATION LOGIC ---
+        const form = document.getElementById('contactForm');
+        const btn = document.getElementById('submitBtn');
+        const btnText = btn.querySelector('span');
+        const btnIcon = btn.querySelector('i');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Loading State
+            btn.disabled = true;
+            btnText.textContent = "Sending...";
+            btnIcon.className = "fas fa-spinner fa-spin";
+            btn.style.background = "rgba(255,255,255,0.1)"; // Greyed out style
+
+            // Simulate server delay
+            setTimeout(() => {
+                // Success State
+                btnText.textContent = "Message Sent!";
+                btnIcon.className = "fas fa-check";
+                btn.style.background = "var(--accent-cyan)"; // Success color (cyan)
+                btn.style.color = "#000";
+                
+                // Reset form after a moment
+                setTimeout(() => {
+                    form.reset();
+                    btn.disabled = false;
+                    btnText.textContent = "Send Message";
+                    btnIcon.className = "fas fa-paper-plane";
+                    btn.style.background = "var(--gradient-btn)"; // Reset gradient
+                    btn.style.color = "#fff";
+                }, 3000);
+
+            }, 1500);
+        });
+    </script>
+
+</body>
+</html>

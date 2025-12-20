@@ -1,1 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PORTFOLIO | T.S. Telles</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --text-main: #ffffff;
+            --card-bg: #151515;
+            --accent-gold: #FFD700;
+            --accent-red: #FF3333;
+            --accent-navy: #00FFFF;
+            --accent-purple: #9D00FF;
+            --section-border: #222;
+        }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            padding-bottom: 0; 
+        }
+
+        /* --- HEADER --- */
+        header {
+            text-align: center;
+            padding: 80px 20px 60px;
+            background: radial-gradient(circle at center, #222 0%, #0a0a0a 70%);
+            border-bottom: 1px solid var(--section-border);
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            color: #888;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .creator-signature {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+        .creator-signature:hover { color: #fff; }
+        .creator-signature i { margin-right: 8px; font-size: 1.1rem; }
+
+        /* --- LAYOUT GERAL --- */
+        .category-section {
+            max-width: 1200px;
+            margin: 0 auto 80px; 
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            border-left: 4px solid var(--accent-gold);
+            padding-left: 15px;
+            margin-bottom: 30px;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- FEATURED LAYOUT --- */
+        .featured-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr; 
+            gap: 20px;
+            align-items: stretch; 
+            margin-bottom: 30px; /* Espaço para o texto descritivo */
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 15px;
+            height: 350px; 
+        }
+
+        .gallery-item {
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .gallery-item:hover {
+            border-color: var(--accent-purple);
+            transform: scale(1.02);
+            z-index: 2;
+            box-shadow: 0 5px 15px rgba(157, 0, 255, 0.2);
+        }
+
+        /* --- PROJECT DETAILS (NOVO - ESTILO DO TEXTO K&Q) --- */
+        .project-details {
+            background: #111;
+            border: 1px solid #222;
+            border-left: 4px solid var(--accent-purple); /* Detalhe Roxo */
+            padding: 30px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 20px;
+        }
+
+        .project-details h3 {
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 15px;
+        }
+
+        .detail-block {
+            margin-bottom: 15px;
+        }
+
+        .detail-label {
+            color: var(--accent-purple);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .detail-text {
+            color: #bbb;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* --- CINEMATIC FADE --- */
+        .cinematic-card {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: #000;
+            border: 1px solid #333;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .cinematic-card .bg-site {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1;
+        }
+
+        .cinematic-card .info-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 2;
+            background: linear-gradient(135deg, rgba(26,0,43,0.95), rgba(75,0,130,0.95));
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            opacity: 0; 
+            animation: autoFade 12s infinite ease-in-out;
+            transition: opacity 0.5s ease;
+        }
+
+        @keyframes autoFade {
+            0%, 40% { opacity: 0; }  
+            50%, 90% { opacity: 1; } 
+            100% { opacity: 0; }     
+        }
+
+        .cinematic-card:hover .info-overlay {
+            opacity: 1;
+            animation: none;
+        }
+
+        /* --- Iframe Thumbnail --- */
+        .live-thumbnail {
+            width: 400%;  
+            height: 400%; 
+            border: 0;
+            transform: scale(0.25); 
+            transform-origin: 0 0;  
+            pointer-events: none; 
+        }
+
+        /* --- BOTÃO EXPLORER --- */
+        .btn-square-purple {
+            background-color: var(--accent-purple);
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 6px; 
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            display: inline-block;
+        }
+        .btn-square-purple:hover {
+            background-color: #b04dff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(157, 0, 255, 0.6);
+        }
+
+        /* --- SEÇÃO SOBRE MIM --- */
+        .about-section {
+            background-color: #0f0f0f;
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
+            padding: 80px 20px;
+            margin-bottom: 0;
+        }
+        
+        .about-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            align-items: flex-start; 
+            gap: 50px;
+        }
+
+        .about-avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: #151515;
+            border: 2px solid var(--accent-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+            margin-top: 10px;
+        }
+
+        .about-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .about-content {
+            padding-top: 80px; /* Copy rebaixada */
+        }
+
+        .about-content h2 {
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        .about-content p {
+            color: #aaa;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .skills-list {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .skill-tag {
+            background: rgba(255,255,255,0.05);
+            color: var(--accent-gold);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        /* --- LIGHTBOX --- */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 4px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+            animation: zoomIn 0.3s;
+        }
+
+        @keyframes zoomIn {
+            from {transform:scale(0.8); opacity: 0;} 
+            to {transform:scale(1); opacity: 1;}
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .close-lightbox:hover { color: var(--accent-red); }
+
+        /* --- GRID PADRÃO --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .browser-mockup {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+            border: 1px solid #333;
+        }
+        .browser-mockup:hover { transform: translateY(-5px); }
+        
+        .browser-header {
+            background: #252525;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border-bottom: 1px solid #333;
+        }
+        
+        .preview-area {
+            height: 220px;
+            position: relative;
+            background-color: #111;
+            overflow: hidden; 
+        }
+
+        .preview-placeholder {
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: radial-gradient(#333 1px, transparent 1px); 
+            background-size: 10px 10px;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 10;
+        }
+        .browser-mockup:hover .overlay { opacity: 1; }
+
+        .btn-view {
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            color: #000;
+            background: #fff;
+            transform: translateY(10px);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        .browser-mockup:hover .btn-view { transform: translateY(0); }
+
+        .dot { width: 8px; height: 8px; border-radius: 50%; }
+        .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
+        
+        .card-info { padding: 20px; }
+        .card-info h3 { font-size: 1.1rem; margin-bottom: 5px; color: #fff; }
+        .card-info p { font-size: 0.8rem; color: #777; margin-bottom: 0; }
+        .tag { font-size: 0.65rem; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; display: inline-block; margin-top: 10px; }
+
+        .theme-red .tag { color: var(--accent-red); border: 1px solid var(--accent-red); }
+        .theme-navy .tag { color: var(--accent-navy); border: 1px solid var(--accent-navy); }
+        .theme-gold .tag { color: var(--accent-gold); border: 1px solid var(--accent-gold); }
+        .theme-design .tag { color: #888; border: 1px dashed #444; }
+        .theme-design i { color: #333; }
+
+        footer { text-align: center; font-size: 0.8rem; color: #444; margin-top: 100px; padding-bottom: 60px; }
+
+        @media (max-width: 900px) {
+            .featured-wrapper { grid-template-columns: 1fr; }
+            .gallery-grid { height: auto; grid-template-rows: 150px 150px; }
+            .about-container { flex-direction: column; text-align: center; gap: 30px; }
+            .skills-list { justify-content: center; }
+            .about-content { padding-top: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>FEATURED <span style="font-weight: 300; opacity: 0.5;">PROJECTS</span></h1>
+        <p class="subtitle">Web Projects & Interactive Experiences</p>
+        <a href="https://github.com/tstelles" target="_blank" class="creator-signature">
+            <i class="fab fa-github"></i> tstelles
+        </a>
+    </header>
+
+    <div id="portfolio">
+        
+        <section class="category-section">
+            <h2 class="section-title" style="border-color: var(--accent-purple);">Published Sites</h2>
+            
+            <div class="featured-wrapper">
+                
+                <div class="cinematic-card">
+                    <div class="bg-site">
+                        <iframe 
+                            src="KingdomandQuill.html" 
+                            class="live-thumbnail">
+                        </iframe>
+                        <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 30%; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); pointer-events: none;"></div>
+                    </div>
+
+                    <div class="info-overlay">
+                        <i class="fas fa-feather-pointed" style="font-size: 3rem; color: var(--accent-purple); text-shadow: 0 0 10px rgba(157, 0, 255, 0.5); margin-bottom: 20px;"></i>
+                        <h3 style="color: #fff; font-size: 1.8rem; margin-bottom: 5px;">Kingdom & Quill</h3>
+                        <p style="color: #ddd; font-size: 1rem; font-style: italic; letter-spacing: 1px; margin-bottom: 10px;">
+                            Ink. Spirit. Legacy.
+                        </p>
+                        <a href="KingdomandQuill.html" target="_blank" class="btn-square-purple">
+                            Explorer
+                        </a>
+                    </div>
+                </div>
+
+                <div class="gallery-grid">
+                    <div class="gallery-item" title="Literature" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/literature.jpg');"></div>
+                    <div class="gallery-item" title="Devotionals" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/Devotionals.jpg');"></div>
+                    <div class="gallery-item" title="Album" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/Album.jpg');"></div>
+                    <div class="gallery-item" title="WTNY" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/wtny.jpg');"></div>
+                </div>
+
+            </div>
+
+            <div class="project-details">
+                <h3>Kingdom & Quill — <span style="font-weight: 400; color: #888;">Interactive Global Evangelization & Writing Platform</span></h3>
+                
+                <div class="detail-block">
+                    <span class="detail-label">Challenge:</span>
+                    <p class="detail-text">Design an engaging, interactive web platform for a Christian audience, featuring multilingual Bible versions for over ten countries, devotional and literary materials, and music across multiple platforms, while keeping navigation simple and intuitive for all users. The goal was to balance aesthetics with functionality, delivering an immersive experience.</p>
+                </div>
+
+                <div class="detail-block">
+                    <span class="detail-label">Approach:</span>
+                    <p class="detail-text">Developed a fully responsive HTML/CSS website with interactive elements and mockups. Focused on a clean layout, intuitive navigation, and a modern color palette to reflect creativity and professionalism. Integrated audio samples to allow users to preview content before selecting their preferred platforms.</p>
+                </div>
+
+                <div class="detail-block">
+                    <span class="detail-label">Result:</span>
+                    <p class="detail-text">A polished, user-friendly web experience that showcases proficiency in front-end design, responsive layouts, and interactive, user-focused interfaces.</p>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="category-section">
+            <h2 class="section-title" style="border-color: var(--accent-red);">Designs & Pages</h2>
+            <div class="grid-container">
+                
+                <div class="browser-mockup theme-red">
+                    <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                    <div class="preview-area">
+                        <iframe src="red_metallic_template.html" class="live-thumbnail"></iframe>
+                        <div class="overlay"><a href="red_metallic_template.html" target="_blank" class="btn-view">View Template</a></div>
+                    </div>
+                    <div class="card-info">
+                        <h3>Red Metallic Edition</h3>
+                        <p>High-energy sales landing page.</p>
+                        <span class="tag">HTML5 / CSS3</span>
+                    </div>
+                </div>
+
+                <div class="browser-mockup theme-navy">
+                    <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                    <div class="preview-area">
+                        <iframe src="navy_metallic_template.html" class="live-thumbnail"></iframe>
+                        <div class="overlay"><a href="navy_metallic_template.html" target="_blank" class="btn-view">View Template</a></div>
+                    </div>
+                    <div class="card-info">
+                        <h3>Navy Tech Edition</h3>
+                        <p>Corporate & Trust focused layout.</p>
+                        <span class="tag">HTML5 / CSS3</span>
+                    </div>
+                </div>
+
+                <div class="browser-mockup theme-gold">
+                    <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                    <div class="preview-area">
+                        <iframe src="gold_template.html" class="live-thumbnail"></iframe>
+                        <div class="overlay"><a href="gold_template.html" target="_blank" class="btn-view">View Template</a></div>
+                    </div>
+                    <div class="card-info">
+                        <h3>Dark Gold Edition</h3>
+                        <p>Luxury & Premium product page.</p>
+                        <span class="tag">HTML5 / CSS3</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="category-section">
+            <h2 class="section-title" style="border-color: #555;">Complete Site Models</h2>
+            <div class="grid-container">
+                
+                <div class="browser-mockup theme-design">
+                    <div class="browser-header"><div class="dot" style="background:#444"></div><div class="dot" style="background:#444"></div></div>
+                    <div class="preview-placeholder">
+                        <i class="far fa-image" style="font-size: 2rem; opacity: 0.2;"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3 style="color: #666;">UI Concept #01</h3>
+                        <p>Dashboard interface mockup.</p>
+                        <span class="tag">Figma / Sketch</span>
+                    </div>
+                </div>
+
+                <div class="browser-mockup theme-design">
+                    <div class="browser-header"><div class="dot" style="background:#444"></div><div class="dot" style="background:#444"></div></div>
+                    <div class="preview-placeholder">
+                        <i class="far fa-image" style="font-size: 2rem; opacity: 0.2;"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3 style="color: #666;">Mobile App UI</h3>
+                        <p>Finance application concept.</p>
+                        <span class="tag">Adobe XD</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <section class="about-section" id="about">
+        <div class="about-container">
+            
+            <div class="about-avatar">
+                <img src="tstelles-photo.png" alt="T.S. Telles" class="about-img">
+            </div>
+
+            <div class="about-content">
+                <h2>About <span style="color: var(--accent-gold);">Me</span></h2>
+                <p>
+                    I am T.S. Telles, a Front-End Developer and Creative Writer. I create and develop templates, websites, and interactive digital experiences. My focus is on delivering ready-to-use projects that are visually consistent, high-quality, and designed for end users and clients seeking practical, aesthetically polished solutions. All projects showcased here are examples of my professional work, demonstrating my skills in design, front-end development, and interactive interfaces.
+                </p>
+                
+                <div class="skills-list">
+                    <span class="skill-tag">HTML5 & CSS3 Development</span>
+                    <span class="skill-tag">Responsive Web Design</span>
+                    <span class="skill-tag">Interactive UI/UX Design</span>
+                    <span class="skill-tag">Web Templates & Landing Pages</span>
+                    <span class="skill-tag">Adobe InDesign, Photoshop & Lightroom</span>
+                    <span class="skill-tag">Video Editing</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 T.S. Telles Portfolio. All rights reserved.</p>
+    </footer>
+
+    <div id="lightbox" class="lightbox-modal">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const closeBtn = document.querySelector('.close-lightbox');
+
+        galleryItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const style = window.getComputedStyle(this);
+                const bgImage = style.backgroundImage;
+                const url = bgImage.slice(5, -2);
+                lightbox.style.display = "flex";
+                lightboxImg.src = url;
+            });
+        });
+
+        closeBtn.onclick = function() { lightbox.style.display = "none"; }
+        lightbox.onclick = function(event) {
+            if (event.target === lightbox) { lightbox.style.display = "none"; }
+        }
+    </script>
+
+</body>
+</html>

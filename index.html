@@ -335,12 +335,21 @@
             border: 1px solid #333;
             max-width: 600px;
             width: 100%;
+            /* CORREÇÃO DO TAMANHO: Adicionado max-height e scroll */
+            max-height: 90vh; 
+            overflow-y: auto;
             padding: 40px;
             border-radius: 12px;
             position: relative;
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
             animation: slideUp 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
+        
+        /* Estilo da Barra de Rolagem do Modal */
+        .text-modal-content::-webkit-scrollbar { width: 8px; }
+        .text-modal-content::-webkit-scrollbar-track { background: #111; border-radius: 4px; }
+        .text-modal-content::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        .text-modal-content::-webkit-scrollbar-thumb:hover { background: #555; }
 
         @keyframes slideUp {
             from { transform: translateY(50px); opacity: 0; }
@@ -360,6 +369,7 @@
             color: #666;
             cursor: pointer;
             transition: color 0.3s;
+            z-index: 20; /* Garante que o fechar fique sobre o scroll */
         }
         .modal-close:hover { color: #fff; }
 
@@ -369,6 +379,7 @@
             margin-bottom: 20px;
             border-bottom: 1px solid #222;
             padding-bottom: 15px;
+            padding-right: 30px; /* Espaço para o botão fechar não sobrepor */
         }
 
         .modal-block { margin-bottom: 15px; }
@@ -376,6 +387,7 @@
             font-weight: 700; text-transform: uppercase; font-size: 0.85rem; display: block; margin-bottom: 5px; 
         }
         
+        /* Cores dos Labels nos Modais */
         .modal-purple .modal-label { color: var(--accent-purple); }
         .modal-gold .modal-label { color: var(--accent-gold); }
         .modal-navy .modal-label { color: var(--accent-navy); }
@@ -442,32 +454,6 @@
             border: 1px solid rgba(255, 215, 0, 0.2);
         }
 
-        /* --- LIGHTBOX --- */
-        .lightbox-modal {
-            display: none; position: fixed; z-index: 9999;
-            left: 0; top: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
-            justify-content: center; align-items: center;
-            backdrop-filter: blur(5px);
-        }
-
-        .lightbox-content {
-            max-width: 90%; max-height: 90%;
-            border-radius: 4px; box-shadow: 0 0 30px rgba(0,0,0,0.8);
-            animation: zoomIn 0.3s;
-        }
-
-        @keyframes zoomIn {
-            from {transform:scale(0.8); opacity: 0;} to {transform:scale(1); opacity: 1;}
-        }
-
-        .close-lightbox {
-            position: absolute; top: 20px; right: 35px;
-            color: #f1f1f1; font-size: 40px; font-weight: bold;
-            transition: 0.3s; cursor: pointer;
-        }
-        .close-lightbox:hover { color: var(--accent-red); }
-
         footer { text-align: center; font-size: 0.8rem; color: #444; margin-top: 100px; padding-bottom: 60px; }
 
         @media (max-width: 900px) {
@@ -515,19 +501,19 @@
                 <div class="gallery-grid">
                     <div class="gallery-item" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/literature.jpg'); background-size: cover; background-position: center;">
                         <div class="overlay">
-                            <button class="btn-info" onclick="openTextModal('modal-kq')"><i class="fas fa-plus"></i> Info</button>
+                            <button class="btn-info" onclick="openTextModal('modal-lit')"><i class="fas fa-plus"></i> Info</button>
                         </div>
                     </div>
 
                     <div class="gallery-item" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/Devotionals.jpg'); background-size: cover; background-position: center;">
                         <div class="overlay">
-                            <button class="btn-info" onclick="openTextModal('modal-kq')"><i class="fas fa-plus"></i> Info</button>
+                            <button class="btn-info" onclick="openTextModal('modal-dev')"><i class="fas fa-plus"></i> Info</button>
                         </div>
                     </div>
                     
                     <div class="gallery-item" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/Album.jpg'); background-size: cover; background-position: center;">
                         <div class="overlay">
-                            <button class="btn-info" onclick="openTextModal('modal-kq')"><i class="fas fa-plus"></i> Info</button>
+                            <button class="btn-info" onclick="openTextModal('modal-album')"><i class="fas fa-plus"></i> Info</button>
                         </div>
                     </div>
 
@@ -672,6 +658,28 @@
             <div class="modal-block"><span class="modal-label">Challenge:</span><p class="modal-text">Design an engaging, interactive web platform for a Christian audience, featuring multilingual Bible versions for over ten countries, devotional and literary materials, and music across multiple platforms, while keeping navigation simple and intuitive for all users.</p></div>
             <div class="modal-block"><span class="modal-label">Approach:</span><p class="modal-text">Developed a fully responsive HTML/CSS website with interactive elements. Focused on a clean layout, intuitive navigation, and a modern color palette to reflect creativity and professionalism. Integrated audio samples to allow users to preview content.</p></div>
             <div class="modal-block"><span class="modal-label">Result:</span><p class="modal-text">A polished, user-friendly web experience that showcases proficiency in front-end design, responsive layouts, and interactive, user-focused interfaces.</p></div>
+        </div>
+    </div>
+
+    <div id="modal-lit" class="text-modal-overlay" onclick="closeTextModal('modal-lit')">
+        <div class="text-modal-content modal-purple" onclick="event.stopPropagation()">
+            <span class="modal-close" onclick="closeTextModal('modal-lit')">&times;</span>
+            <h3 class="modal-title">Literature Section</h3>
+            <p class="modal-text">Content coming soon...</p>
+        </div>
+    </div>
+    <div id="modal-dev" class="text-modal-overlay" onclick="closeTextModal('modal-dev')">
+        <div class="text-modal-content modal-purple" onclick="event.stopPropagation()">
+            <span class="modal-close" onclick="closeTextModal('modal-dev')">&times;</span>
+            <h3 class="modal-title">Devotionals Section</h3>
+            <p class="modal-text">Content coming soon...</p>
+        </div>
+    </div>
+    <div id="modal-album" class="text-modal-overlay" onclick="closeTextModal('modal-album')">
+        <div class="text-modal-content modal-purple" onclick="event.stopPropagation()">
+            <span class="modal-close" onclick="closeTextModal('modal-album')">&times;</span>
+            <h3 class="modal-title">Music Album</h3>
+            <p class="modal-text">Content coming soon...</p>
         </div>
     </div>
 

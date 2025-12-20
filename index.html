@@ -123,7 +123,7 @@
             box-shadow: 0 5px 15px rgba(157, 0, 255, 0.2);
         }
 
-        /* --- EFEITO FLIP AUTOMÁTICO (TEMPO LONGO) --- */
+        /* --- EFEITO FLIP AUTOMÁTICO (15 SEGUNDOS) --- */
         .flip-container {
             background-color: transparent;
             width: 100%;
@@ -150,7 +150,7 @@
             100% { transform: rotateY(360deg); }     /* Volta */
         }
 
-        /* Pausa no mouse over */
+        /* Pausa no mouse over (Trava no lado do botão) */
         .flip-container:hover .flip-inner {
             animation: none;
             transform: rotateY(180deg);
@@ -184,6 +184,33 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+        }
+
+        /* --- BOTÃO EXPLORER (Roxo, Quadrado e Brilhante) --- */
+        .btn-square-purple {
+            background-color: var(--accent-purple);
+            color: #fff;
+            padding: 12px 30px;
+            
+            /* Quadradinho com borda leve */
+            border-radius: 6px; 
+            
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            
+            /* Efeitos */
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-square-purple:hover {
+            background-color: #b04dff; /* Roxo mais claro */
+            transform: translateY(-3px); /* Sobe um pouquinho */
+            box-shadow: 0 8px 20px rgba(157, 0, 255, 0.6); /* Brilho neon */
         }
 
         /* --- GRID PADRÃO (Outras seções) --- */
@@ -236,6 +263,7 @@
         }
         .browser-mockup:hover .overlay { opacity: 1; }
 
+        /* Botões padrão (Redondos - das outras seções) */
         .btn-view {
             padding: 12px 30px;
             border-radius: 30px;
@@ -310,7 +338,7 @@
                                 Ink. Spirit. Legacy.
                             </p>
                             
-                            <a href="https://tstelles.github.io/kingdom-quill/" target="_blank" class="btn-view" style="transform: translateY(0); border: none; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+                            <a href="https://tstelles.github.io/kingdom-quill/" target="_blank" class="btn-square-purple">
                                 Explorer
                             </a>
                         </div>
@@ -319,15 +347,10 @@
                 </div>
 
                 <div class="gallery-grid">
-                    
                     <div class="gallery-item" title="Literature" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/literature.jpg');"></div>
-                    
                     <div class="gallery-item" title="Devotionals" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/Devotionals.jpg');"></div>
-                    
                     <div class="gallery-item" title="Album" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/Album.jpg');"></div>
-                    
                     <div class="gallery-item" title="WTNY" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/wtny.jpg');"></div>
-
                 </div>
 
             </div>

@@ -101,13 +101,14 @@
             height: 350px; 
         }
 
+        /* Item da Galeria */
         .gallery-item {
             background-color: #1a1a1a;
             border: 1px solid #333;
             border-radius: 8px;
             overflow: hidden;
             position: relative;
-            cursor: pointer; /* Indica que é clicável (para o lightbox) */
+            cursor: pointer; /* Cursor de mão para indicar clique na imagem */
             transition: transform 0.3s ease, border-color 0.3s ease;
             background-size: cover;
             background-position: center;
@@ -119,6 +120,47 @@
             transform: scale(1.02);
             z-index: 2;
             box-shadow: 0 5px 15px rgba(157, 0, 255, 0.2);
+        }
+
+        /* --- OVERLAY DA GALERIA (CORRIGIDO) --- */
+        .gallery-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.3); /* Leve escurecimento */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 10;
+            pointer-events: none; /* Deixa o clique passar para a imagem se não clicar no botão */
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        /* Botão DENTRO da Galeria (CORRIGIDO) */
+        .gallery-btn {
+            pointer-events: auto; /* Reabilita o clique SÓ no botão */
+            z-index: 50; /* Garante que está no topo */
+            background: rgba(0, 0, 0, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-btn:hover {
+            background: var(--accent-purple);
+            border-color: var(--accent-purple);
+            transform: scale(1.05);
         }
 
         /* --- CINEMATIC FADE --- */
@@ -170,7 +212,7 @@
             transform: scale(0.25); transform-origin: 0 0; pointer-events: none; 
         }
 
-        /* --- BOTÕES GERAIS --- */
+        /* --- BOTÕES DO CARD PRINCIPAL --- */
         .btn-group {
             display: flex;
             gap: 15px;
@@ -198,60 +240,19 @@
             box-shadow: 0 8px 20px rgba(157, 0, 255, 0.6);
         }
 
-        /* Botão + Info */
         .btn-info {
-            background: rgba(0,0,0,0.6); /* Fundo escuro para leitura */
+            background: transparent;
             border: 1px solid rgba(255,255,255,0.5);
             color: #fff;
-            padding: 8px 15px;
+            padding: 10px 15px;
             border-radius: 6px;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-transform: uppercase;
-            font-weight: 600;
-            letter-spacing: 0.5px;
         }
         .btn-info:hover {
-            background: var(--accent-purple);
-            border-color: var(--accent-purple);
-        }
-
-        /* --- OVERLAY DA GALERIA --- */
-        /* Camada invisível que aparece no hover, segurando o botão */
-        .gallery-overlay {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.4); /* Leve escurecimento no hover */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 5;
-        }
-        
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-
-        /* Botão dentro da galeria */
-        .gallery-btn {
-            z-index: 100; /* Garante que está acima de tudo */
-            background: rgba(0,0,0,0.8);
-            border: 1px solid #fff;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-        .gallery-btn:hover {
-            background: var(--accent-purple);
-            border-color: var(--accent-purple);
-            transform: scale(1.05);
+            background: rgba(255,255,255,0.1);
+            border-color: #fff;
         }
 
         /* --- GRID PADRÃO --- */
@@ -371,10 +372,8 @@
             border: 1px solid #333;
             max-width: 600px;
             width: 100%;
-            /* SCROLL E TAMANHO CORRIGIDO */
             max-height: 90vh; 
             overflow-y: auto;
-            
             padding: 40px;
             border-radius: 12px;
             position: relative;
@@ -382,7 +381,6 @@
             animation: slideUp 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        /* Scrollbar estilizado */
         .text-modal-content::-webkit-scrollbar { width: 8px; }
         .text-modal-content::-webkit-scrollbar-track { background: #111; border-radius: 4px; }
         .text-modal-content::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
@@ -563,25 +561,25 @@
                 <div class="gallery-grid">
                     <div class="gallery-item" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/literature.jpg');">
                         <div class="gallery-overlay">
-                            <button class="gallery-btn" onclick="openTextModal('modal-lit'); event.stopPropagation();"><i class="fas fa-plus"></i> Info</button>
+                            <button class="gallery-btn" onclick="event.stopPropagation(); openTextModal('modal-lit')"><i class="fas fa-plus"></i> Info</button>
                         </div>
                     </div>
 
                     <div class="gallery-item" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/Devotionals.jpg');">
                         <div class="gallery-overlay">
-                            <button class="gallery-btn" onclick="openTextModal('modal-dev'); event.stopPropagation();"><i class="fas fa-plus"></i> Info</button>
+                            <button class="gallery-btn" onclick="event.stopPropagation(); openTextModal('modal-dev')"><i class="fas fa-plus"></i> Info</button>
                         </div>
                     </div>
                     
                     <div class="gallery-item" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/Album.jpg');">
                         <div class="gallery-overlay">
-                            <button class="gallery-btn" onclick="openTextModal('modal-album'); event.stopPropagation();"><i class="fas fa-plus"></i> Info</button>
+                            <button class="gallery-btn" onclick="event.stopPropagation(); openTextModal('modal-album')"><i class="fas fa-plus"></i> Info</button>
                         </div>
                     </div>
 
                     <div class="gallery-item" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/wtny.jpg');">
                         <div class="gallery-overlay">
-                            <button class="gallery-btn" onclick="openTextModal('modal-wtny'); event.stopPropagation();"><i class="fas fa-plus"></i> Info</button>
+                            <button class="gallery-btn" onclick="event.stopPropagation(); openTextModal('modal-wtny')"><i class="fas fa-plus"></i> Info</button>
                         </div>
                     </div>
                 </div>
@@ -599,7 +597,7 @@
                         <div class="overlay">
                             <div class="overlay-actions">
                                 <a href="red_metallic_template.html" target="_blank" class="btn-view btn-active">View Template</a>
-                                <button class="btn-info" onclick="openTextModal('modal-red'); event.stopPropagation();"><i class="fas fa-plus"></i> Details</button>
+                                <button class="btn-info" onclick="openTextModal('modal-red')"><i class="fas fa-plus"></i> Details</button>
                             </div>
                         </div>
                     </div>
@@ -613,7 +611,7 @@
                         <div class="overlay">
                             <div class="overlay-actions">
                                 <a href="navy_metallic_template.html" target="_blank" class="btn-view btn-active">View Template</a>
-                                <button class="btn-info" onclick="openTextModal('modal-navy'); event.stopPropagation();"><i class="fas fa-plus"></i> Details</button>
+                                <button class="btn-info" onclick="openTextModal('modal-navy')"><i class="fas fa-plus"></i> Details</button>
                             </div>
                         </div>
                     </div>
@@ -627,7 +625,7 @@
                         <div class="overlay">
                             <div class="overlay-actions">
                                 <a href="gold_template.html" target="_blank" class="btn-view btn-active">View Template</a>
-                                <button class="btn-info" onclick="openTextModal('modal-gold'); event.stopPropagation();"><i class="fas fa-plus"></i> Details</button>
+                                <button class="btn-info" onclick="openTextModal('modal-gold')"><i class="fas fa-plus"></i> Details</button>
                             </div>
                         </div>
                     </div>
@@ -716,7 +714,6 @@
         <div class="text-modal-content modal-purple" onclick="event.stopPropagation()">
             <span class="modal-close" onclick="closeTextModal('modal-kq')">&times;</span>
             <h3 class="modal-title">Kingdom & Quill <span style="font-size: 0.8rem; color: #888; display: block; margin-top: 5px;">Case Study</span></h3>
-            
             <div class="modal-block"><span class="modal-label">Challenge:</span><p class="modal-text">Design an engaging, interactive web platform for a Christian audience, featuring multilingual Bible versions for over ten countries, devotional and literary materials, and music across multiple platforms, while keeping navigation simple and intuitive for all users.</p></div>
             <div class="modal-block"><span class="modal-label">Approach:</span><p class="modal-text">Developed a fully responsive HTML/CSS website with interactive elements. Focused on a clean layout, intuitive navigation, and a modern color palette to reflect creativity and professionalism. Integrated audio samples to allow users to preview content.</p></div>
             <div class="modal-block"><span class="modal-label">Result:</span><p class="modal-text">A polished, user-friendly web experience that showcases proficiency in front-end design, responsive layouts, and interactive, user-focused interfaces.</p></div>
@@ -726,22 +723,19 @@
     <div id="modal-lit" class="text-modal-overlay" onclick="closeTextModal('modal-lit')">
         <div class="text-modal-content modal-purple" onclick="event.stopPropagation()">
             <span class="modal-close" onclick="closeTextModal('modal-lit')">&times;</span>
-            <h3 class="modal-title">Literature Section</h3>
-            <p class="modal-text">Project details coming soon...</p>
+            <h3 class="modal-title">Literature Section</h3><p class="modal-text">Project details coming soon...</p>
         </div>
     </div>
     <div id="modal-dev" class="text-modal-overlay" onclick="closeTextModal('modal-dev')">
         <div class="text-modal-content modal-purple" onclick="event.stopPropagation()">
             <span class="modal-close" onclick="closeTextModal('modal-dev')">&times;</span>
-            <h3 class="modal-title">Devotionals Section</h3>
-            <p class="modal-text">Project details coming soon...</p>
+            <h3 class="modal-title">Devotionals Section</h3><p class="modal-text">Project details coming soon...</p>
         </div>
     </div>
     <div id="modal-album" class="text-modal-overlay" onclick="closeTextModal('modal-album')">
         <div class="text-modal-content modal-purple" onclick="event.stopPropagation()">
             <span class="modal-close" onclick="closeTextModal('modal-album')">&times;</span>
-            <h3 class="modal-title">Music Album</h3>
-            <p class="modal-text">Project details coming soon...</p>
+            <h3 class="modal-title">Music Album</h3><p class="modal-text">Project details coming soon...</p>
         </div>
     </div>
 
@@ -749,59 +743,15 @@
         <div class="text-modal-content modal-purple" onclick="event.stopPropagation()">
             <span class="modal-close" onclick="closeTextModal('modal-wtny')">&times;</span>
             <h3 class="modal-title">Welcome to New York <span style="font-size: 0.8rem; color: #888; display: block; margin-top: 5px;">Interactive Book Sales Page</span></h3>
-            
-            <div class="modal-block">
-                <span class="modal-label">Overview:</span>
-                <p class="modal-text">A fully customized, high-impact sales page developed to promote a fiction book release through an immersive, cinematic web experience. The project combines storytelling, conversion strategy, and front-end design to create an emotionally engaging landing page focused on reader retention and platform redirection.</p>
-            </div>
-            
-            <div class="modal-block">
-                <span class="modal-label">Key Features:</span>
-                <ul class="modal-list">
-                    <li>Custom neon UI system with animated text effects and visual hierarchy</li>
-                    <li>Responsive design optimized for desktop, tablet, and mobile devices</li>
-                    <li>Integrated video sections (Vimeo embeds) for trailers and visual storytelling</li>
-                    <li>Interactive audio player built with JavaScript for preview content</li>
-                    <li>Conversion-oriented CTA structure linking to external platforms</li>
-                </ul>
-            </div>
-
-            <div class="modal-block">
-                <span class="modal-label">Technical Details:</span>
-                <p class="modal-text">Built with semantic HTML, modern CSS, and vanilla JavaScript, the page features a responsive layout, animated neon typography, dynamic video backgrounds, and interactive elements designed to guide the user through the narrative and purchasing journey.</p>
-            </div>
+            <div class="modal-block"><span class="modal-label">Overview:</span><p class="modal-text">A fully customized, high-impact sales page developed to promote a fiction book release through an immersive, cinematic web experience. The project combines storytelling, conversion strategy, and front-end design to create an emotionally engaging landing page focused on reader retention and platform redirection.</p></div>
+            <div class="modal-block"><span class="modal-label">Key Features:</span><ul class="modal-list"><li>Custom neon UI system with animated text effects and visual hierarchy</li><li>Responsive design optimized for desktop, tablet, and mobile devices</li><li>Integrated video sections (Vimeo embeds) for trailers and visual storytelling</li><li>Interactive audio player built with JavaScript for preview content</li><li>Conversion-oriented CTA structure linking to external platforms</li></ul></div>
+            <div class="modal-block"><span class="modal-label">Technical Details:</span><p class="modal-text">Built with semantic HTML, modern CSS, and vanilla JavaScript, the page features a responsive layout, animated neon typography, dynamic video backgrounds, and interactive elements designed to guide the user through the narrative and purchasing journey.</p></div>
         </div>
     </div>
 
-    <div id="modal-red" class="text-modal-overlay" onclick="closeTextModal('modal-red')">
-        <div class="text-modal-content modal-red" onclick="event.stopPropagation()">
-            <span class="modal-close" onclick="closeTextModal('modal-red')">&times;</span>
-            <h3 class="modal-title">Red Metallic <span style="font-size: 0.8rem; color: #888; display: block; margin-top: 5px;">Template Overview</span></h3>
-            
-            <div class="modal-block"><span class="modal-label">Concept:</span><p class="modal-text">A bold, high-energy landing page template designed to drive attention and action. Red Metallic is ideal for limited-time offers, launches, promotions, and conversion-focused sales pages where urgency plays a key role.</p></div>
-            <div class="modal-block"><span class="modal-label">Technical Specs:</span><p class="modal-text">Featuring strong visual contrast, dynamic metallic effects, and a responsive layout, the template is optimized for impact while remaining clean, lightweight, and easy to adapt to different products and campaigns.</p></div>
-        </div>
-    </div>
-
-    <div id="modal-navy" class="text-modal-overlay" onclick="closeTextModal('modal-navy')">
-        <div class="text-modal-content modal-navy" onclick="event.stopPropagation()">
-            <span class="modal-close" onclick="closeTextModal('modal-navy')">&times;</span>
-            <h3 class="modal-title">Navy Metallic <span style="font-size: 0.8rem; color: #888; display: block; margin-top: 5px;">Template Overview</span></h3>
-            
-            <div class="modal-block"><span class="modal-label">Concept:</span><p class="modal-text">A modern, high-contrast landing page template created to convey trust, technology, and professionalism. Navy Metallic is well-suited for SaaS products, digital services, software tools, and corporate-focused campaigns.</p></div>
-            <div class="modal-block"><span class="modal-label">Technical Specs:</span><p class="modal-text">The layout emphasizes clarity, hierarchy, and readability, combined with subtle metallic animation effects. Fully responsive and built with clean front-end code, this template offers a reliable foundation for professional and tech-oriented projects.</p></div>
-        </div>
-    </div>
-
-    <div id="modal-gold" class="text-modal-overlay" onclick="closeTextModal('modal-gold')">
-        <div class="text-modal-content modal-gold" onclick="event.stopPropagation()">
-            <span class="modal-close" onclick="closeTextModal('modal-gold')">&times;</span>
-            <h3 class="modal-title">Gold Metallic <span style="font-size: 0.8rem; color: #888; display: block; margin-top: 5px;">Template Overview</span></h3>
-            
-            <div class="modal-block"><span class="modal-label">Concept:</span><p class="modal-text">A luxury-focused landing page template designed to communicate exclusivity, value, and premium positioning. Ideal for high-end products, memberships, digital courses, and exclusive offers.</p></div>
-            <div class="modal-block"><span class="modal-label">Technical Specs:</span><p class="modal-text">Built with clean HTML, CSS, and lightweight animations, the template is fully responsive and easy to customize, making it suitable for marketers and developers who need a polished, conversion-oriented presentation without unnecessary complexity.</p></div>
-        </div>
-    </div>
+    <div id="modal-red" class="text-modal-overlay" onclick="closeTextModal('modal-red')"><div class="text-modal-content modal-red" onclick="event.stopPropagation()"><span class="modal-close" onclick="closeTextModal('modal-red')">&times;</span><h3 class="modal-title">Red Metallic</h3><div class="modal-block"><span class="modal-label">Concept:</span><p class="modal-text">A bold, high-energy landing page template designed to drive attention and action. Red Metallic is ideal for limited-time offers, launches, promotions, and conversion-focused sales pages where urgency plays a key role.</p></div><div class="modal-block"><span class="modal-label">Technical Specs:</span><p class="modal-text">Featuring strong visual contrast, dynamic metallic effects, and a responsive layout, the template is optimized for impact while remaining clean, lightweight, and easy to adapt to different products and campaigns.</p></div></div></div>
+    <div id="modal-navy" class="text-modal-overlay" onclick="closeTextModal('modal-navy')"><div class="text-modal-content modal-navy" onclick="event.stopPropagation()"><span class="modal-close" onclick="closeTextModal('modal-navy')">&times;</span><h3 class="modal-title">Navy Metallic</h3><div class="modal-block"><span class="modal-label">Concept:</span><p class="modal-text">A modern, high-contrast landing page template created to convey trust, technology, and professionalism. Navy Metallic is well-suited for SaaS products, digital services, software tools, and corporate-focused campaigns.</p></div><div class="modal-block"><span class="modal-label">Technical Specs:</span><p class="modal-text">The layout emphasizes clarity, hierarchy, and readability, combined with subtle metallic animation effects. Fully responsive and built with clean front-end code, this template offers a reliable foundation for professional and tech-oriented projects.</p></div></div></div>
+    <div id="modal-gold" class="text-modal-overlay" onclick="closeTextModal('modal-gold')"><div class="text-modal-content modal-gold" onclick="event.stopPropagation()"><span class="modal-close" onclick="closeTextModal('modal-gold')">&times;</span><h3 class="modal-title">Gold Metallic</h3><div class="modal-block"><span class="modal-label">Concept:</span><p class="modal-text">A luxury-focused landing page template designed to communicate exclusivity, value, and premium positioning. Ideal for high-end products, memberships, digital courses, and exclusive offers.</p></div><div class="modal-block"><span class="modal-label">Technical Specs:</span><p class="modal-text">Built with clean HTML, CSS, and lightweight animations, the template is fully responsive and easy to customize, making it suitable for marketers and developers who need a polished, conversion-oriented presentation without unnecessary complexity.</p></div></div></div>
 
     <div id="lightbox" class="lightbox-modal">
         <span class="close-lightbox">&times;</span>
@@ -816,12 +766,16 @@
         const closeBtn = document.querySelector('.close-lightbox');
 
         galleryItems.forEach(item => {
-            item.addEventListener('click', function() {
+            item.addEventListener('click', function(e) {
+                // TRAVA DE SEGURANÇA: Se clicou num botão, PARA TUDO.
+                if (e.target.tagName === 'BUTTON' || e.target.closest('button')) {
+                    return;
+                }
+
                 const style = window.getComputedStyle(this);
                 const bgImage = style.backgroundImage;
-                // Garante que existe uma imagem de fundo antes de abrir e que não é "none"
-                if (bgImage && bgImage !== 'none' && !bgImage.includes('url("none")')) {
-                    const url = bgImage.slice(5, -2); // Remove url("")
+                if (bgImage && bgImage !== 'none') {
+                    const url = bgImage.slice(5, -2);
                     lightbox.style.display = "flex";
                     lightboxImg.src = url;
                 }

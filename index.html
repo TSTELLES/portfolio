@@ -179,7 +179,7 @@
             pointer-events: none; 
         }
  
-        /* --- BOTÕES DO CARD --- */
+        /* --- BOTÕES DO CARD PRINCIPAL --- */
         .action-buttons {
             display: flex;
             gap: 15px;
@@ -211,7 +211,7 @@
             box-shadow: 0 8px 20px rgba(157, 0, 255, 0.6);
         }
 
-        /* Botão Outline (Info) */
+        /* Botão Outline (Info - Genérico para o card principal) */
         .btn-outline-white {
             background-color: transparent;
             color: #fff;
@@ -231,11 +231,10 @@
         }
         .btn-outline-white:hover {
             background-color: #fff;
-            color: var(--accent-purple);
+            color: #000;
             border-color: #fff;
             transform: translateY(-3px);
         }
-        .btn-outline-white i { margin-right: 8px; }
  
         /* --- SEÇÃO SOBRE MIM --- */
         .about-section {
@@ -333,11 +332,10 @@
             animation: zoomIn 0.3s;
         }
 
-        /* Modal de Texto (Info) */
+        /* Modal de Texto (Genérico) */
         .info-modal-content {
             background: #111;
             border: 1px solid #333;
-            border-left: 4px solid var(--accent-purple);
             padding: 40px;
             max-width: 700px;
             width: 100%;
@@ -363,7 +361,6 @@
 
         .info-block { margin-bottom: 20px; }
         .info-label {
-            color: var(--accent-purple);
             font-weight: 700;
             text-transform: uppercase;
             font-size: 0.9rem;
@@ -445,7 +442,7 @@
             top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.7);
             display: flex;
-            flex-direction: column;
+            flex-direction: column; 
             align-items: center;
             justify-content: center;
             opacity: 0;
@@ -453,21 +450,74 @@
             z-index: 10;
         }
         .browser-mockup:hover .overlay { opacity: 1; }
+        
+        /* Container de botões para os mockups menores */
+        .overlay-btns {
+            display: flex;
+            gap: 10px;
+            transform: translateY(10px);
+            transition: transform 0.3s ease;
+        }
+        .browser-mockup:hover .overlay-btns { transform: translateY(0); }
  
+        /* Botão VIEW Padrão (Branco) */
         .btn-view {
-            padding: 12px 30px;
+            padding: 12px 24px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 700;
             text-transform: uppercase;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: #000;
             background: #fff;
-            transform: translateY(10px);
-            transition: transform 0.3s ease;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
-        .browser-mockup:hover .btn-view { transform: translateY(0); }
+
+        /* ESTILO ESPECÍFICO PARA O BOTÃO VIEW DOURADO */
+        .theme-gold .btn-view {
+             background-color: var(--accent-gold);
+             color: #000;
+        }
+        .theme-gold .btn-view:hover {
+             background-color: #e6c300; 
+        }
+
+        /* ESTILO ESPECÍFICO PARA O BOTÃO VIEW NAVY */
+        .theme-navy .btn-view {
+             background-color: var(--accent-navy);
+             color: #000;
+        }
+        .theme-navy .btn-view:hover {
+             background-color: #00cccc; 
+        }
+
+        /* ESTILO ESPECÍFICO PARA O BOTÃO VIEW RED */
+        .theme-red .btn-view {
+             background-color: var(--accent-red);
+             color: #000; /* Preto para manter padrão, ou #fff se preferir contraste com vermelho */
+        }
+        .theme-red .btn-view:hover {
+             background-color: #cc0000; 
+        }
+        
+        /* Botão Info redondo para Overlay */
+        .btn-info-round {
+            padding: 12px 24px;
+            border-radius: 30px;
+            background: transparent;
+            border: 1px solid #fff;
+            color: #fff;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-info-round:hover {
+            background: #fff;
+            color: #000;
+        }
  
         .dot { width: 8px; height: 8px; border-radius: 50%; }
         .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
@@ -532,7 +582,7 @@
                                 Explorer
                             </a>
                             <button id="btn-open-info" class="btn-outline-white">
-                                <i class="fas fa-info-circle"></i> Info
+                                Info
                             </button>
                         </div>
                     </div>
@@ -547,7 +597,7 @@
  
             </div>
             
-            </section>
+        </section>
  
         <section class="category-section">
             <h2 class="section-title" style="border-color: var(--accent-red);">Designs & Pages</h2>
@@ -557,7 +607,12 @@
                     <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
                     <div class="preview-area">
                         <iframe src="red_metallic_template.html" class="live-thumbnail"></iframe>
-                        <div class="overlay"><a href="red_metallic_template.html" target="_blank" class="btn-view">View Template</a></div>
+                        <div class="overlay">
+                            <div class="overlay-btns">
+                                <a href="red_metallic_template.html" target="_blank" class="btn-view">View</a>
+                                <button id="btn-open-red" class="btn-info-round">Info</button>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-info">
                        <h3>Red Metallic Edition</h3>
@@ -570,7 +625,12 @@
                     <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
                     <div class="preview-area">
                         <iframe src="navy_metallic_template.html" class="live-thumbnail"></iframe>
-                        <div class="overlay"><a href="navy_metallic_template.html" target="_blank" class="btn-view">View Template</a></div>
+                        <div class="overlay">
+                             <div class="overlay-btns">
+                                <a href="navy_metallic_template.html" target="_blank" class="btn-view">View</a>
+                                <button id="btn-open-navy" class="btn-info-round">Info</button>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-info">
                        <h3>Navy Tech Edition</h3>
@@ -583,7 +643,12 @@
                     <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
                     <div class="preview-area">
                         <iframe src="gold_template.html" class="live-thumbnail"></iframe>
-                        <div class="overlay"><a href="gold_template.html" target="_blank" class="btn-view">View Template</a></div>
+                        <div class="overlay">
+                            <div class="overlay-btns">
+                                <a href="gold_template.html" target="_blank" class="btn-view">View</a>
+                                <button id="btn-open-gold" class="btn-info-round">Info</button>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-info">
                        <h3>Dark Gold Edition</h3>
@@ -664,25 +729,85 @@
     </div>
 
     <div id="info-modal" class="modal-overlay">
-        <div class="info-modal-content">
+        <div class="info-modal-content" style="border-left: 4px solid var(--accent-purple);">
             <span class="close-btn" id="close-info">&times;</span>
             
             <h2>Kingdom & Quill</h2>
             <h3>Interactive Global Evangelization & Writing Platform</h3>
 
             <div class="info-block">
-                <span class="info-label">Challenge:</span>
+                <span class="info-label" style="color: var(--accent-purple);">Challenge:</span>
                 <p class="info-text">Design an engaging, interactive web platform for a Christian audience, featuring multilingual Bible versions for over ten countries, devotional and literary materials, and music across multiple platforms, while keeping navigation simple and intuitive for all users. The goal was to balance aesthetics with functionality, delivering an immersive experience.</p>
             </div>
 
             <div class="info-block">
-                <span class="info-label">Approach:</span>
+                <span class="info-label" style="color: var(--accent-purple);">Approach:</span>
                 <p class="info-text">Developed a fully responsive HTML/CSS website with interactive elements and mockups. Focused on a clean layout, intuitive navigation, and a modern color palette to reflect creativity and professionalism. Integrated audio samples to allow users to preview content before selecting their preferred platforms.</p>
             </div>
 
             <div class="info-block">
-                <span class="info-label">Result:</span>
+                <span class="info-label" style="color: var(--accent-purple);">Result:</span>
                 <p class="info-text">A polished, user-friendly web experience that showcases proficiency in front-end design, responsive layouts, and interactive, user-focused interfaces.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="info-modal-gold" class="modal-overlay">
+        <div class="info-modal-content" style="border-left: 4px solid var(--accent-gold);">
+            <span class="close-btn" id="close-info-gold">&times;</span>
+            
+            <h2 style="color: var(--accent-gold);">Gold Metallic</h2>
+            <h3>Premium Landing Page Template</h3>
+
+            <div class="info-block">
+                <p class="info-text" style="font-style: italic; color: #fff; margin-bottom: 20px;">A luxury-focused landing page template designed to communicate exclusivity, value, and premium positioning.</p>
+
+                <p class="info-text">Gold Metallic is ideal for high-end products, memberships, digital courses, and exclusive offers that require a strong sense of prestige and trust.</p>
+            </div>
+
+            <div class="info-block">
+                <span class="info-label" style="color: var(--accent-gold);">Technical Specs:</span>
+                <p class="info-text">Built with clean HTML, CSS, and lightweight animations, the template is fully responsive and easy to customize, making it suitable for marketers and developers who need a polished, conversion-oriented presentation without unnecessary complexity.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="info-modal-navy" class="modal-overlay">
+        <div class="info-modal-content" style="border-left: 4px solid var(--accent-navy);">
+            <span class="close-btn" id="close-info-navy">&times;</span>
+            
+            <h2 style="color: var(--accent-navy);">Navy Metallic</h2>
+            <h3>Tech & Authority Landing Page Template</h3>
+
+            <div class="info-block">
+                <p class="info-text" style="font-style: italic; color: #fff; margin-bottom: 20px;">A modern, high-contrast landing page template created to convey trust, technology, and professionalism.</p>
+
+                <p class="info-text">Navy Metallic is well-suited for SaaS products, digital services, software tools, and corporate-focused campaigns.</p>
+            </div>
+
+            <div class="info-block">
+                <span class="info-label" style="color: var(--accent-navy);">Features:</span>
+                <p class="info-text">The layout emphasizes clarity, hierarchy, and readability, combined with subtle metallic animation effects. Fully responsive and built with clean front-end code, this template offers a reliable foundation for professional and tech-oriented projects.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="info-modal-red" class="modal-overlay">
+        <div class="info-modal-content" style="border-left: 4px solid var(--accent-red);">
+            <span class="close-btn" id="close-info-red">&times;</span>
+            
+            <h2 style="color: var(--accent-red);">Red Metallic</h2>
+            <h3>High-Impact Sales Landing Page Template</h3>
+
+            <div class="info-block">
+                <p class="info-text" style="font-style: italic; color: #fff; margin-bottom: 20px;">A bold, high-energy landing page template designed to drive attention and action.</p>
+
+                <p class="info-text">Red Metallic is ideal for limited-time offers, launches, promotions, and conversion-focused sales pages where urgency plays a key role.</p>
+            </div>
+
+            <div class="info-block">
+                <span class="info-label" style="color: var(--accent-red);">Highlights:</span>
+                <p class="info-text">Featuring strong visual contrast, dynamic metallic effects, and a responsive layout, the template is optimized for impact while remaining clean, lightweight, and easy to adapt to different products and campaigns.</p>
             </div>
         </div>
     </div>
@@ -706,23 +831,45 @@
  
         closeLightboxBtn.onclick = function() { lightbox.style.display = "none"; }
         
-        // --- LÓGICA DO MODAL DE INFO ---
+        // --- LÓGICA DO MODAL DE INFO (KINGDOM & QUILL) ---
         const infoModal = document.getElementById('info-modal');
         const btnOpenInfo = document.getElementById('btn-open-info');
         const closeInfoBtn = document.getElementById('close-info');
 
-        btnOpenInfo.onclick = function() {
-            infoModal.style.display = "flex";
-        }
-        
-        closeInfoBtn.onclick = function() {
-            infoModal.style.display = "none";
-        }
+        btnOpenInfo.onclick = function() { infoModal.style.display = "flex"; }
+        closeInfoBtn.onclick = function() { infoModal.style.display = "none"; }
+
+        // --- LÓGICA DO MODAL DE INFO (GOLD) ---
+        const infoModalGold = document.getElementById('info-modal-gold');
+        const btnOpenGold = document.getElementById('btn-open-gold');
+        const closeInfoGoldBtn = document.getElementById('close-info-gold');
+
+        btnOpenGold.onclick = function() { infoModalGold.style.display = "flex"; }
+        closeInfoGoldBtn.onclick = function() { infoModalGold.style.display = "none"; }
+
+        // --- LÓGICA DO MODAL DE INFO (NAVY) ---
+        const infoModalNavy = document.getElementById('info-modal-navy');
+        const btnOpenNavy = document.getElementById('btn-open-navy');
+        const closeInfoNavyBtn = document.getElementById('close-info-navy');
+
+        btnOpenNavy.onclick = function() { infoModalNavy.style.display = "flex"; }
+        closeInfoNavyBtn.onclick = function() { infoModalNavy.style.display = "none"; }
+
+        // --- LÓGICA DO MODAL DE INFO (RED) ---
+        const infoModalRed = document.getElementById('info-modal-red');
+        const btnOpenRed = document.getElementById('btn-open-red');
+        const closeInfoRedBtn = document.getElementById('close-info-red');
+
+        btnOpenRed.onclick = function() { infoModalRed.style.display = "flex"; }
+        closeInfoRedBtn.onclick = function() { infoModalRed.style.display = "none"; }
 
         // --- FECHAR QUALQUER MODAL CLICANDO FORA ---
         window.onclick = function(event) {
             if (event.target === lightbox) { lightbox.style.display = "none"; }
             if (event.target === infoModal) { infoModal.style.display = "none"; }
+            if (event.target === infoModalGold) { infoModalGold.style.display = "none"; }
+            if (event.target === infoModalNavy) { infoModalNavy.style.display = "none"; }
+            if (event.target === infoModalRed) { infoModalRed.style.display = "none"; }
         }
     </script>
  

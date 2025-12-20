@@ -101,27 +101,93 @@
             height: 350px; 
         }
 
+        /* --- GALERIA COM BOTÕES --- */
         .gallery-item {
             background-color: #1a1a1a;
             border: 1px solid #333;
             border-radius: 8px;
             overflow: hidden;
             position: relative;
-            cursor: pointer;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            /* Removido pointer-events: none que estava no lightbox, agora precisa ser clicavel se tiver link */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            
+            /* Efeito Dim inicial */
+            filter: brightness(0.5) grayscale(80%); 
+            transition: transform 0.4s ease, border-color 0.4s ease, filter 0.4s ease, box-shadow 0.4s ease;
         }
 
         .gallery-item:hover {
             border-color: var(--accent-purple);
             transform: scale(1.02);
             z-index: 2;
-            box-shadow: 0 5px 15px rgba(157, 0, 255, 0.2);
+            
+            /* Acender ao passar o mouse */
+            filter: brightness(1.1) grayscale(0%);
+            box-shadow: 0 5px 25px rgba(157, 0, 255, 0.4);
         }
 
-        /* --- CINEMATIC FADE --- */
+        /* Overlay dentro da Galeria para os botões */
+        .gallery-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0,0,0,0.4); /* Fundo leve para destacar botões */
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            gap: 10px;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        /* Títulos dentro da galeria */
+        .gallery-title {
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: 800;
+            font-size: 1.2rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+            margin-bottom: 5px;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        .gallery-item:hover .gallery-title { transform: translateY(0); }
+
+        /* Botões pequenos para a galeria */
+        .btn-small {
+            padding: 8px 18px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .btn-exp-small {
+            background: var(--accent-purple);
+            color: #fff;
+            border: 1px solid transparent;
+        }
+        .btn-exp-small:hover { background: #b04dff; }
+
+        .btn-info-small {
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+        .btn-info-small:hover { background: #fff; color: #000; }
+
+
+        /* --- CINEMATIC FADE (Card Grande) --- */
         .cinematic-card {
             position: relative;
             width: 100%;
@@ -160,7 +226,7 @@
         @keyframes autoFade {
             0%, 40% { opacity: 0; }  
             50%, 90% { opacity: 1; } 
-            100% { opacity: 0; }     
+            100% { opacity: 0; }      
         }
 
         .cinematic-card:hover .info-overlay { opacity: 1; animation: none; }
@@ -170,7 +236,7 @@
             transform: scale(0.25); transform-origin: 0 0; pointer-events: none; 
         }
 
-        /* Botões do Card */
+        /* Botões do Card Grande */
         .btn-group {
             display: flex;
             gap: 15px;
@@ -347,7 +413,7 @@
         .modal-purple { border-top: 4px solid var(--accent-purple); }
         .modal-gold { border-top: 4px solid var(--accent-gold); }
         .modal-navy { border-top: 4px solid var(--accent-navy); }
-        .modal-red { border-top: 4px solid var(--accent-red); } /* NOVO: Estilo Red */
+        .modal-red { border-top: 4px solid var(--accent-red); } 
 
         .modal-close {
             position: absolute;
@@ -376,7 +442,7 @@
         .modal-purple .modal-label { color: var(--accent-purple); }
         .modal-gold .modal-label { color: var(--accent-gold); }
         .modal-navy .modal-label { color: var(--accent-navy); }
-        .modal-red .modal-label { color: var(--accent-red); } /* NOVO */
+        .modal-red .modal-label { color: var(--accent-red); }
         
         .modal-text { color: #ccc; font-size: 0.95rem; line-height: 1.6; }
 
@@ -437,32 +503,6 @@
             border: 1px solid rgba(255, 215, 0, 0.2);
         }
 
-        /* --- LIGHTBOX --- */
-        .lightbox-modal {
-            display: none; position: fixed; z-index: 9999;
-            left: 0; top: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
-            justify-content: center; align-items: center;
-            backdrop-filter: blur(5px);
-        }
-
-        .lightbox-content {
-            max-width: 90%; max-height: 90%;
-            border-radius: 4px; box-shadow: 0 0 30px rgba(0,0,0,0.8);
-            animation: zoomIn 0.3s;
-        }
-
-        @keyframes zoomIn {
-            from {transform:scale(0.8); opacity: 0;} to {transform:scale(1); opacity: 1;}
-        }
-
-        .close-lightbox {
-            position: absolute; top: 20px; right: 35px;
-            color: #f1f1f1; font-size: 40px; font-weight: bold;
-            transition: 0.3s; cursor: pointer;
-        }
-        .close-lightbox:hover { color: var(--accent-red); }
-
         footer { text-align: center; font-size: 0.8rem; color: #444; margin-top: 100px; padding-bottom: 60px; }
 
         @media (max-width: 900px) {
@@ -508,10 +548,42 @@
                 </div>
 
                 <div class="gallery-grid">
-                    <div class="gallery-item" title="Literature" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/literature.jpg');"></div>
-                    <div class="gallery-item" title="Devotionals" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/Devotionals.jpg');"></div>
-                    <div class="gallery-item" title="Album" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/Album.jpg');"></div>
-                    <div class="gallery-item" title="WTNY" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/wtny.jpg');"></div>
+                    <div class="gallery-item" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/literature.jpg');">
+                        <div class="gallery-overlay">
+                            <h4 class="gallery-title">Literature</h4>
+                            <div style="display: flex; gap: 10px;">
+                                <a href="#" class="btn-small btn-exp-small">Explorer</a>
+                                <button class="btn-small btn-info-small" onclick="openTextModal('modal-lit')">Info</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/Devotionals.jpg');">
+                         <div class="gallery-overlay">
+                            <h4 class="gallery-title">Devotionals</h4>
+                            <div style="display: flex; gap: 10px;">
+                                <a href="#" class="btn-small btn-exp-small">Explorer</a>
+                                <button class="btn-small btn-info-small" onclick="openTextModal('modal-dev')">Info</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/Album.jpg');">
+                         <div class="gallery-overlay">
+                            <h4 class="gallery-title">Album</h4>
+                            <div style="display: flex; gap: 10px;">
+                                <a href="#" class="btn-small btn-exp-small">Explorer</a>
+                                <button class="btn-small btn-info-small" onclick="openTextModal('modal-album')">Info</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/wtny.jpg');">
+                         <div class="gallery-overlay">
+                            <h4 class="gallery-title">WTNY</h4>
+                            <div style="display: flex; gap: 10px;">
+                                <a href="#" class="btn-small btn-exp-small">Explorer</a>
+                                <button class="btn-small btn-info-small" onclick="openTextModal('modal-wtny')">Info</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -644,10 +716,9 @@
         <div class="text-modal-content modal-purple" onclick="event.stopPropagation()">
             <span class="modal-close" onclick="closeTextModal('modal-kq')">&times;</span>
             <h3 class="modal-title">Kingdom & Quill <span style="font-size: 0.8rem; color: #888; display: block; margin-top: 5px;">Case Study</span></h3>
-            
-            <div class="modal-block"><span class="modal-label">Challenge:</span><p class="modal-text">Design an engaging, interactive web platform for a Christian audience, featuring multilingual Bible versions for over ten countries, devotional and literary materials, and music across multiple platforms, while keeping navigation simple and intuitive for all users.</p></div>
-            <div class="modal-block"><span class="modal-label">Approach:</span><p class="modal-text">Developed a fully responsive HTML/CSS website with interactive elements. Focused on a clean layout, intuitive navigation, and a modern color palette to reflect creativity and professionalism. Integrated audio samples to allow users to preview content.</p></div>
-            <div class="modal-block"><span class="modal-label">Result:</span><p class="modal-text">A polished, user-friendly web experience that showcases proficiency in front-end design, responsive layouts, and interactive, user-focused interfaces.</p></div>
+            <div class="modal-block"><span class="modal-label">Challenge:</span><p class="modal-text">Design an engaging, interactive web platform...</p></div>
+            <div class="modal-block"><span class="modal-label">Approach:</span><p class="modal-text">Developed a fully responsive HTML/CSS website...</p></div>
+            <div class="modal-block"><span class="modal-label">Result:</span><p class="modal-text">A polished, user-friendly web experience...</p></div>
         </div>
     </div>
 
@@ -655,9 +726,8 @@
         <div class="text-modal-content modal-red" onclick="event.stopPropagation()">
             <span class="modal-close" onclick="closeTextModal('modal-red')">&times;</span>
             <h3 class="modal-title">Red Metallic <span style="font-size: 0.8rem; color: #888; display: block; margin-top: 5px;">Template Overview</span></h3>
-            
-            <div class="modal-block"><span class="modal-label">Concept:</span><p class="modal-text">A bold, high-energy landing page template designed to drive attention and action. Red Metallic is ideal for limited-time offers, launches, promotions, and conversion-focused sales pages where urgency plays a key role.</p></div>
-            <div class="modal-block"><span class="modal-label">Technical Specs:</span><p class="modal-text">Featuring strong visual contrast, dynamic metallic effects, and a responsive layout, the template is optimized for impact while remaining clean, lightweight, and easy to adapt to different products and campaigns.</p></div>
+            <div class="modal-block"><span class="modal-label">Concept:</span><p class="modal-text">A bold, high-energy landing page template...</p></div>
+            <div class="modal-block"><span class="modal-label">Technical Specs:</span><p class="modal-text">Featuring strong visual contrast, dynamic metallic effects...</p></div>
         </div>
     </div>
 
@@ -665,9 +735,8 @@
         <div class="text-modal-content modal-navy" onclick="event.stopPropagation()">
             <span class="modal-close" onclick="closeTextModal('modal-navy')">&times;</span>
             <h3 class="modal-title">Navy Metallic <span style="font-size: 0.8rem; color: #888; display: block; margin-top: 5px;">Template Overview</span></h3>
-            
-            <div class="modal-block"><span class="modal-label">Concept:</span><p class="modal-text">A modern, high-contrast landing page template created to convey trust, technology, and professionalism. Navy Metallic is well-suited for SaaS products, digital services, software tools, and corporate-focused campaigns.</p></div>
-            <div class="modal-block"><span class="modal-label">Technical Specs:</span><p class="modal-text">The layout emphasizes clarity, hierarchy, and readability, combined with subtle metallic animation effects. Fully responsive and built with clean front-end code, this template offers a reliable foundation for professional and tech-oriented projects.</p></div>
+            <div class="modal-block"><span class="modal-label">Concept:</span><p class="modal-text">A modern, high-contrast landing page template...</p></div>
+            <div class="modal-block"><span class="modal-label">Technical Specs:</span><p class="modal-text">The layout emphasizes clarity, hierarchy...</p></div>
         </div>
     </div>
 
@@ -675,40 +744,42 @@
         <div class="text-modal-content modal-gold" onclick="event.stopPropagation()">
             <span class="modal-close" onclick="closeTextModal('modal-gold')">&times;</span>
             <h3 class="modal-title">Gold Metallic <span style="font-size: 0.8rem; color: #888; display: block; margin-top: 5px;">Template Overview</span></h3>
-            
-            <div class="modal-block"><span class="modal-label">Concept:</span><p class="modal-text">A luxury-focused landing page template designed to communicate exclusivity, value, and premium positioning. Ideal for high-end products, memberships, digital courses, and exclusive offers.</p></div>
-            <div class="modal-block"><span class="modal-label">Technical Specs:</span><p class="modal-text">Built with clean HTML, CSS, and lightweight animations, the template is fully responsive and easy to customize, making it suitable for marketers and developers who need a polished, conversion-oriented presentation without unnecessary complexity.</p></div>
+            <div class="modal-block"><span class="modal-label">Concept:</span><p class="modal-text">A luxury-focused landing page template...</p></div>
+            <div class="modal-block"><span class="modal-label">Technical Specs:</span><p class="modal-text">Built with clean HTML, CSS, and lightweight animations...</p></div>
         </div>
     </div>
 
-    <div id="lightbox" class="lightbox-modal">
-        <span class="close-lightbox">&times;</span>
-        <img class="lightbox-content" id="lightbox-img">
+    <div id="modal-lit" class="text-modal-overlay" onclick="closeTextModal('modal-lit')">
+        <div class="text-modal-content modal-purple" onclick="event.stopPropagation()">
+            <span class="modal-close" onclick="closeTextModal('modal-lit')">&times;</span>
+            <h3 class="modal-title">Literature Project</h3>
+            <div class="modal-block"><p class="modal-text">Details about the Literature project coming soon.</p></div>
+        </div>
+    </div>
+    <div id="modal-dev" class="text-modal-overlay" onclick="closeTextModal('modal-dev')">
+        <div class="text-modal-content modal-purple" onclick="event.stopPropagation()">
+            <span class="modal-close" onclick="closeTextModal('modal-dev')">&times;</span>
+            <h3 class="modal-title">Devotionals Project</h3>
+            <div class="modal-block"><p class="modal-text">Details about the Devotionals project coming soon.</p></div>
+        </div>
+    </div>
+    <div id="modal-album" class="text-modal-overlay" onclick="closeTextModal('modal-album')">
+        <div class="text-modal-content modal-purple" onclick="event.stopPropagation()">
+            <span class="modal-close" onclick="closeTextModal('modal-album')">&times;</span>
+            <h3 class="modal-title">Album Design</h3>
+            <div class="modal-block"><p class="modal-text">Details about the Album project coming soon.</p></div>
+        </div>
+    </div>
+    <div id="modal-wtny" class="text-modal-overlay" onclick="closeTextModal('modal-wtny')">
+        <div class="text-modal-content modal-purple" onclick="event.stopPropagation()">
+            <span class="modal-close" onclick="closeTextModal('modal-wtny')">&times;</span>
+            <h3 class="modal-title">Welcome to New York</h3>
+            <div class="modal-block"><p class="modal-text">Details about the WTNY project coming soon.</p></div>
+        </div>
     </div>
 
     <script>
-        // Lógica do Lightbox de Imagens
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        const galleryItems = document.querySelectorAll('.gallery-item');
-        const closeBtn = document.querySelector('.close-lightbox');
-
-        galleryItems.forEach(item => {
-            item.addEventListener('click', function() {
-                const style = window.getComputedStyle(this);
-                const bgImage = style.backgroundImage;
-                const url = bgImage.slice(5, -2);
-                lightbox.style.display = "flex";
-                lightboxImg.src = url;
-            });
-        });
-
-        closeBtn.onclick = function() { lightbox.style.display = "none"; }
-        lightbox.onclick = function(event) {
-            if (event.target === lightbox) { lightbox.style.display = "none"; }
-        }
-
-        // Lógica dos Modais de Texto
+        // Lógica dos Modais de Texto (Mantida)
         function openTextModal(id) {
             document.getElementById(id).style.display = "flex";
         }

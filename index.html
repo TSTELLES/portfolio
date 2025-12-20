@@ -90,7 +90,7 @@
             grid-template-columns: 1fr 1fr; 
             gap: 20px;
             align-items: stretch; 
-            margin-bottom: 0; /* Removido margem para colar no texto */
+            margin-bottom: 0; 
         }
 
         .gallery-grid {
@@ -121,35 +121,75 @@
             box-shadow: 0 5px 15px rgba(157, 0, 255, 0.2);
         }
 
-        /* --- PROJECT DETAILS (TEXTO DESCRITIVO) --- */
+        /* --- PROJECT DETAILS (ACCORDION / EXPANSÍVEL) --- */
         .project-details {
             background: #111;
             border: 1px solid #222;
             border-left: 4px solid var(--accent-purple);
-            padding: 30px;
-            border-radius: 0 0 8px 8px; /* Arredondado só embaixo */
-            margin-top: 0; /* Cola no elemento de cima */
+            border-radius: 0 0 8px 8px; 
+            margin-top: 0;
             margin-bottom: 40px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            overflow: hidden; /* Importante para o slide */
+            transition: all 0.3s ease;
         }
 
-        .project-details h3 {
-            font-size: 1.3rem;
+        /* Cabeçalho do Acordeão (Onde clica) */
+        .details-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            cursor: pointer;
+            background: rgba(255,255,255,0.02);
+            transition: background 0.3s;
+        }
+        .details-header:hover { background: rgba(255,255,255,0.05); }
+
+        .details-header h3 {
+            font-size: 1.1rem;
             color: #fff;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #333;
-            padding-bottom: 15px;
+            margin: 0;
+            font-weight: 600;
         }
 
-        .detail-block { margin-bottom: 15px; }
+        /* Botão + */
+        .toggle-icon {
+            font-size: 1.2rem;
+            color: var(--accent-purple);
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        /* Conteúdo Oculto */
+        .details-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease;
+            padding: 0 30px; /* Padding lateral fixo, vertical animado */
+        }
+
+        /* Classe Ativa (Quando aberto) */
+        .project-details.active .details-content {
+            padding-bottom: 30px; /* Adiciona espaço no final quando aberto */
+            /* max-height é setado via JS */
+        }
+
+        .project-details.active .toggle-icon {
+            transform: rotate(135deg); /* Vira um X */
+            color: #fff;
+        }
+
+        .detail-block { margin-top: 20px; }
+        
         .detail-label {
-            color: var(--accent-purple); /* Padrão roxo */
+            color: var(--accent-purple);
             font-weight: 700;
             text-transform: uppercase;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             display: block;
             margin-bottom: 5px;
         }
+        
         .detail-text {
             color: #bbb;
             font-size: 0.95rem;
@@ -159,6 +199,7 @@
 
         /* Variação Dourada para o Gold Metallic */
         .details-gold { border-left-color: var(--accent-gold); }
+        .details-gold .toggle-icon { color: var(--accent-gold); }
         .details-gold .detail-label { color: var(--accent-gold); }
 
         /* --- CINEMATIC FADE --- */
@@ -454,10 +495,24 @@
             </div>
 
             <div class="project-details">
-                <h3>Kingdom & Quill — <span style="font-weight: 400; color: #888;">Interactive Global Evangelization & Writing Platform</span></h3>
-                <div class="detail-block"><span class="detail-label">Challenge:</span><p class="detail-text">Design an engaging, interactive web platform for a Christian audience, featuring multilingual Bible versions for over ten countries, devotional and literary materials, and music across multiple platforms, while keeping navigation simple and intuitive for all users. The goal was to balance aesthetics with functionality, delivering an immersive experience.</p></div>
-                <div class="detail-block"><span class="detail-label">Approach:</span><p class="detail-text">Developed a fully responsive HTML/CSS website with interactive elements and mockups. Focused on a clean layout, intuitive navigation, and a modern color palette to reflect creativity and professionalism. Integrated audio samples to allow users to preview content before selecting their preferred platforms.</p></div>
-                <div class="detail-block"><span class="detail-label">Result:</span><p class="detail-text">A polished, user-friendly web experience that showcases proficiency in front-end design, responsive layouts, and interactive, user-focused interfaces.</p></div>
+                <div class="details-header" onclick="toggleDetails(this)">
+                    <h3>Kingdom & Quill — <span style="font-weight: 400; color: #888; font-size: 0.9rem;">Project Case Study</span></h3>
+                    <i class="fas fa-plus toggle-icon"></i>
+                </div>
+                <div class="details-content">
+                    <div class="detail-block">
+                        <span class="detail-label">Challenge:</span>
+                        <p class="detail-text">Design an engaging, interactive web platform for a Christian audience, featuring multilingual Bible versions for over ten countries, devotional and literary materials, and music across multiple platforms, while keeping navigation simple and intuitive for all users. The goal was to balance aesthetics with functionality, delivering an immersive experience.</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Approach:</span>
+                        <p class="detail-text">Developed a fully responsive HTML/CSS website with interactive elements and mockups. Focused on a clean layout, intuitive navigation, and a modern color palette to reflect creativity and professionalism. Integrated audio samples to allow users to preview content before selecting their preferred platforms.</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Result:</span>
+                        <p class="detail-text">A polished, user-friendly web experience that showcases proficiency in front-end design, responsive layouts, and interactive, user-focused interfaces.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -485,27 +540,31 @@
 
             <div class="browser-mockup theme-gold" style="max-width: 900px; margin: 0 auto; border-radius: 12px 12px 0 0; border-bottom: none;">
                 <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
-                <div class="preview-area" style="height: 350px;"> <iframe src="gold_template.html" class="live-thumbnail" style="transform: scale(0.35);"></iframe>
+                <div class="preview-area" style="height: 350px;">
+                    <iframe src="gold_template.html" class="live-thumbnail" style="transform: scale(0.35);"></iframe>
                     <div class="overlay"><a href="gold_template.html" target="_blank" class="btn-view btn-active">View Template</a></div>
                 </div>
                 <div class="card-info"><h3>Dark Gold Edition</h3><p>Luxury & Premium product page.</p><span class="tag">HTML5 / CSS3</span></div>
             </div>
 
             <div class="project-details details-gold" style="max-width: 900px; margin: 0 auto; border-top: none;">
-                <h3>Gold Metallic — <span style="font-weight: 400; color: #888;">Premium Landing Page Template</span></h3>
-                
-                <div class="detail-block">
-                    <span class="detail-label">Overview:</span>
-                    <p class="detail-text">
-                        A luxury-focused landing page template designed to communicate exclusivity, value, and premium positioning. Gold Metallic is ideal for high-end products, memberships, digital courses, and exclusive offers that require a strong sense of prestige and trust.
-                    </p>
+                <div class="details-header" onclick="toggleDetails(this)">
+                    <h3>Gold Metallic — <span style="font-weight: 400; color: #888; font-size: 0.9rem;">Template Info</span></h3>
+                    <i class="fas fa-plus toggle-icon"></i>
                 </div>
-
-                <div class="detail-block">
-                    <span class="detail-label">Technical Specs:</span>
-                    <p class="detail-text">
-                        Built with clean HTML, CSS, and lightweight animations, the template is fully responsive and easy to customize, making it suitable for marketers and developers who need a polished, conversion-oriented presentation without unnecessary complexity.
-                    </p>
+                <div class="details-content">
+                    <div class="detail-block">
+                        <span class="detail-label">Overview:</span>
+                        <p class="detail-text">
+                            A luxury-focused landing page template designed to communicate exclusivity, value, and premium positioning. Gold Metallic is ideal for high-end products, memberships, digital courses, and exclusive offers that require a strong sense of prestige and trust.
+                        </p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Technical Specs:</span>
+                        <p class="detail-text">
+                            Built with clean HTML, CSS, and lightweight animations, the template is fully responsive and easy to customize, making it suitable for marketers and developers who need a polished, conversion-oriented presentation without unnecessary complexity.
+                        </p>
+                    </div>
                 </div>
             </div>
 
@@ -592,6 +651,7 @@
     </div>
 
     <script>
+        // Lightbox Logic
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
         const galleryItems = document.querySelectorAll('.gallery-item');
@@ -610,6 +670,20 @@
         closeBtn.onclick = function() { lightbox.style.display = "none"; }
         lightbox.onclick = function(event) {
             if (event.target === lightbox) { lightbox.style.display = "none"; }
+        }
+
+        // Accordion Logic
+        function toggleDetails(header) {
+            const parent = header.parentElement;
+            const content = parent.querySelector('.details-content');
+            
+            parent.classList.toggle('active');
+            
+            if (parent.classList.contains('active')) {
+                content.style.maxHeight = content.scrollHeight + "px";
+            } else {
+                content.style.maxHeight = 0;
+            }
         }
     </script>
 

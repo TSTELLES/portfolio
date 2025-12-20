@@ -90,7 +90,7 @@
             grid-template-columns: 1fr 1fr; 
             gap: 20px;
             align-items: stretch; 
-            margin-bottom: 0; 
+            margin-bottom: 30px;
         }
 
         .gallery-grid {
@@ -120,87 +120,6 @@
             z-index: 2;
             box-shadow: 0 5px 15px rgba(157, 0, 255, 0.2);
         }
-
-        /* --- PROJECT DETAILS (ACCORDION / EXPANSÍVEL) --- */
-        .project-details {
-            background: #111;
-            border: 1px solid #222;
-            border-left: 4px solid var(--accent-purple);
-            border-radius: 0 0 8px 8px; 
-            margin-top: 0;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            overflow: hidden; /* Importante para o slide */
-            transition: all 0.3s ease;
-        }
-
-        /* Cabeçalho do Acordeão (Onde clica) */
-        .details-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 30px;
-            cursor: pointer;
-            background: rgba(255,255,255,0.02);
-            transition: background 0.3s;
-        }
-        .details-header:hover { background: rgba(255,255,255,0.05); }
-
-        .details-header h3 {
-            font-size: 1.1rem;
-            color: #fff;
-            margin: 0;
-            font-weight: 600;
-        }
-
-        /* Botão + */
-        .toggle-icon {
-            font-size: 1.2rem;
-            color: var(--accent-purple);
-            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-        }
-
-        /* Conteúdo Oculto */
-        .details-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-in-out, padding 0.5s ease;
-            padding: 0 30px; /* Padding lateral fixo, vertical animado */
-        }
-
-        /* Classe Ativa (Quando aberto) */
-        .project-details.active .details-content {
-            padding-bottom: 30px; /* Adiciona espaço no final quando aberto */
-            /* max-height é setado via JS */
-        }
-
-        .project-details.active .toggle-icon {
-            transform: rotate(135deg); /* Vira um X */
-            color: #fff;
-        }
-
-        .detail-block { margin-top: 20px; }
-        
-        .detail-label {
-            color: var(--accent-purple);
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            display: block;
-            margin-bottom: 5px;
-        }
-        
-        .detail-text {
-            color: #bbb;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin: 0;
-        }
-
-        /* Variação Dourada para o Gold Metallic */
-        .details-gold { border-left-color: var(--accent-gold); }
-        .details-gold .toggle-icon { color: var(--accent-gold); }
-        .details-gold .detail-label { color: var(--accent-gold); }
 
         /* --- CINEMATIC FADE --- */
         .cinematic-card {
@@ -251,27 +170,209 @@
             transform: scale(0.25); transform-origin: 0 0; pointer-events: none; 
         }
 
+        /* Botões do Card */
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
         .btn-square-purple {
             background-color: var(--accent-purple);
             color: #fff;
-            padding: 12px 30px;
+            padding: 10px 25px;
             border-radius: 6px; 
             font-weight: 700;
             text-transform: uppercase;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             letter-spacing: 1px;
             border: 1px solid rgba(255,255,255,0.3);
             box-shadow: 0 5px 15px rgba(0,0,0,0.4);
             transition: all 0.3s ease;
-            margin-top: 15px;
-            display: inline-block;
+            cursor: pointer;
         }
         .btn-square-purple:hover {
             background-color: #b04dff;
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(157, 0, 255, 0.6);
         }
+
+        /* Botão + Info */
+        .btn-info {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.5);
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-info:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: #fff;
+        }
+
+        /* --- GRID PADRÃO --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .browser-mockup {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+            border: 1px solid #333;
+        }
+        .browser-mockup:hover { transform: translateY(-5px); }
+        
+        .browser-header {
+            background: #252525;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border-bottom: 1px solid #333;
+        }
+        
+        .preview-area {
+            height: 220px;
+            position: relative;
+            background-color: #111;
+            overflow: hidden; 
+        }
+
+        .preview-placeholder {
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: radial-gradient(#333 1px, transparent 1px); 
+            background-size: 10px 10px;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 10;
+        }
+        .browser-mockup:hover .overlay { opacity: 1; }
+
+        .btn-view {
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            color: #000;
+            background: #fff;
+            cursor: default;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        
+        /* Botões dentro do overlay do browser */
+        .overlay-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            transform: translateY(10px);
+            transition: transform 0.3s ease;
+        }
+        .browser-mockup:hover .overlay-actions { transform: translateY(0); }
+
+        .btn-active { cursor: pointer; }
+
+        .dot { width: 8px; height: 8px; border-radius: 50%; }
+        .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
+        
+        .card-info { padding: 20px; }
+        .card-info h3 { font-size: 1.1rem; margin-bottom: 5px; color: #fff; }
+        .card-info p { font-size: 0.8rem; color: #777; margin-bottom: 0; }
+        
+        .tag { font-size: 0.65rem; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; display: inline-block; margin-top: 10px; }
+
+        .theme-red .tag { color: var(--accent-red); border: 1px solid var(--accent-red); }
+        .theme-navy .tag { color: var(--accent-navy); border: 1px solid var(--accent-navy); }
+        .theme-gold .tag { color: var(--accent-gold); border: 1px solid var(--accent-gold); }
+        
+        .theme-design .tag { color: var(--accent-gold); border: 1px solid var(--accent-gold); }
+        .theme-design i { color: #444; transition: color 0.3s;}
+        .theme-design:hover i { color: var(--accent-gold); opacity: 0.8; }
+
+        /* --- TEXT MODALS (POP-UPS DE TEXTO) --- */
+        .text-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(8px);
+            padding: 20px;
+        }
+
+        .text-modal-content {
+            background: #111;
+            border: 1px solid #333;
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+            border-radius: 12px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            animation: slideUp 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-purple { border-top: 4px solid var(--accent-purple); }
+        .modal-gold { border-top: 4px solid var(--accent-gold); }
+
+        .modal-close {
+            position: absolute;
+            top: 15px; right: 20px;
+            font-size: 1.5rem;
+            color: #666;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .modal-close:hover { color: #fff; }
+
+        .modal-title {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 15px;
+        }
+
+        .modal-block { margin-bottom: 15px; }
+        .modal-label { 
+            font-weight: 700; text-transform: uppercase; font-size: 0.85rem; display: block; margin-bottom: 5px; 
+        }
+        .modal-purple .modal-label { color: var(--accent-purple); }
+        .modal-gold .modal-label { color: var(--accent-gold); }
+        
+        .modal-text { color: #ccc; font-size: 0.95rem; line-height: 1.6; }
 
         /* --- SEÇÃO SOBRE MIM --- */
         .about-section {
@@ -356,96 +457,6 @@
         }
         .close-lightbox:hover { color: var(--accent-red); }
 
-        /* --- GRID PADRÃO --- */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .browser-mockup {
-            background: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease;
-            border: 1px solid #333;
-        }
-        .browser-mockup:hover { transform: translateY(-5px); }
-        
-        .browser-header {
-            background: #252525;
-            padding: 10px 15px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            border-bottom: 1px solid #333;
-        }
-        
-        .preview-area {
-            height: 220px;
-            position: relative;
-            background-color: #111;
-            overflow: hidden; 
-        }
-
-        .preview-placeholder {
-            height: 220px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-image: radial-gradient(#333 1px, transparent 1px); 
-            background-size: 10px 10px;
-        }
-
-        .overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 10;
-        }
-        .browser-mockup:hover .overlay { opacity: 1; }
-
-        .btn-view {
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            color: #000;
-            background: #fff;
-            transform: translateY(10px);
-            transition: transform 0.3s ease;
-            cursor: default;
-        }
-        .browser-mockup:hover .btn-view { transform: translateY(0); }
-
-        .btn-active { cursor: pointer; }
-
-        .dot { width: 8px; height: 8px; border-radius: 50%; }
-        .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
-        
-        .card-info { padding: 20px; }
-        .card-info h3 { font-size: 1.1rem; margin-bottom: 5px; color: #fff; }
-        .card-info p { font-size: 0.8rem; color: #777; margin-bottom: 0; }
-        
-        .tag { font-size: 0.65rem; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; display: inline-block; margin-top: 10px; }
-
-        .theme-red .tag { color: var(--accent-red); border: 1px solid var(--accent-red); }
-        .theme-navy .tag { color: var(--accent-navy); border: 1px solid var(--accent-navy); }
-        .theme-gold .tag { color: var(--accent-gold); border: 1px solid var(--accent-gold); }
-        
-        .theme-design .tag { color: var(--accent-gold); border: 1px solid var(--accent-gold); }
-        .theme-design i { color: #444; transition: color 0.3s;}
-        .theme-design:hover i { color: var(--accent-gold); opacity: 0.8; }
-
         footer { text-align: center; font-size: 0.8rem; color: #444; margin-top: 100px; padding-bottom: 60px; }
 
         @media (max-width: 900px) {
@@ -482,7 +493,11 @@
                         <i class="fas fa-feather-pointed" style="font-size: 3rem; color: var(--accent-purple); text-shadow: 0 0 10px rgba(157, 0, 255, 0.5); margin-bottom: 20px;"></i>
                         <h3 style="color: #fff; font-size: 1.8rem; margin-bottom: 5px;">Kingdom & Quill</h3>
                         <p style="color: #ddd; font-size: 1rem; font-style: italic; letter-spacing: 1px; margin-bottom: 10px;">Ink. Spirit. Legacy.</p>
-                        <a href="KingdomandQuill.html" target="_blank" class="btn-square-purple">Explorer</a>
+                        
+                        <div class="btn-group">
+                            <a href="KingdomandQuill.html" target="_blank" class="btn-square-purple">Explorer</a>
+                            <button class="btn-info" onclick="openTextModal('modal-kq')"><i class="fas fa-plus"></i> Info</button>
+                        </div>
                     </div>
                 </div>
 
@@ -493,81 +508,53 @@
                     <div class="gallery-item" title="WTNY" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/wtny.jpg');"></div>
                 </div>
             </div>
-
-            <div class="project-details">
-                <div class="details-header" onclick="toggleDetails(this)">
-                    <h3>Kingdom & Quill — <span style="font-weight: 400; color: #888; font-size: 0.9rem;">Project Case Study</span></h3>
-                    <i class="fas fa-plus toggle-icon"></i>
-                </div>
-                <div class="details-content">
-                    <div class="detail-block">
-                        <span class="detail-label">Challenge:</span>
-                        <p class="detail-text">Design an engaging, interactive web platform for a Christian audience, featuring multilingual Bible versions for over ten countries, devotional and literary materials, and music across multiple platforms, while keeping navigation simple and intuitive for all users. The goal was to balance aesthetics with functionality, delivering an immersive experience.</p>
-                    </div>
-                    <div class="detail-block">
-                        <span class="detail-label">Approach:</span>
-                        <p class="detail-text">Developed a fully responsive HTML/CSS website with interactive elements and mockups. Focused on a clean layout, intuitive navigation, and a modern color palette to reflect creativity and professionalism. Integrated audio samples to allow users to preview content before selecting their preferred platforms.</p>
-                    </div>
-                    <div class="detail-block">
-                        <span class="detail-label">Result:</span>
-                        <p class="detail-text">A polished, user-friendly web experience that showcases proficiency in front-end design, responsive layouts, and interactive, user-focused interfaces.</p>
-                    </div>
-                </div>
-            </div>
         </section>
 
         <section class="category-section">
             <h2 class="section-title" style="border-color: var(--accent-red);">Designs & Pages</h2>
-            
-            <div class="grid-container" style="margin-bottom: 60px;">
+            <div class="grid-container">
+                
                 <div class="browser-mockup theme-red">
                     <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
                     <div class="preview-area">
                         <iframe src="red_metallic_template.html" class="live-thumbnail"></iframe>
-                        <div class="overlay"><a href="red_metallic_template.html" target="_blank" class="btn-view btn-active">View Template</a></div>
+                        <div class="overlay">
+                            <div class="overlay-actions">
+                                <a href="red_metallic_template.html" target="_blank" class="btn-view btn-active">View Template</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-info"><h3>Red Metallic Edition</h3><p>High-energy sales landing page.</p><span class="tag">HTML5 / CSS3</span></div>
                 </div>
+
                 <div class="browser-mockup theme-navy">
                     <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
                     <div class="preview-area">
                         <iframe src="navy_metallic_template.html" class="live-thumbnail"></iframe>
-                        <div class="overlay"><a href="navy_metallic_template.html" target="_blank" class="btn-view btn-active">View Template</a></div>
+                        <div class="overlay">
+                            <div class="overlay-actions">
+                                <a href="navy_metallic_template.html" target="_blank" class="btn-view btn-active">View Template</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-info"><h3>Navy Tech Edition</h3><p>Corporate & Trust focused layout.</p><span class="tag">HTML5 / CSS3</span></div>
                 </div>
-            </div>
 
-            <div class="browser-mockup theme-gold" style="max-width: 900px; margin: 0 auto; border-radius: 12px 12px 0 0; border-bottom: none;">
-                <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
-                <div class="preview-area" style="height: 350px;">
-                    <iframe src="gold_template.html" class="live-thumbnail" style="transform: scale(0.35);"></iframe>
-                    <div class="overlay"><a href="gold_template.html" target="_blank" class="btn-view btn-active">View Template</a></div>
-                </div>
-                <div class="card-info"><h3>Dark Gold Edition</h3><p>Luxury & Premium product page.</p><span class="tag">HTML5 / CSS3</span></div>
-            </div>
-
-            <div class="project-details details-gold" style="max-width: 900px; margin: 0 auto; border-top: none;">
-                <div class="details-header" onclick="toggleDetails(this)">
-                    <h3>Gold Metallic — <span style="font-weight: 400; color: #888; font-size: 0.9rem;">Template Info</span></h3>
-                    <i class="fas fa-plus toggle-icon"></i>
-                </div>
-                <div class="details-content">
-                    <div class="detail-block">
-                        <span class="detail-label">Overview:</span>
-                        <p class="detail-text">
-                            A luxury-focused landing page template designed to communicate exclusivity, value, and premium positioning. Gold Metallic is ideal for high-end products, memberships, digital courses, and exclusive offers that require a strong sense of prestige and trust.
-                        </p>
+                <div class="browser-mockup theme-gold">
+                    <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                    <div class="preview-area">
+                        <iframe src="gold_template.html" class="live-thumbnail"></iframe>
+                        <div class="overlay">
+                            <div class="overlay-actions">
+                                <a href="gold_template.html" target="_blank" class="btn-view btn-active">View Template</a>
+                                <button class="btn-info" onclick="openTextModal('modal-gold')"><i class="fas fa-plus"></i> Details</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="detail-block">
-                        <span class="detail-label">Technical Specs:</span>
-                        <p class="detail-text">
-                            Built with clean HTML, CSS, and lightweight animations, the template is fully responsive and easy to customize, making it suitable for marketers and developers who need a polished, conversion-oriented presentation without unnecessary complexity.
-                        </p>
-                    </div>
+                    <div class="card-info"><h3>Dark Gold Edition</h3><p>Luxury & Premium product page.</p><span class="tag">HTML5 / CSS3</span></div>
                 </div>
-            </div>
 
+            </div>
         </section>
 
         <section class="category-section">
@@ -645,13 +632,34 @@
         <p>© 2025 T.S. Telles Portfolio. All rights reserved.</p>
     </footer>
 
+    <div id="modal-kq" class="text-modal-overlay" onclick="closeTextModal('modal-kq')">
+        <div class="text-modal-content modal-purple" onclick="event.stopPropagation()">
+            <span class="modal-close" onclick="closeTextModal('modal-kq')">&times;</span>
+            <h3 class="modal-title">Kingdom & Quill <span style="font-size: 0.8rem; color: #888; display: block; margin-top: 5px;">Case Study</span></h3>
+            
+            <div class="modal-block"><span class="modal-label">Challenge:</span><p class="modal-text">Design an engaging, interactive web platform for a Christian audience, featuring multilingual Bible versions for over ten countries, devotional and literary materials, and music across multiple platforms, while keeping navigation simple and intuitive for all users.</p></div>
+            <div class="modal-block"><span class="modal-label">Approach:</span><p class="modal-text">Developed a fully responsive HTML/CSS website with interactive elements. Focused on a clean layout, intuitive navigation, and a modern color palette to reflect creativity and professionalism. Integrated audio samples to allow users to preview content.</p></div>
+            <div class="modal-block"><span class="modal-label">Result:</span><p class="modal-text">A polished, user-friendly web experience that showcases proficiency in front-end design, responsive layouts, and interactive, user-focused interfaces.</p></div>
+        </div>
+    </div>
+
+    <div id="modal-gold" class="text-modal-overlay" onclick="closeTextModal('modal-gold')">
+        <div class="text-modal-content modal-gold" onclick="event.stopPropagation()">
+            <span class="modal-close" onclick="closeTextModal('modal-gold')">&times;</span>
+            <h3 class="modal-title">Gold Metallic <span style="font-size: 0.8rem; color: #888; display: block; margin-top: 5px;">Template Overview</span></h3>
+            
+            <div class="modal-block"><span class="modal-label">Concept:</span><p class="modal-text">A luxury-focused landing page template designed to communicate exclusivity, value, and premium positioning. Ideal for high-end products, memberships, digital courses, and exclusive offers.</p></div>
+            <div class="modal-block"><span class="modal-label">Technical Specs:</span><p class="modal-text">Built with clean HTML, CSS, and lightweight animations, the template is fully responsive and easy to customize, making it suitable for marketers and developers who need a polished, conversion-oriented presentation without unnecessary complexity.</p></div>
+        </div>
+    </div>
+
     <div id="lightbox" class="lightbox-modal">
         <span class="close-lightbox">&times;</span>
         <img class="lightbox-content" id="lightbox-img">
     </div>
 
     <script>
-        // Lightbox Logic
+        // Lógica do Lightbox de Imagens
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
         const galleryItems = document.querySelectorAll('.gallery-item');
@@ -672,18 +680,13 @@
             if (event.target === lightbox) { lightbox.style.display = "none"; }
         }
 
-        // Accordion Logic
-        function toggleDetails(header) {
-            const parent = header.parentElement;
-            const content = parent.querySelector('.details-content');
-            
-            parent.classList.toggle('active');
-            
-            if (parent.classList.contains('active')) {
-                content.style.maxHeight = content.scrollHeight + "px";
-            } else {
-                content.style.maxHeight = 0;
-            }
+        // Lógica dos Modais de Texto
+        function openTextModal(id) {
+            document.getElementById(id).style.display = "flex";
+        }
+
+        function closeTextModal(id) {
+            document.getElementById(id).style.display = "none";
         }
     </script>
 

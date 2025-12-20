@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA | Help Center</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root {
+            /* Aura Design System */
+            --bg-deep: #030014;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-glass: rgba(255, 255, 255, 0.05);
+            --border-glass: rgba(255, 255, 255, 0.1);
+            
+            --text-white: #ffffff;
+            --text-gray: #a1a1aa;
+            
+            --accent-cyan: #00f2ea;
+            --accent-purple: #7f00ff;
+            --accent-pink: #ff0080;
+            
+            --gradient-text: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+            --gradient-btn: linear-gradient(90deg, #7f00ff 0%, #e100ff 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Outfit', sans-serif; }
+
+        /* --- BACKGROUND FX --- */
+        .ambient-light {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.3;
+            animation: floatOrb 20s infinite alternate;
+        }
+        .orb-1 { width: 600px; height: 600px; background: var(--accent-purple); top: -30%; left: 20%; }
+        .orb-2 { width: 400px; height: 400px; background: var(--accent-cyan); bottom: -10%; right: -10%; opacity: 0.2; }
+
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-30px, 30px) scale(1.05); }
+        }
+
+        /* --- UTILS --- */
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+        .text-gradient { background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .text-center { text-align: center; }
+
+        /* --- NAVBAR --- */
+        nav {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-glass);
+            background: rgba(3, 0, 20, 0.8);
+            backdrop-filter: blur(20px);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -1px; display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none;}
+        .nav-links a { color: var(--text-gray); text-decoration: none; font-weight: 500; margin-left: 30px; transition: 0.3s; }
+        .nav-links a:hover { color: #fff; }
+
+        /* --- HERO & SEARCH --- */
+        .faq-hero {
+            padding: 100px 0 60px;
+            text-align: center;
+        }
+        .faq-hero h1 { font-size: 3rem; margin-bottom: 15px; }
+        .faq-hero p { color: var(--text-gray); font-size: 1.1rem; margin-bottom: 40px; }
+
+        .search-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 18px 25px 18px 55px;
+            border-radius: 50px;
+            border: 1px solid var(--border-glass);
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+            font-size: 1.1rem;
+            backdrop-filter: blur(10px);
+            transition: 0.3s;
+            outline: none;
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-gray);
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+
+        .search-wrapper:focus-within .search-input {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 30px rgba(127, 0, 255, 0.3);
+        }
+        .search-wrapper:focus-within .search-icon { color: #fff; }
+
+        /* --- FAQ CONTENT --- */
+        .faq-content { padding-bottom: 100px; }
+        
+        .category-title {
+            color: var(--accent-cyan);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+            margin: 60px 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .category-title::after {
+            content: '';
+            height: 1px;
+            flex-grow: 1;
+            background: linear-gradient(90deg, var(--border-glass), transparent);
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+        
+        .faq-item:hover {
+            border-color: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .faq-question {
+            padding: 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: #fff;
+        }
+        .faq-question i { color: var(--accent-purple); transition: 0.3s; }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+            padding: 0 25px;
+            color: var(--text-gray);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+        
+        /* Active State */
+        .faq-item.active { border-color: var(--accent-purple); }
+        .faq-item.active .faq-answer { padding-bottom: 25px; max-height: 500px; /* arbitrary large height for animation */ }
+        .faq-item.active .faq-question i { transform: rotate(180deg); color: #fff; }
+
+        /* --- SUPPORT CTA --- */
+        .support-cta {
+            text-align: center;
+            padding: 60px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            margin-top: 60px;
+        }
+        .btn-support {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: #fff;
+            color: #000;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .btn-support:hover { transform: translateY(-3px); box-shadow: 0 5px 20px rgba(255,255,255,0.3); }
+
+        /* --- FOOTER --- */
+        footer { border-top: 1px solid var(--border-glass); padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 0.9rem; margin-top: auto; }
+
+        @media (max-width: 768px) {
+            .faq-hero h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-light">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <nav>
+        <div class="container nav-content">
+            <a href="Modern-SaaS-Template.html" class="logo">
+                <i class="fas fa-cube" style="color: var(--accent-cyan);"></i> AURA
+            </a>
+            <div class="nav-links" style="display: flex;">
+                <a href="Modern-SaaS-Template.html">Home</a>
+                <a href="aura_pricing.html">Pricing</a>
+                <a href="aura_contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="faq-hero">
+        <div class="container">
+            <h1 class="text-gradient">How can we help?</h1>
+            <p>Search for answers or browse the topics below.</p>
+            
+            <div class="search-wrapper">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" id="faqSearch" placeholder="Type keywords like 'billing', 'api', or 'account'...">
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-content">
+        <div class="container">
+            
+            <div class="faq-group">
+                <div class="category-title">General</div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">What is Aura exactly? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Aura is a unified operating system for modern workflows. We combine project management, automation, and analytics into a single, cohesive dashboard to help teams build faster.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Is there a mobile app available? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Yes! We have native apps for iOS and Android. You can manage your projects, receive notifications, and reply to comments directly from your phone.</div>
+                </div>
+            </div>
+
+            <div class="faq-group">
+                <div class="category-title">Billing & Subscription</div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Can I change my plan later? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Absolutely. You can upgrade or downgrade your plan at any time from the account settings. Prorated charges will be calculated automatically.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Do you offer refunds? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">We offer a 30-day money-back guarantee for all new subscriptions. If you are not satisfied, simply contact support within the first month.</div>
+                </div>
+            </div>
+
+            <div class="faq-group">
+                <div class="category-title">Technical Support</div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">How do I access the API? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">API access is available on Pro and Enterprise plans. You can generate your API keys in the Developer Settings section of your dashboard.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Is my data secure? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Security is our top priority. We use end-to-end encryption, regular audits, and are SOC2 Type II compliant to ensure your data remains safe.</div>
+                </div>
+            </div>
+
+            <div class="support-cta">
+                <i class="fas fa-life-ring" style="font-size: 2rem; color: var(--accent-cyan); margin-bottom: 15px;"></i>
+                <h3>Still have questions?</h3>
+                <p style="color: var(--text-gray); margin-bottom: 0;">Can't find the answer you're looking for? Our team is here to help.</p>
+                <a href="aura_contact.html" class="btn-support">Contact Support</a>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Aura Template. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- ACCORDION LOGIC ---
+        const items = document.querySelectorAll('.faq-item');
+
+        items.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                // Optional: Close others when opening one
+                // items.forEach(i => { if(i !== item) i.classList.remove('active'); });
+                
+                item.classList.toggle('active');
+            });
+        });
+
+        // --- SEARCH FILTER LOGIC ---
+        const searchInput = document.getElementById('faqSearch');
+        const faqGroups = document.querySelectorAll('.faq-group'); // Select groups to hide titles if empty
+
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+
+            items.forEach(item => {
+                const question = item.querySelector('.faq-question').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+
+                if(question.includes(term) || answer.includes(term)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Optional: Hide category titles if all items inside are hidden
+            faqGroups.forEach(group => {
+                const visibleItems = group.querySelectorAll('.faq-item[style="display: block;"]');
+                const allItems = group.querySelectorAll('.faq-item');
+                // Check if any item is visible (display block or empty style which is default)
+                let hasVisible = false;
+                allItems.forEach(i => {
+                    if (i.style.display !== 'none') hasVisible = true;
+                });
+                
+                const title = group.querySelector('.category-title');
+                if (title) title.style.display = hasVisible ? 'flex' : 'none';
+            });
+        });
+    </script>
+
+</body>
+</html>

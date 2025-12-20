@@ -90,7 +90,7 @@
             grid-template-columns: 1fr 1fr; 
             gap: 20px;
             align-items: stretch; 
-            margin-bottom: 30px; /* Espaço para o texto descritivo */
+            margin-bottom: 30px;
         }
 
         .gallery-grid {
@@ -121,11 +121,11 @@
             box-shadow: 0 5px 15px rgba(157, 0, 255, 0.2);
         }
 
-        /* --- PROJECT DETAILS (NOVO - ESTILO DO TEXTO K&Q) --- */
+        /* --- PROJECT DETAILS --- */
         .project-details {
             background: #111;
             border: 1px solid #222;
-            border-left: 4px solid var(--accent-purple); /* Detalhe Roxo */
+            border-left: 4px solid var(--accent-purple);
             padding: 30px;
             border-radius: 0 8px 8px 0;
             margin-top: 20px;
@@ -139,10 +139,7 @@
             padding-bottom: 15px;
         }
 
-        .detail-block {
-            margin-bottom: 15px;
-        }
-
+        .detail-block { margin-bottom: 15px; }
         .detail-label {
             color: var(--accent-purple);
             font-weight: 700;
@@ -151,7 +148,6 @@
             display: block;
             margin-bottom: 5px;
         }
-
         .detail-text {
             color: #bbb;
             font-size: 0.95rem;
@@ -201,22 +197,13 @@
             100% { opacity: 0; }     
         }
 
-        .cinematic-card:hover .info-overlay {
-            opacity: 1;
-            animation: none;
-        }
+        .cinematic-card:hover .info-overlay { opacity: 1; animation: none; }
 
-        /* --- Iframe Thumbnail --- */
         .live-thumbnail {
-            width: 400%;  
-            height: 400%; 
-            border: 0;
-            transform: scale(0.25); 
-            transform-origin: 0 0;  
-            pointer-events: none; 
+            width: 400%; height: 400%; border: 0;
+            transform: scale(0.25); transform-origin: 0 0; pointer-events: none; 
         }
 
-        /* --- BOTÃO EXPLORER --- */
         .btn-square-purple {
             background-color: var(--accent-purple);
             color: #fff;
@@ -271,35 +258,21 @@
             margin-top: 10px;
         }
 
-        .about-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .about-img { width: 100%; height: 100%; object-fit: cover; }
         
-        .about-content {
-            padding-top: 80px; /* Copy rebaixada */
-        }
+        .about-content { padding-top: 80px; }
 
         .about-content h2 {
-            font-size: 2rem;
-            color: #fff;
-            margin-bottom: 15px;
-            text-transform: uppercase;
+            font-size: 2rem; color: #fff;
+            margin-bottom: 15px; text-transform: uppercase;
         }
         
         .about-content p {
-            color: #aaa;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            font-size: 0.95rem;
+            color: #aaa; line-height: 1.6;
+            margin-bottom: 20px; font-size: 0.95rem;
         }
 
-        .skills-list {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
+        .skills-list { display: flex; gap: 10px; flex-wrap: wrap; }
 
         .skill-tag {
             background: rgba(255,255,255,0.05);
@@ -312,41 +285,27 @@
 
         /* --- LIGHTBOX --- */
         .lightbox-modal {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
+            display: none; position: fixed; z-index: 9999;
+            left: 0; top: 0; width: 100%; height: 100%;
             background-color: rgba(0, 0, 0, 0.95);
-            justify-content: center;
-            align-items: center;
+            justify-content: center; align-items: center;
             backdrop-filter: blur(5px);
         }
 
         .lightbox-content {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 4px;
-            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+            max-width: 90%; max-height: 90%;
+            border-radius: 4px; box-shadow: 0 0 30px rgba(0,0,0,0.8);
             animation: zoomIn 0.3s;
         }
 
         @keyframes zoomIn {
-            from {transform:scale(0.8); opacity: 0;} 
-            to {transform:scale(1); opacity: 1;}
+            from {transform:scale(0.8); opacity: 0;} to {transform:scale(1); opacity: 1;}
         }
 
         .close-lightbox {
-            position: absolute;
-            top: 20px;
-            right: 35px;
-            color: #f1f1f1;
-            font-size: 40px;
-            font-weight: bold;
-            transition: 0.3s;
-            cursor: pointer;
+            position: absolute; top: 20px; right: 35px;
+            color: #f1f1f1; font-size: 40px; font-weight: bold;
+            transition: 0.3s; cursor: pointer;
         }
         .close-lightbox:hover { color: var(--accent-red); }
 
@@ -395,7 +354,7 @@
         .overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.85); /* Fundo mais escuro para o In Progress */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -412,14 +371,17 @@
             text-decoration: none;
             font-weight: 700;
             text-transform: uppercase;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: #000;
             background: #fff;
             transform: translateY(10px);
             transition: transform 0.3s ease;
-            cursor: pointer;
+            cursor: default; /* Cursor padrão para itens não clicáveis */
         }
         .browser-mockup:hover .btn-view { transform: translateY(0); }
+
+        /* Botão ativo (para os templates reais) */
+        .btn-active { cursor: pointer; }
 
         .dot { width: 8px; height: 8px; border-radius: 50%; }
         .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
@@ -427,13 +389,17 @@
         .card-info { padding: 20px; }
         .card-info h3 { font-size: 1.1rem; margin-bottom: 5px; color: #fff; }
         .card-info p { font-size: 0.8rem; color: #777; margin-bottom: 0; }
+        
         .tag { font-size: 0.65rem; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; display: inline-block; margin-top: 10px; }
 
         .theme-red .tag { color: var(--accent-red); border: 1px solid var(--accent-red); }
         .theme-navy .tag { color: var(--accent-navy); border: 1px solid var(--accent-navy); }
         .theme-gold .tag { color: var(--accent-gold); border: 1px solid var(--accent-gold); }
-        .theme-design .tag { color: #888; border: 1px dashed #444; }
-        .theme-design i { color: #333; }
+        
+        /* Tema In Progress */
+        .theme-design .tag { color: var(--accent-gold); border: 1px solid var(--accent-gold); }
+        .theme-design i { color: #444; transition: color 0.3s;}
+        .theme-design:hover i { color: var(--accent-gold); opacity: 0.8; }
 
         footer { text-align: center; font-size: 0.8rem; color: #444; margin-top: 100px; padding-bottom: 60px; }
 
@@ -462,25 +428,16 @@
             <h2 class="section-title" style="border-color: var(--accent-purple);">Published Sites</h2>
             
             <div class="featured-wrapper">
-                
                 <div class="cinematic-card">
                     <div class="bg-site">
-                        <iframe 
-                            src="KingdomandQuill.html" 
-                            class="live-thumbnail">
-                        </iframe>
+                        <iframe src="KingdomandQuill.html" class="live-thumbnail"></iframe>
                         <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 30%; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); pointer-events: none;"></div>
                     </div>
-
                     <div class="info-overlay">
                         <i class="fas fa-feather-pointed" style="font-size: 3rem; color: var(--accent-purple); text-shadow: 0 0 10px rgba(157, 0, 255, 0.5); margin-bottom: 20px;"></i>
                         <h3 style="color: #fff; font-size: 1.8rem; margin-bottom: 5px;">Kingdom & Quill</h3>
-                        <p style="color: #ddd; font-size: 1rem; font-style: italic; letter-spacing: 1px; margin-bottom: 10px;">
-                            Ink. Spirit. Legacy.
-                        </p>
-                        <a href="KingdomandQuill.html" target="_blank" class="btn-square-purple">
-                            Explorer
-                        </a>
+                        <p style="color: #ddd; font-size: 1rem; font-style: italic; letter-spacing: 1px; margin-bottom: 10px;">Ink. Spirit. Legacy.</p>
+                        <a href="KingdomandQuill.html" target="_blank" class="btn-square-purple">Explorer</a>
                     </div>
                 </div>
 
@@ -490,73 +447,43 @@
                     <div class="gallery-item" title="Album" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/Album.jpg');"></div>
                     <div class="gallery-item" title="WTNY" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/wtny.jpg');"></div>
                 </div>
-
             </div>
 
             <div class="project-details">
                 <h3>Kingdom & Quill — <span style="font-weight: 400; color: #888;">Interactive Global Evangelization & Writing Platform</span></h3>
-                
-                <div class="detail-block">
-                    <span class="detail-label">Challenge:</span>
-                    <p class="detail-text">Design an engaging, interactive web platform for a Christian audience, featuring multilingual Bible versions for over ten countries, devotional and literary materials, and music across multiple platforms, while keeping navigation simple and intuitive for all users. The goal was to balance aesthetics with functionality, delivering an immersive experience.</p>
-                </div>
-
-                <div class="detail-block">
-                    <span class="detail-label">Approach:</span>
-                    <p class="detail-text">Developed a fully responsive HTML/CSS website with interactive elements and mockups. Focused on a clean layout, intuitive navigation, and a modern color palette to reflect creativity and professionalism. Integrated audio samples to allow users to preview content before selecting their preferred platforms.</p>
-                </div>
-
-                <div class="detail-block">
-                    <span class="detail-label">Result:</span>
-                    <p class="detail-text">A polished, user-friendly web experience that showcases proficiency in front-end design, responsive layouts, and interactive, user-focused interfaces.</p>
-                </div>
+                <div class="detail-block"><span class="detail-label">Challenge:</span><p class="detail-text">Design an engaging, interactive web platform for a Christian audience, featuring multilingual Bible versions for over ten countries, devotional and literary materials, and music across multiple platforms, while keeping navigation simple and intuitive for all users. The goal was to balance aesthetics with functionality, delivering an immersive experience.</p></div>
+                <div class="detail-block"><span class="detail-label">Approach:</span><p class="detail-text">Developed a fully responsive HTML/CSS website with interactive elements and mockups. Focused on a clean layout, intuitive navigation, and a modern color palette to reflect creativity and professionalism. Integrated audio samples to allow users to preview content before selecting their preferred platforms.</p></div>
+                <div class="detail-block"><span class="detail-label">Result:</span><p class="detail-text">A polished, user-friendly web experience that showcases proficiency in front-end design, responsive layouts, and interactive, user-focused interfaces.</p></div>
             </div>
-
         </section>
 
         <section class="category-section">
             <h2 class="section-title" style="border-color: var(--accent-red);">Designs & Pages</h2>
             <div class="grid-container">
-                
                 <div class="browser-mockup theme-red">
                     <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
                     <div class="preview-area">
                         <iframe src="red_metallic_template.html" class="live-thumbnail"></iframe>
-                        <div class="overlay"><a href="red_metallic_template.html" target="_blank" class="btn-view">View Template</a></div>
+                        <div class="overlay"><a href="red_metallic_template.html" target="_blank" class="btn-view btn-active">View Template</a></div>
                     </div>
-                    <div class="card-info">
-                        <h3>Red Metallic Edition</h3>
-                        <p>High-energy sales landing page.</p>
-                        <span class="tag">HTML5 / CSS3</span>
-                    </div>
+                    <div class="card-info"><h3>Red Metallic Edition</h3><p>High-energy sales landing page.</p><span class="tag">HTML5 / CSS3</span></div>
                 </div>
-
                 <div class="browser-mockup theme-navy">
                     <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
                     <div class="preview-area">
                         <iframe src="navy_metallic_template.html" class="live-thumbnail"></iframe>
-                        <div class="overlay"><a href="navy_metallic_template.html" target="_blank" class="btn-view">View Template</a></div>
+                        <div class="overlay"><a href="navy_metallic_template.html" target="_blank" class="btn-view btn-active">View Template</a></div>
                     </div>
-                    <div class="card-info">
-                        <h3>Navy Tech Edition</h3>
-                        <p>Corporate & Trust focused layout.</p>
-                        <span class="tag">HTML5 / CSS3</span>
-                    </div>
+                    <div class="card-info"><h3>Navy Tech Edition</h3><p>Corporate & Trust focused layout.</p><span class="tag">HTML5 / CSS3</span></div>
                 </div>
-
                 <div class="browser-mockup theme-gold">
                     <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
                     <div class="preview-area">
                         <iframe src="gold_template.html" class="live-thumbnail"></iframe>
-                        <div class="overlay"><a href="gold_template.html" target="_blank" class="btn-view">View Template</a></div>
+                        <div class="overlay"><a href="gold_template.html" target="_blank" class="btn-view btn-active">View Template</a></div>
                     </div>
-                    <div class="card-info">
-                        <h3>Dark Gold Edition</h3>
-                        <p>Luxury & Premium product page.</p>
-                        <span class="tag">HTML5 / CSS3</span>
-                    </div>
+                    <div class="card-info"><h3>Dark Gold Edition</h3><p>Luxury & Premium product page.</p><span class="tag">HTML5 / CSS3</span></div>
                 </div>
-
             </div>
         </section>
 
@@ -566,25 +493,71 @@
                 
                 <div class="browser-mockup theme-design">
                     <div class="browser-header"><div class="dot" style="background:#444"></div><div class="dot" style="background:#444"></div></div>
-                    <div class="preview-placeholder">
-                        <i class="far fa-image" style="font-size: 2rem; opacity: 0.2;"></i>
-                    </div>
+                    <div class="preview-placeholder"><i class="fas fa-chart-line" style="font-size: 2rem; opacity: 0.2;"></i><div class="overlay"><span class="btn-view">Coming Soon</span></div></div>
                     <div class="card-info">
-                        <h3 style="color: #666;">UI Concept #01</h3>
-                        <p>Dashboard interface mockup.</p>
-                        <span class="tag">Figma / Sketch</span>
+                        <h3 style="color: #666;">SaaS Dashboard</h3>
+                        <p>Analytics interface mockup.</p>
+                        <span class="tag">In Progress</span>
                     </div>
                 </div>
 
                 <div class="browser-mockup theme-design">
                     <div class="browser-header"><div class="dot" style="background:#444"></div><div class="dot" style="background:#444"></div></div>
-                    <div class="preview-placeholder">
-                        <i class="far fa-image" style="font-size: 2rem; opacity: 0.2;"></i>
-                    </div>
+                    <div class="preview-placeholder"><i class="fas fa-mobile-alt" style="font-size: 2rem; opacity: 0.2;"></i><div class="overlay"><span class="btn-view">Coming Soon</span></div></div>
                     <div class="card-info">
-                        <h3 style="color: #666;">Mobile App UI</h3>
+                        <h3 style="color: #666;">FinTech App UI</h3>
                         <p>Finance application concept.</p>
-                        <span class="tag">Adobe XD</span>
+                        <span class="tag">In Progress</span>
+                    </div>
+                </div>
+
+                <div class="browser-mockup theme-design">
+                    <div class="browser-header"><div class="dot" style="background:#444"></div><div class="dot" style="background:#444"></div></div>
+                    <div class="preview-placeholder"><i class="fas fa-shopping-bag" style="font-size: 2rem; opacity: 0.2;"></i><div class="overlay"><span class="btn-view">Coming Soon</span></div></div>
+                    <div class="card-info">
+                        <h3 style="color: #666;">Modern E-Commerce</h3>
+                        <p>Fashion store layout.</p>
+                        <span class="tag">In Progress</span>
+                    </div>
+                </div>
+
+                <div class="browser-mockup theme-design">
+                    <div class="browser-header"><div class="dot" style="background:#444"></div><div class="dot" style="background:#444"></div></div>
+                    <div class="preview-placeholder"><i class="fas fa-building" style="font-size: 2rem; opacity: 0.2;"></i><div class="overlay"><span class="btn-view">Coming Soon</span></div></div>
+                    <div class="card-info">
+                        <h3 style="color: #666;">Real Estate Portal</h3>
+                        <p>Property listing platform.</p>
+                        <span class="tag">In Progress</span>
+                    </div>
+                </div>
+
+                <div class="browser-mockup theme-design">
+                    <div class="browser-header"><div class="dot" style="background:#444"></div><div class="dot" style="background:#444"></div></div>
+                    <div class="preview-placeholder"><i class="fas fa-heart-pulse" style="font-size: 2rem; opacity: 0.2;"></i><div class="overlay"><span class="btn-view">Coming Soon</span></div></div>
+                    <div class="card-info">
+                        <h3 style="color: #666;">Health & Care</h3>
+                        <p>Medical clinic website.</p>
+                        <span class="tag">In Progress</span>
+                    </div>
+                </div>
+
+                <div class="browser-mockup theme-design">
+                    <div class="browser-header"><div class="dot" style="background:#444"></div><div class="dot" style="background:#444"></div></div>
+                    <div class="preview-placeholder"><i class="fas fa-utensils" style="font-size: 2rem; opacity: 0.2;"></i><div class="overlay"><span class="btn-view">Coming Soon</span></div></div>
+                    <div class="card-info">
+                        <h3 style="color: #666;">Gourmet Booking</h3>
+                        <p>Restaurant reservation system.</p>
+                        <span class="tag">In Progress</span>
+                    </div>
+                </div>
+
+                <div class="browser-mockup theme-design">
+                    <div class="browser-header"><div class="dot" style="background:#444"></div><div class="dot" style="background:#444"></div></div>
+                    <div class="preview-placeholder"><i class="fas fa-cube" style="font-size: 2rem; opacity: 0.2;"></i><div class="overlay"><span class="btn-view">Coming Soon</span></div></div>
+                    <div class="card-info">
+                        <h3 style="color: #666;">NFT Marketplace</h3>
+                        <p>Digital asset showcase.</p>
+                        <span class="tag">In Progress</span>
                     </div>
                 </div>
 
@@ -595,17 +568,12 @@
 
     <section class="about-section" id="about">
         <div class="about-container">
-            
             <div class="about-avatar">
                 <img src="tstelles-photo.png" alt="T.S. Telles" class="about-img">
             </div>
-
             <div class="about-content">
                 <h2>About <span style="color: var(--accent-gold);">Me</span></h2>
-                <p>
-                    I am T.S. Telles, a Front-End Developer and Creative Writer. I create and develop templates, websites, and interactive digital experiences. My focus is on delivering ready-to-use projects that are visually consistent, high-quality, and designed for end users and clients seeking practical, aesthetically polished solutions. All projects showcased here are examples of my professional work, demonstrating my skills in design, front-end development, and interactive interfaces.
-                </p>
-                
+                <p>I am T.S. Telles, a Front-End Developer and Creative Writer. I create and develop templates, websites, and interactive digital experiences. My focus is on delivering ready-to-use projects that are visually consistent, high-quality, and designed for end users and clients seeking practical, aesthetically polished solutions. All projects showcased here are examples of my professional work, demonstrating my skills in design, front-end development, and interactive interfaces.</p>
                 <div class="skills-list">
                     <span class="skill-tag">HTML5 & CSS3 Development</span>
                     <span class="skill-tag">Responsive Web Design</span>
@@ -615,7 +583,6 @@
                     <span class="skill-tag">Video Editing</span>
                 </div>
             </div>
-
         </div>
     </section>
 

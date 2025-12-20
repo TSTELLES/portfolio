@@ -28,7 +28,8 @@
             background-color: var(--bg-dark);
             color: var(--text-main);
             overflow-x: hidden;
-            padding-bottom: 80px;
+            /* Padding inferior removido daqui para controlar no footer */
+            padding-bottom: 0; 
         }
 
         /* --- HEADER --- */
@@ -200,12 +201,13 @@
             box-shadow: 0 8px 20px rgba(157, 0, 255, 0.6);
         }
 
-        /* --- SEÇÃO SOBRE MIM (Texto Ajustado para Baixo) --- */
+        /* --- SEÇÃO SOBRE MIM (AMARELO/DOURADO) --- */
         .about-section {
             background-color: #0f0f0f;
             border-top: 1px solid #222;
-            border-bottom: 1px solid #222;
-            padding: 80px 20px; /* Padding padrão */
+            /* Removida borda inferior para fluir melhor pro footer */
+            border-bottom: 1px solid #222; 
+            padding: 80px 20px;
             margin-bottom: 0;
         }
         
@@ -213,7 +215,7 @@
             max-width: 900px;
             margin: 0 auto;
             display: flex;
-            align-items: flex-start; /* Alinha tudo ao topo para controlarmos a descida */
+            align-items: center;
             gap: 50px;
         }
 
@@ -237,12 +239,6 @@
             object-fit: cover;
         }
         
-        /* AQUI ESTÁ A MUDANÇA PRINCIPAL */
-        .about-content {
-            /* Empurra o texto 80px para baixo */
-            padding-top: 80px;
-        }
-
         .about-content h2 {
             font-size: 2rem;
             color: #fff;
@@ -397,15 +393,23 @@
         .theme-design .tag { color: #888; border: 1px dashed #444; }
         .theme-design i { color: #333; }
 
-        footer { text-align: center; font-size: 0.8rem; color: #444; margin-top: 40px; padding-bottom: 40px; }
+        /* --- FOOTER (Copyright Baixado) --- */
+        footer { 
+            text-align: center; 
+            font-size: 0.8rem; 
+            color: #444; 
+            
+            /* AQUI ESTÁ O AJUSTE: Empurrei 100px para baixo da seção anterior */
+            margin-top: 100px; 
+            
+            padding-bottom: 60px; 
+        }
 
         @media (max-width: 900px) {
             .featured-wrapper { grid-template-columns: 1fr; }
             .gallery-grid { height: auto; grid-template-rows: 150px 150px; }
             .about-container { flex-direction: column; text-align: center; gap: 30px; }
             .skills-list { justify-content: center; }
-            /* No celular, removemos o padding para não ficar um buraco */
-            .about-content { padding-top: 0; }
         }
     </style>
 </head>

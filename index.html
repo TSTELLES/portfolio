@@ -84,7 +84,7 @@
             letter-spacing: 1px;
         }
 
-        /* --- FEATURED LAYOUT (SEÇÃO 1) --- */
+        /* --- FEATURED LAYOUT --- */
         .featured-wrapper {
             display: grid;
             grid-template-columns: 1fr 1fr; 
@@ -200,15 +200,12 @@
             box-shadow: 0 8px 20px rgba(157, 0, 255, 0.6);
         }
 
-        /* --- SEÇÃO SOBRE MIM (AJUSTES DE ESPAÇAMENTO) --- */
+        /* --- SEÇÃO SOBRE MIM (Texto Ajustado para Baixo) --- */
         .about-section {
             background-color: #0f0f0f;
             border-top: 1px solid #222;
             border-bottom: 1px solid #222;
-            
-            /* AUMENTADO: Padding maior para descer o conteúdo */
-            padding: 120px 20px 100px;
-            
+            padding: 80px 20px; /* Padding padrão */
             margin-bottom: 0;
         }
         
@@ -216,7 +213,7 @@
             max-width: 900px;
             margin: 0 auto;
             display: flex;
-            align-items: flex-start; /* Alinhamento ao topo para melhor controle */
+            align-items: flex-start; /* Alinha tudo ao topo para controlarmos a descida */
             gap: 50px;
         }
 
@@ -232,9 +229,6 @@
             flex-shrink: 0;
             overflow: hidden;
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
-            
-            /* Pequeno ajuste para alinhar com o texto que desceu */
-            margin-top: 10px; 
         }
 
         .about-img {
@@ -243,9 +237,10 @@
             object-fit: cover;
         }
         
+        /* AQUI ESTÁ A MUDANÇA PRINCIPAL */
         .about-content {
-            /* AUMENTADO: Empurra o texto para baixo */
-            padding-top: 25px;
+            /* Empurra o texto 80px para baixo */
+            padding-top: 80px;
         }
 
         .about-content h2 {
@@ -409,6 +404,8 @@
             .gallery-grid { height: auto; grid-template-rows: 150px 150px; }
             .about-container { flex-direction: column; text-align: center; gap: 30px; }
             .skills-list { justify-content: center; }
+            /* No celular, removemos o padding para não ficar um buraco */
+            .about-content { padding-top: 0; }
         }
     </style>
 </head>

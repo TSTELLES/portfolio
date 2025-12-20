@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA | Modern SaaS Template</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root {
+            /* Vibrant Palette (Dark Mode) */
+            --bg-deep: #030014;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-glass: rgba(255, 255, 255, 0.05);
+            --border-glass: rgba(255, 255, 255, 0.1);
+            
+            --text-white: #ffffff;
+            --text-gray: #a1a1aa;
+            
+            --primary-glow: linear-gradient(180deg, rgba(99,102,241,0) 0%, #6366f1 100%);
+            --accent-cyan: #00f2ea;
+            --accent-purple: #7f00ff;
+            --accent-pink: #ff0080;
+            
+            --gradient-text: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+            --gradient-btn: linear-gradient(90deg, #7f00ff 0%, #e100ff 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; }
+
+        /* --- BACKGROUND FX --- */
+        .ambient-light {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.4;
+            animation: floatOrb 20s infinite alternate;
+        }
+        .orb-1 { width: 500px; height: 500px; background: var(--accent-purple); top: -100px; left: -100px; }
+        .orb-2 { width: 400px; height: 400px; background: var(--accent-cyan); bottom: 0; right: 0; animation-delay: -5s; }
+        .orb-3 { width: 300px; height: 300px; background: var(--accent-pink); top: 40%; left: 40%; opacity: 0.2; animation-delay: -10s; }
+
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 50px) scale(1.1); }
+        }
+
+        /* --- UTILS --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .text-gradient { background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* --- BUTTONS --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--gradient-btn);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(127, 0, 255, 0.4);
+        }
+        .btn-primary:hover {
+            box-shadow: 0 0 40px rgba(127, 0, 255, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .btn-glass {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-glass);
+            color: #fff;
+        }
+        .btn-glass:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: #fff;
+        }
+
+        /* --- NAVBAR --- */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: 0.3s;
+            backdrop-filter: blur(0px);
+        }
+        nav.scrolled {
+            padding: 15px 0;
+            background: rgba(3, 0, 20, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glass);
+        }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -1px; display: flex; align-items: center; gap: 10px; }
+        .logo i { color: var(--accent-cyan); }
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a { color: var(--text-gray); text-decoration: none; font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover { color: #fff; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding-top: 180px;
+            padding-bottom: 100px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(127, 0, 255, 0.15);
+            border: 1px solid rgba(127, 0, 255, 0.3);
+            border-radius: 30px;
+            color: #d8b4fe;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            backdrop-filter: blur(5px);
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            font-weight: 800;
+            margin-bottom: 25px;
+            letter-spacing: -2px;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto 50px;
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+        }
+
+        /* --- DASHBOARD MOCKUP (CSS 3D) --- */
+        .hero-visual {
+            margin-top: 80px;
+            perspective: 2000px;
+            display: flex;
+            justify-content: center;
+            animation: fadeInUp 1s ease-out 0.8s backwards;
+        }
+
+        .dashboard-container {
+            width: 90%;
+            max-width: 1000px;
+            background: #0c0a1f;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            box-shadow: 0 0 100px rgba(127, 0, 255, 0.15);
+            padding: 20px;
+            transform: rotateX(20deg) scale(0.9);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            position: relative;
+        }
+        
+        .dashboard-container:hover {
+            transform: rotateX(5deg) scale(0.95);
+            box-shadow: 0 0 120px rgba(0, 242, 234, 0.2);
+        }
+
+        .dash-header { display: flex; gap: 10px; margin-bottom: 20px; }
+        .dash-dot { width: 12px; height: 12px; border-radius: 50%; }
+        .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
+
+        .dash-grid {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 20px;
+            height: 500px;
+        }
+        
+        .dash-sidebar { background: rgba(255,255,255,0.03); border-radius: 12px; }
+        .dash-main { background: rgba(0,0,0,0.2); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 20px; }
+        
+        /* Fake UI Elements */
+        .ui-skeleton { background: rgba(255,255,255,0.05); border-radius: 6px; }
+        .ui-chart { flex: 1; border-radius: 12px; background: linear-gradient(180deg, rgba(127,0,255,0.1) 0%, transparent 100%); border-top: 1px solid rgba(127,0,255,0.3); position: relative; overflow: hidden;}
+        .ui-chart::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 50%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%237f00ff" fill-opacity="0.3" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+        }
+
+        /* --- FEATURES (BENTO GRID) --- */
+        .section-padding { padding: 120px 0; }
+        .section-header { text-align: center; margin-bottom: 80px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .section-header h2 { font-size: 2.5rem; margin-bottom: 15px; }
+        .section-header p { color: var(--text-gray); }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 300px);
+            gap: 24px;
+        }
+
+        .bento-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .bento-card:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(255,255,255,0.2);
+            transform: translateY(-5px);
+        }
+
+        .span-2 { grid-column: span 2; }
+        
+        .bento-icon {
+            width: 50px; height: 50px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; margin-bottom: 20px;
+            color: #fff;
+        }
+        
+        .icon-purple { background: linear-gradient(135deg, #7f00ff 0%, #e100ff 100%); box-shadow: 0 10px 20px rgba(127,0,255,0.3); }
+        .icon-cyan { background: linear-gradient(135deg, #00f2ea 0%, #0080ff 100%); box-shadow: 0 10px 20px rgba(0,242,234,0.3); }
+        
+        .bento-card h3 { font-size: 1.5rem; margin-bottom: 10px; }
+        .bento-card p { color: var(--text-gray); font-size: 0.95rem; }
+
+        /* --- LOGO SCROLL (MARQUEE) --- */
+        .logo-slider {
+            background: rgba(255,255,255,0.02);
+            border-top: 1px solid var(--border-glass);
+            border-bottom: 1px solid var(--border-glass);
+            padding: 40px 0;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .logo-slider::before, .logo-slider::after {
+            content: ""; position: absolute; top: 0; width: 150px; height: 100%; z-index: 2;
+        }
+        .logo-slider::before { left: 0; background: linear-gradient(to right, var(--bg-deep), transparent); }
+        .logo-slider::after { right: 0; background: linear-gradient(to left, var(--bg-deep), transparent); }
+
+        .slide-track {
+            display: flex;
+            width: calc(200px * 10);
+            animation: scroll 20s linear infinite;
+        }
+        
+        .slide { width: 200px; display: flex; justify-content: center; align-items: center; }
+        .slide span { font-size: 1.5rem; font-weight: 800; color: #555; text-transform: uppercase; }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-200px * 5)); }
+        }
+
+        /* --- CTA SECTION --- */
+        .cta-section {
+            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(127,0,255,0.1) 100%);
+            text-align: center;
+            padding: 150px 0;
+            position: relative;
+        }
+        
+        .cta-card {
+            background: linear-gradient(135deg, #0d0b21 0%, #151030 100%);
+            border: 1px solid var(--border-glass);
+            border-radius: 30px;
+            padding: 80px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-glow {
+            position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(127,0,255,0.2) 0%, transparent 60%);
+            animation: rotate 10s linear infinite;
+        }
+        
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        /* --- FOOTER --- */
+        footer {
+            border-top: 1px solid var(--border-glass);
+            padding: 80px 0 40px;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+        
+        .footer-grid {
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 60px;
+        }
+        .footer-col h4 { color: #fff; margin-bottom: 20px; font-size: 1.1rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a { color: var(--text-gray); text-decoration: none; transition: 0.3s; }
+        .footer-col ul li a:hover { color: var(--accent-cyan); }
+
+        /* --- ANIMATIONS & SCROLL REVEAL --- */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .hero h1 { font-size: 3rem; }
+            .dash-grid { grid-template-columns: 1fr; height: auto; }
+            .dash-sidebar { display: none; }
+            .bento-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+            .span-2 { grid-column: span 1; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-light">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <nav id="navbar">
+        <div class="container nav-content">
+            <div class="logo">
+                <i class="fas fa-cube"></i> AURA
+            </div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#integration">Solutions</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#about">About</a>
+            </div>
+            <a href="#" class="btn btn-glass" style="padding: 10px 24px; border-radius: 12px;">Sign In</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">New Version 2.0</div>
+            <h1 class="text-gradient">The Operating System<br>for your Workflow</h1>
+            <p>Aura unifies your tools, streamlines your processes, and empowers your team to build faster. Designed for modern companies.</p>
+            
+            <div class="hero-btns">
+                <a href="#" class="btn btn-primary">Start for Free <i class="fas fa-arrow-right" style="margin-left: 10px;"></i></a>
+                <a href="#" class="btn btn-glass"><i class="fas fa-play" style="margin-right: 10px;"></i> Watch Demo</a>
+            </div>
+
+            <div class="hero-visual">
+                <div class="dashboard-container">
+                    <div class="dash-header">
+                        <div class="dash-dot red"></div>
+                        <div class="dash-dot yellow"></div>
+                        <div class="dash-dot green"></div>
+                    </div>
+                    <div class="dash-grid">
+                        <div class="dash-sidebar">
+                            <div style="padding: 20px;">
+                                <div class="ui-skeleton" style="height: 10px; width: 60%; margin-bottom: 20px;"></div>
+                                <div class="ui-skeleton" style="height: 8px; width: 80%; margin-bottom: 15px; opacity: 0.5;"></div>
+                                <div class="ui-skeleton" style="height: 8px; width: 70%; margin-bottom: 15px; opacity: 0.5;"></div>
+                                <div class="ui-skeleton" style="height: 8px; width: 85%; margin-bottom: 15px; opacity: 0.5;"></div>
+                            </div>
+                        </div>
+                        <div class="dash-main">
+                            <div style="display:flex; justify-content:space-between;">
+                                <div class="ui-skeleton" style="height: 20px; width: 150px;"></div>
+                                <div class="ui-skeleton" style="height: 20px; width: 80px;"></div>
+                            </div>
+                            <div class="ui-chart"></div>
+                            <div style="display:flex; gap: 15px;">
+                                <div class="ui-skeleton" style="height: 80px; flex: 1;"></div>
+                                <div class="ui-skeleton" style="height: 80px; flex: 1;"></div>
+                                <div class="ui-skeleton" style="height: 80px; flex: 1;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="logo-slider">
+        <div class="slide-track">
+            <div class="slide"><span>COMPANY</span></div>
+            <div class="slide"><span>BRAND</span></div>
+            <div class="slide"><span>LOGOTYPE</span></div>
+            <div class="slide"><span>STARTUP</span></div>
+            <div class="slide"><span>BUSINESS</span></div>
+            <div class="slide"><span>COMPANY</span></div>
+            <div class="slide"><span>BRAND</span></div>
+            <div class="slide"><span>LOGOTYPE</span></div>
+            <div class="slide"><span>STARTUP</span></div>
+            <div class="slide"><span>BUSINESS</span></div>
+        </div>
+    </div>
+
+    <section class="section-padding" id="features">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Built for Scale</h2>
+                <p>Designed to grow with your business. All the essential tools you need in one powerful platform.</p>
+            </div>
+
+            <div class="bento-grid">
+                <div class="bento-card span-2 reveal">
+                    <div>
+                        <div class="bento-icon icon-purple"><i class="fas fa-bolt"></i></div>
+                        <h3>Smart Workflows</h3>
+                        <p>Create complex automations with our visual builder. Connect your favorite apps seamlessly.</p>
+                    </div>
+                    <div class="ui-skeleton" style="height: 100px; margin-top: 30px; opacity: 0.3;"></div>
+                </div>
+                <div class="bento-card reveal">
+                    <div class="bento-icon icon-cyan"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Secure by Design</h3>
+                    <p>We prioritize your data privacy with industry-leading encryption standards.</p>
+                </div>
+                <div class="bento-card reveal">
+                    <div class="bento-icon" style="background: rgba(255,255,255,0.05);"><i class="fas fa-code-branch"></i></div>
+                    <h3>Easy Integration</h3>
+                    <p>Works perfectly with your existing tech stack.</p>
+                </div>
+                <div class="bento-card span-2 reveal">
+                    <div>
+                        <div class="bento-icon icon-purple"><i class="fas fa-chart-line"></i></div>
+                        <h3>Real-time Analytics</h3>
+                        <p>Gain valuable insights with our advanced reporting dashboard. Data-driven decisions made simple.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" style="padding-bottom: 100px;">
+        <div class="cta-card reveal">
+            <div class="cta-glow"></div>
+            <div style="position: relative; z-index: 2;">
+                <h2 style="font-size: 3rem; margin-bottom: 20px;">Ready to Get Started?</h2>
+                <p style="color: #a1a1aa; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">Join thousands of teams enhancing their productivity with Aura.</p>
+                <a href="#" class="btn btn-primary" style="padding: 18px 40px; font-size: 1.1rem;">Get Started Now</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo" style="margin-bottom: 20px;">
+                        <i class="fas fa-cube"></i> AURA
+                    </div>
+                    <p>Next-generation software solutions for modern businesses.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Integrations</a></li>
+                        <li><a href="#">Updates</a></li>
+                        <li><a href="#">Documentation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Security</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px;">
+                <p>&copy; 2025 Aura Template. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- SCROLL REVEAL LOGIC (Vanilla JS) ---
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+
+            const revealOnScroll = () => {
+                const windowHeight = window.innerHeight;
+                const elementVisible = 150;
+
+                reveals.forEach((reveal) => {
+                    const elementTop = reveal.getBoundingClientRect().top;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveal.classList.add('active');
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll();
+
+            // Navbar Glass Effect on Scroll
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

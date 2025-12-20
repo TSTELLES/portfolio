@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K&Q Literature</title>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MCMK8L0CNN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-MCMK8L0CNN');
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Define a fonte Inter como padrão para uma leitura moderna e clara */
+        html { font-family: 'Inter', sans-serif; }
+        
+        /* Estilos personalizados para o degradê e separador visual */
+        .series-background {
+            background: #000000; /* Preto absoluto */
+        }
+        
+        /* Efeito Glow para o Título Principal (Reino & Pena) */
+        .text-neon {
+            color: #ffffff;
+            text-shadow:
+                0 0 5px #fff,       /* Brilho interno sutil */
+                0 0 10px #ffde59,  /* Brilho interno amarelo */
+                0 0 20px #d4af37,  /* Brilho dourado principal */
+                0 0 35px #d4af37; /* Brilho dourado difuso */
+        }
+
+        /* EFEITO Dourado Metálico com mais reflexo */
+        .text-metallic-gold {
+            /* Degradê Metálico AFIADO: cria reflexos mais definidos para simular o polimento do metal. */
+            background: linear-gradient(180deg, #fff 0%, #ffde59 20%, #d4af37 40%, #997c27 80%, #d4af37 100%);
+            /* Clipping para que o background seja visível apenas onde houver texto */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            /* Sombra sutil para dar profundidade (efeito 3D/emboss) */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
+            /* Garante que o efeito funcione */
+            display: inline-block;
+        }
+        
+        .book-cover {
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5); /* Sombra mais forte para o efeito 3D */
+            /* Transição para transformar e para o novo box-shadow (brilho) */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; 
+        }
+        .book-cover:hover {
+            transform: scale(1.05); /* Pequeno zoom ao passar o mouse */
+            /* NOVO: Brilho dourado forte ao passar o mouse */
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 40px rgba(212, 175, 55, 0.6);
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'accent-gold': '#d4af37', // Ouro padrão
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="series-background text-white min-h-screen">
+
+    <div class="container mx-auto px-4 py-12 md:py-20 max-w-7xl">
+
+        <header class="text-center mb-10 space-y-8">
+            <h1 class="text-4xl md:text-7xl font-extrabold tracking-tight text-neon flex flex-col items-center justify-center gap-2">
+                <span>K&Q</span>
+                <span>Literature</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto font-medium">
+                Fiction that resonates.
+            </p>
+        </header>
+
+        <section class="flex justify-center items-end space-x-4 md:space-x-8 mb-16">
+            
+            <img
+                src="https://raw.githubusercontent.com/TSTELLES/kingdom-quill/main/Welcome-to-New-York-Born-Ricciwood.jpg"
+                alt="Capa do livro Welcome to New York Born Ricciwood"
+                class="book-cover w-20 md:w-32 h-auto rounded-lg border-2 border-accent-gold opacity-80 hover:opacity-100 cursor-default"
+                onerror="this.onerror=null;this.src='https://placehold.co/120x180/4b5563/ffffff?text=Capa+1';"
+            >
+            
+            <img
+                src="https://raw.githubusercontent.com/TSTELLES/kingdom-quill/main/Capa-O-PODER-DOS-QUATRO-TRONOS4.jpg"
+                alt="Capa do livro O Poder dos Quatro Tronos 4"
+                class="book-cover w-24 md:w-40 h-auto rounded-lg border-4 border-accent-gold cursor-default"
+                onerror="this.onerror=null;this.src='https://placehold.co/150x225/4b5563/ffffff?text=Capa+2';"
+            >
+
+            <img
+                src="https://raw.githubusercontent.com/TSTELLES/kingdom-quill/main/Capa-vol-único-1zin.jpg"
+                alt="Capa do livro Volume Único 1zin"
+                class="book-cover w-20 md:w-32 h-auto rounded-lg border-2 border-accent-gold opacity-80 hover:opacity-100 cursor-default"
+                onerror="this.onerror=null;this.src='https://placehold.co/120x180/4b5563/ffffff?text=Capa+3';"
+            >
+        </section>
+        
+        <div class="flex justify-center mb-16">
+            <div class="h-0.5 w-full max-w-xs bg-gradient-to-r from-transparent via-accent-gold to-transparent rounded-full"></div>
+        </div>
+
+        <section id="devocionais" class="grid grid-cols-1 lg:grid-cols-1 gap-12 max-w-3xl mx-auto">
+
+            <div class="bg-black border border-accent-gold/50 p-6 md:p-8 rounded-xl shadow-2xl transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_0_50px_rgba(212,175,55,0.8)]">
+                <div class="flex flex-col items-center text-center">
+                    
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-metallic-gold">
+                        What You’ll Find Here
+                    </h2>
+                    
+                    <p class="text-gray-200 text-lg mb-0 text-left leading-relaxed mt-4">
+                        The fiction titles presented by Kingdom & Quill are written by T. S. Telles and crafted to stand shoulder-to-shoulder with mainstream entertainment in the romance and fantasy genres. Though designed to entertain, these stories carry themes that naturally resonate with the Christian community and, out of respect for the convictions behind this project, they avoid explicit sexual content and any values that clash with a life of faith. You won’t find identity-driven manifestos or crude language here. What you’ll find are deep narratives—plots that balance tension and purpose without losing their edge.
+                        <br><br>
+                        If you came for romance, suspense, or fantasy, you’re in the right place. Check each book’s content rating and its availability in your preferred language.
+                        <br><br>
+                        Sit back. Explore. And let each story speak for itself. God bless you.
+                    </p>
+
+                </div>
+            </div>
+
+        </section>
+        
+        <section id="destaque-wtny" class="grid grid-cols-1 lg:grid-cols-1 gap-12 max-w-3xl mx-auto mt-12">
+            
+            <div class="bg-black border border-accent-gold/50 p-6 rounded-xl shadow-2xl transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_0_50px_rgba(212,175,55,0.8)]">
+                <div class="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-6"> 
+                    
+                    <img
+                        src="https://raw.githubusercontent.com/TSTELLES/kingdom-quill/main/Welcome-to-New-York-Born-Ricciwood.jpg"
+                        alt="Capa do livro Welcome to New York Born Ricciwood"
+                        class="book-cover w-32 md:w-36 h-auto rounded-lg border-2 border-accent-gold flex-shrink-0 cursor-default"
+                        onerror="this.onerror=null;this.src='https://placehold.co/150x225/4b5563/ffffff?text=WTNY';"
+                    >
+                    
+                    <div class="flex-grow w-full text-center md:text-left">
+                        <h3 class="text-3xl font-bold mb-2 text-metallic-gold">
+                            Welcome to New York
+                        </h3>
+                        <p class="text-gray-300 text-lg mb-4">
+                            Part 1: Born Ricciwood
+                        </p>
+                        <p class="text-gray-400 text-sm mb-4">
+                            <span class="font-bold text-accent-gold">Genre:</span> Contemporary Romance, Christian Romance, Urban Romance, Emotional Drama, Crime Fiction, Fan Fiction
+                            <br>
+                            <span class="font-bold text-accent-gold">Language:</span> English (US), Portuguese (Brazil)
+                        </p>
+                        
+                        <div class="text-gray-300 text-sm leading-relaxed mb-6 space-y-2 text-left">
+                            <p>Gabriel Ricciwood has always been a mystery—even to himself. Haunted by tragedy, carrying the legacy of a last name no one dares speak aloud, Gabriel steps into Sant’Hale, an elite Manhattan school where silence is survival and history is rewritten to serve the powerful.</p>
+                            <p>He doesn’t belong.</p>
+                            <p>Not with the rich heirs of the Council. Not with the perfect girls. Not with the stories they tell of his grandfather. But beneath the marble halls and well-dressed lies, Gabriel finds something he never expected: truth, loyalty, faith—and maybe even love. Between whispers of betrayal and the scars of a past he didn’t choose, Gabriel must decide who he is, what he believes, and how far he’s willing to go to protect the people he’s learning to care about.</p>
+                        </div>
+
+                        <p class="text-sm text-red-400 font-semibold mb-4 italic">
+                            This book is recommended for readers aged 16 and older due to mature themes.
+                        </p>
+                        
+                        <button id="read-more-wtny" class="inline-block bg-accent-gold text-black font-semibold py-2 px-4 rounded-full hover:bg-yellow-500 transition duration-300 text-sm cursor-pointer">
+                            Read More
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        
+        <section id="destaque-o-poder-dos-quatro-tronos-4" class="grid grid-cols-1 lg:grid-cols-1 gap-12 max-w-3xl mx-auto mt-12">
+            
+            <div class="bg-black border border-accent-gold/50 p-6 rounded-xl shadow-2xl transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_0_50px_rgba(212,175,55,0.8)]">
+                 <div class="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-6"> 
+                    
+                    <img
+                        src="https://raw.githubusercontent.com/TSTELLES/kingdom-quill/main/Capa-O-PODER-DOS-QUATRO-TRONOS4.jpg"
+                        alt="Capa do livro O Poder dos Quatro Tronos 4"
+                        class="book-cover w-32 md:w-36 h-auto rounded-lg border-2 border-accent-gold flex-shrink-0 cursor-default"
+                        onerror="this.onerror=null;this.src='https://placehold.co/150x225/4b5563/ffffff?text=FANTASIA';"
+                    >
+                    
+                    <div class="flex-grow w-full text-center md:text-left">
+                        <h3 class="text-3xl font-bold mb-2 text-metallic-gold">
+                            O Poder dos Quatro Tronos
+                        </h3>
+                        <p class="text-gray-400 text-sm mb-4">
+                            <span class="font-bold text-accent-gold">Genre:</span> Fantasy, Adventure, Fiction, Horror, Thriller, Terror, Romance
+                            <br>
+                            <span class="font-bold text-accent-gold">Language:</span> Português (BR)
+                        </p>
+                        
+                        <div class="text-gray-300 text-sm leading-relaxed mb-6 space-y-2 text-left">
+                            <p>Assim como o poder dos deuses, há muito tempo o tecido que unia os bruxos e as criaturas mágicas foi corrompido. Um reino que antes vivia em harmonia mergulhou na escuridão, dividido pela obsessão de um rei.</p>
+                            <p>Durante uma era inteira, um homem perverso governou o Grande Norte com mentiras e falsas narrativas. Bruxos com poderes incompreendidos foram escravizados e punidos por usar sua magia — não para dominar, mas para sobreviver.</p>
+                            <p>Neste primeiro livro da saga Axwar, Alyce é despertada por um chamado antigo: ela carrega um poder destinado a restaurar a justiça e reinar com sabedoria sobre os oprimidos. Mas num mundo atemporal, repleto de bruxos, dragões, caçadores, vampiros e criaturas sombrias, sua maior batalha não será contra monstros… e sim contra os rostos familiares que escondem traições.</p>
+                            <p>Para herdar o trono, Alyce precisará distinguir aliados de inimigos — antes que seja tarde demais.</p>
+                        </div>
+
+                        <p class="text-sm text-red-400 font-semibold mb-4 italic">
+                            Este livro é recomendado para leitores com 18 anos ou mais, devido a temas maduros e cenas de violência intensa.
+                        </p>
+                        
+                        <a href="Axwar-o-poder-dos-quatro-tronos.html" class="inline-block bg-accent-gold text-black font-semibold py-2 px-4 rounded-full hover:bg-yellow-500 transition duration-300 text-sm">
+                            Read More
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        
+        <div class="flex justify-center mt-16">
+            <div class="h-0.5 w-full max-w-xs bg-gradient-to-r from-transparent via-accent-gold to-transparent rounded-full"></div>
+        </div>
+
+    </div> <div id="language-modal" class="fixed inset-0 bg-black bg-opacity-75 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-gray-900 p-8 rounded-xl shadow-2xl max-w-sm w-full border border-accent-gold">
+            <h3 class="text-2xl font-bold mb-6 text-center text-metallic-gold">Select Language</h3>
+            <div class="space-y-4">
+                <a href="welcome-to-ny.html" class="block w-full text-center bg-gray-700 text-white font-semibold py-3 px-4 rounded-lg hover:bg-accent-gold hover:text-black transition duration-300 shadow-md">
+                    English (US)
+                </a>
+                <a href="Bem-vindo-a-Nova-Iorque.html" class="block w-full text-center bg-gray-700 text-white font-semibold py-3 px-4 rounded-lg hover:bg-accent-gold hover:text-black transition duration-300 shadow-md">
+                    Portuguese (Brazil)
+                </a>
+            </div>
+            <button id="close-modal" class="mt-6 w-full text-center text-gray-400 hover:text-white transition duration-300 text-sm focus:outline-none">
+                Close
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const readMoreBtn = document.getElementById('read-more-wtny');
+            const modal = document.getElementById('language-modal');
+            const closeModalBtn = document.getElementById('close-modal');
+            
+            // Verifica se os elementos existem antes de adicionar event listeners
+            if (readMoreBtn && modal && closeModalBtn) {
+                // Abre o Modal
+                readMoreBtn.addEventListener('click', (e) => {
+                    // Previne a navegação padrão do botão/link
+                    e.preventDefault(); 
+                    modal.classList.remove('hidden');
+                });
+
+                // Fecha o Modal pelo botão "Close"
+                closeModalBtn.addEventListener('click', () => {
+                    modal.classList.add('hidden');
+                });
+
+                // Fecha o Modal ao clicar fora da caixa do modal
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.classList.add('hidden');
+                    }
+                });
+            }
+        });
+    </script>
+
+    <footer class="w-full text-center px-4 py-4 text-gray-400 text-sm border-t border-gray-700">
+        <p>&copy; 2025 Kingdom&Quill. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

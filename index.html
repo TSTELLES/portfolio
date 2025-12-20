@@ -28,7 +28,6 @@
             background-color: var(--bg-dark);
             color: var(--text-main);
             overflow-x: hidden;
-            /* Padding inferior removido daqui para controlar no footer */
             padding-bottom: 0; 
         }
 
@@ -91,6 +90,7 @@
             grid-template-columns: 1fr 1fr; 
             gap: 20px;
             align-items: stretch; 
+            margin-bottom: 30px; /* Espaço para o texto descritivo */
         }
 
         .gallery-grid {
@@ -119,6 +119,44 @@
             transform: scale(1.02);
             z-index: 2;
             box-shadow: 0 5px 15px rgba(157, 0, 255, 0.2);
+        }
+
+        /* --- PROJECT DETAILS (NOVO - ESTILO DO TEXTO K&Q) --- */
+        .project-details {
+            background: #111;
+            border: 1px solid #222;
+            border-left: 4px solid var(--accent-purple); /* Detalhe Roxo */
+            padding: 30px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 20px;
+        }
+
+        .project-details h3 {
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 15px;
+        }
+
+        .detail-block {
+            margin-bottom: 15px;
+        }
+
+        .detail-label {
+            color: var(--accent-purple);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .detail-text {
+            color: #bbb;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
         }
 
         /* --- CINEMATIC FADE --- */
@@ -201,12 +239,11 @@
             box-shadow: 0 8px 20px rgba(157, 0, 255, 0.6);
         }
 
-        /* --- SEÇÃO SOBRE MIM (AMARELO/DOURADO) --- */
+        /* --- SEÇÃO SOBRE MIM --- */
         .about-section {
             background-color: #0f0f0f;
             border-top: 1px solid #222;
-            /* Removida borda inferior para fluir melhor pro footer */
-            border-bottom: 1px solid #222; 
+            border-bottom: 1px solid #222;
             padding: 80px 20px;
             margin-bottom: 0;
         }
@@ -215,7 +252,7 @@
             max-width: 900px;
             margin: 0 auto;
             display: flex;
-            align-items: center;
+            align-items: flex-start; 
             gap: 50px;
         }
 
@@ -231,6 +268,7 @@
             flex-shrink: 0;
             overflow: hidden;
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+            margin-top: 10px;
         }
 
         .about-img {
@@ -239,6 +277,10 @@
             object-fit: cover;
         }
         
+        .about-content {
+            padding-top: 80px; /* Copy rebaixada */
+        }
+
         .about-content h2 {
             font-size: 2rem;
             color: #fff;
@@ -393,23 +435,14 @@
         .theme-design .tag { color: #888; border: 1px dashed #444; }
         .theme-design i { color: #333; }
 
-        /* --- FOOTER (Copyright Baixado) --- */
-        footer { 
-            text-align: center; 
-            font-size: 0.8rem; 
-            color: #444; 
-            
-            /* AQUI ESTÁ O AJUSTE: Empurrei 100px para baixo da seção anterior */
-            margin-top: 100px; 
-            
-            padding-bottom: 60px; 
-        }
+        footer { text-align: center; font-size: 0.8rem; color: #444; margin-top: 100px; padding-bottom: 60px; }
 
         @media (max-width: 900px) {
             .featured-wrapper { grid-template-columns: 1fr; }
             .gallery-grid { height: auto; grid-template-rows: 150px 150px; }
             .about-container { flex-direction: column; text-align: center; gap: 30px; }
             .skills-list { justify-content: center; }
+            .about-content { padding-top: 0; }
         }
     </style>
 </head>
@@ -459,6 +492,26 @@
                 </div>
 
             </div>
+
+            <div class="project-details">
+                <h3>Kingdom & Quill — <span style="font-weight: 400; color: #888;">Interactive Global Evangelization & Writing Platform</span></h3>
+                
+                <div class="detail-block">
+                    <span class="detail-label">Challenge:</span>
+                    <p class="detail-text">Design an engaging, interactive web platform for a Christian audience, featuring multilingual Bible versions for over ten countries, devotional and literary materials, and music across multiple platforms, while keeping navigation simple and intuitive for all users. The goal was to balance aesthetics with functionality, delivering an immersive experience.</p>
+                </div>
+
+                <div class="detail-block">
+                    <span class="detail-label">Approach:</span>
+                    <p class="detail-text">Developed a fully responsive HTML/CSS website with interactive elements and mockups. Focused on a clean layout, intuitive navigation, and a modern color palette to reflect creativity and professionalism. Integrated audio samples to allow users to preview content before selecting their preferred platforms.</p>
+                </div>
+
+                <div class="detail-block">
+                    <span class="detail-label">Result:</span>
+                    <p class="detail-text">A polished, user-friendly web experience that showcases proficiency in front-end design, responsive layouts, and interactive, user-focused interfaces.</p>
+                </div>
+            </div>
+
         </section>
 
         <section class="category-section">

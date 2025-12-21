@@ -236,7 +236,7 @@
             transform: translateY(-3px);
         }
  
-        /* --- SEÇÃO SOBRE MIM (AJUSTADO PARA ALINHAMENTO) --- */
+        /* --- SEÇÃO SOBRE MIM --- */
         .about-section {
             background-color: #0f0f0f;
             border-top: 1px solid #222;
@@ -249,7 +249,7 @@
             max-width: 900px;
             margin: 0 auto;
             display: flex;
-            align-items: flex-start; /* Mantém alinhado ao topo */
+            align-items: flex-start; 
             gap: 50px;
         }
  
@@ -265,7 +265,6 @@
             flex-shrink: 0;
             overflow: hidden;
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
-            /* margin-top removido para alinhar com o texto */
         }
  
         .about-img {
@@ -274,16 +273,12 @@
             object-fit: cover;
         }
         
-        .about-content {
-            /* padding-top removido para alinhar com a imagem */
-        }
- 
         .about-content h2 {
             font-size: 2rem;
             color: #fff;
             margin-bottom: 15px;
             text-transform: uppercase;
-            line-height: 1; /* Garante que o título não tenha altura de linha extra no topo */
+            line-height: 1;
         }
         
         .about-content p {
@@ -475,43 +470,20 @@
             transition: background-color 0.3s ease;
         }
 
-        /* ESTILO ESPECÍFICO PARA O BOTÃO VIEW DOURADO */
-        .theme-gold .btn-view {
-             background-color: var(--accent-gold);
-             color: #000;
-        }
-        .theme-gold .btn-view:hover {
-             background-color: #e6c300; 
-        }
+        /* Temas dos Botões */
+        .theme-gold .btn-view { background-color: var(--accent-gold); color: #000; }
+        .theme-gold .btn-view:hover { background-color: #e6c300; }
 
-        /* ESTILO ESPECÍFICO PARA O BOTÃO VIEW NAVY */
-        .theme-navy .btn-view {
-             background-color: var(--accent-navy);
-             color: #000;
-        }
-        .theme-navy .btn-view:hover {
-             background-color: #00cccc; 
-        }
+        .theme-navy .btn-view { background-color: var(--accent-navy); color: #000; }
+        .theme-navy .btn-view:hover { background-color: #00cccc; }
 
-        /* ESTILO ESPECÍFICO PARA O BOTÃO VIEW RED */
-        .theme-red .btn-view {
-             background-color: var(--accent-red);
-             color: #000; 
-        }
-        .theme-red .btn-view:hover {
-             background-color: #cc0000; 
-        }
+        .theme-red .btn-view { background-color: var(--accent-red); color: #000; }
+        .theme-red .btn-view:hover { background-color: #cc0000; }
 
-        /* ESTILO ESPECÍFICO PARA O BOTÃO VIEW PURPLE (SAAS) - NOVO */
-        .theme-purple .btn-view {
-             background-color: var(--accent-purple);
-             color: #fff; 
-        }
-        .theme-purple .btn-view:hover {
-             background-color: #b04dff; 
-        }
+        .theme-purple .btn-view { background-color: var(--accent-purple); color: #fff; }
+        .theme-purple .btn-view:hover { background-color: #b04dff; }
         
-        /* Botão Info redondo para Overlay */
+        /* Botão Info redondo */
         .btn-info-round {
             padding: 12px 24px;
             border-radius: 30px;
@@ -524,10 +496,7 @@
             cursor: pointer;
             transition: 0.3s;
         }
-        .btn-info-round:hover {
-            background: #fff;
-            color: #000;
-        }
+        .btn-info-round:hover { background: #fff; color: #000; }
  
         .dot { width: 8px; height: 8px; border-radius: 50%; }
         .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
@@ -540,24 +509,16 @@
         .theme-red .tag { color: var(--accent-red); border: 1px solid var(--accent-red); }
         .theme-navy .tag { color: var(--accent-navy); border: 1px solid var(--accent-navy); }
         .theme-gold .tag { color: var(--accent-gold); border: 1px solid var(--accent-gold); }
-        .theme-purple .tag { color: var(--accent-purple); border: 1px solid var(--accent-purple); } /* NOVO */
+        .theme-purple .tag { color: var(--accent-purple); border: 1px solid var(--accent-purple); }
         .theme-design .tag { color: #888; border: 1px dashed #444; }
         .theme-design i { color: #333; }
  
         footer { text-align: center; font-size: 0.8rem; color: #444; margin-top: 100px; padding-bottom: 60px; }
  
-        /* --- MEDIA QUERY MOBILE (AJUSTADA) --- */
         @media (max-width: 900px) {
             .featured-wrapper { grid-template-columns: 1fr; }
             .gallery-grid { height: auto; grid-template-rows: 150px 150px; }
-            
-            /* Ajuste da seção About no Mobile */
-            .about-container { 
-                flex-direction: column; 
-                text-align: center; 
-                gap: 30px; 
-                align-items: center; /* Garante que a foto fique centralizada horizontalmente */
-            }
+            .about-container { flex-direction: column; text-align: center; gap: 30px; align-items: center; }
             .skills-list { justify-content: center; }
         }
     </style>
@@ -853,17 +814,22 @@
             <span class="close-btn" id="close-info-saas">&times;</span>
             
             <h2 style="color: var(--accent-purple);">Aura | Modern SaaS</h2>
-            <h3>Modern SaaS Template</h3>
+            <h3>The Ultimate Workflow OS Template</h3>
 
             <div class="info-block">
-                <p class="info-text" style="font-style: italic; color: #fff; margin-bottom: 20px;">The Operating System for your Workflow.</p>
+                <p class="info-text" style="font-style: italic; color: #fff; margin-bottom: 20px;">A futuristic, dark-mode landing page designed for next-gen software companies.</p>
 
-                <p class="info-text">Aura unifies your tools, streamlines your processes, and empowers your team to build faster. Designed for modern companies.</p>
+                <p class="info-text">Aura combines "glassmorphism" aesthetics with high-performance rendering. It features a CSS-only 3D dashboard mockup, interactive bento-grids, and dynamic scroll animations without heavy libraries.</p>
             </div>
 
             <div class="info-block">
-                <span class="info-label" style="color: var(--accent-purple);">Highlights:</span>
-                <p class="info-text">Features a highly responsive bento grid layout, CSS-only 3D mockups, glassmorphism effects, and dynamic scroll animations. Built for scale and conversion.</p>
+                <span class="info-label" style="color: var(--accent-purple);">Key Features:</span>
+                <ul style="list-style: none; margin: 0; padding: 0;">
+                    <li class="info-text" style="margin-bottom: 5px;">• <b>CSS 3D Transformations:</b> Zero-asset dashboard visualization.</li>
+                    <li class="info-text" style="margin-bottom: 5px;">• <b>Bento Grid Layout:</b> Modern, responsive feature showcase.</li>
+                    <li class="info-text" style="margin-bottom: 5px;">• <b>Scroll Reveal:</b> Native Javascript intersection observers.</li>
+                    <li class="info-text">• <b>Full System:</b> Includes Home, Pricing, Contact, and FAQ pages.</li>
+                </ul>
             </div>
         </div>
     </div>
@@ -919,7 +885,7 @@
         btnOpenRed.onclick = function() { infoModalRed.style.display = "flex"; }
         closeInfoRedBtn.onclick = function() { infoModalRed.style.display = "none"; }
 
-        // --- LÓGICA DO MODAL DE INFO (SAAS) - NOVO ---
+        // --- LÓGICA DO MODAL DE INFO (SAAS) ---
         const infoModalSaas = document.getElementById('info-modal-saas');
         const btnOpenSaas = document.getElementById('btn-open-saas');
         const closeInfoSaasBtn = document.getElementById('close-info-saas');

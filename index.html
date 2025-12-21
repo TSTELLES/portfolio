@@ -3,564 +3,906 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AURA | Modern SaaS Template</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;700;800&display=swap" rel="stylesheet">
+    <title>PORTFOLIO | T.S. Telles</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
+    
     <style>
         :root {
-            /* Vibrant Palette (Dark Mode) */
-            --bg-deep: #030014;
-            --bg-card: rgba(255, 255, 255, 0.03);
-            --bg-glass: rgba(255, 255, 255, 0.05);
-            --border-glass: rgba(255, 255, 255, 0.1);
-            
-            --text-white: #ffffff;
-            --text-gray: #a1a1aa;
-            
-            --primary-glow: linear-gradient(180deg, rgba(99,102,241,0) 0%, #6366f1 100%);
-            --accent-cyan: #00f2ea;
-            --accent-purple: #7f00ff;
-            --accent-pink: #ff0080;
-            
-            --gradient-text: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
-            --gradient-btn: linear-gradient(90deg, #7f00ff 0%, #e100ff 100%);
+            --bg-dark: #0a0a0a;
+            --text-main: #ffffff;
+            --card-bg: #151515;
+            --accent-gold: #FFD700;
+            --accent-red: #FF3333;
+            --accent-navy: #00FFFF;
+            --accent-purple: #9D00FF;
+            --section-border: #222;
         }
-
+ 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-deep);
-            color: var(--text-white);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; }
-
-        /* --- BACKGROUND FX --- */
-        .ambient-light {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-        .orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(100px);
-            opacity: 0.4;
-            animation: floatOrb 20s infinite alternate;
-        }
-        .orb-1 { width: 500px; height: 500px; background: var(--accent-purple); top: -100px; left: -100px; }
-        .orb-2 { width: 400px; height: 400px; background: var(--accent-cyan); bottom: 0; right: 0; animation-delay: -5s; }
-        .orb-3 { width: 300px; height: 300px; background: var(--accent-pink); top: 40%; left: 40%; opacity: 0.2; animation-delay: -10s; }
-
-        @keyframes floatOrb {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(50px, 50px) scale(1.1); }
-        }
-
-        /* --- UTILS --- */
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .text-gradient { background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
-        /* --- BUTTONS --- */
-        .btn {
+        html { scroll-behavior: smooth; }
+ 
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            padding-bottom: 0; 
+        }
+ 
+        /* --- HEADER --- */
+        header {
+            text-align: center;
+            padding: 80px 20px 60px;
+            background: radial-gradient(circle at center, #222 0%, #0a0a0a 70%);
+            border-bottom: 1px solid var(--section-border);
+            margin-bottom: 40px;
+        }
+ 
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+ 
+        .subtitle {
+            color: #888;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+ 
+        .creator-signature {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+        .creator-signature:hover { color: #fff; }
+        .creator-signature i { margin-right: 8px; font-size: 1.1rem; }
+ 
+        /* --- LAYOUT GERAL --- */
+        .category-section {
+            max-width: 1200px;
+            margin: 0 auto 80px; 
+            padding: 0 20px;
+        }
+ 
+        .section-title {
+            font-size: 1.5rem;
+            border-left: 4px solid var(--accent-gold);
+            padding-left: 15px;
+            margin-bottom: 30px;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+ 
+        /* --- FEATURED LAYOUT --- */
+        .featured-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr; 
+            gap: 20px;
+            align-items: stretch; 
+            margin-bottom: 30px;
+        }
+ 
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 15px;
+            height: 350px; 
+        }
+ 
+        .gallery-item {
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+ 
+        .gallery-item:hover {
+            border-color: var(--accent-purple);
+            transform: scale(1.02);
+            z-index: 2;
+            box-shadow: 0 5px 15px rgba(157, 0, 255, 0.2);
+        }
+ 
+        /* --- CINEMATIC FADE --- */
+        .cinematic-card {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: #000;
+            border: 1px solid #333;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+ 
+        .cinematic-card .bg-site {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1;
+        }
+ 
+        .cinematic-card .info-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 2;
+            background: linear-gradient(135deg, rgba(26,0,43,0.95), rgba(75,0,130,0.95));
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            opacity: 0; 
+            animation: autoFade 12s infinite ease-in-out;
+            transition: opacity 0.5s ease;
+            padding: 20px;
+        }
+ 
+        @keyframes autoFade {
+            0%, 40% { opacity: 0; }  
+            50%, 90% { opacity: 1; } 
+            100% { opacity: 0; }     
+        }
+ 
+        .cinematic-card:hover .info-overlay {
+            opacity: 1;
+            animation: none;
+        }
+ 
+        /* --- Iframe Thumbnail --- */
+        .live-thumbnail {
+            width: 400%;   
+            height: 400%; 
+            border: 0;
+            transform: scale(0.25); 
+            transform-origin: 0 0;  
+            pointer-events: none; 
+        }
+ 
+        /* --- BOTÕES DO CARD PRINCIPAL --- */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        /* Botão Roxo (Explorer) */
+        .btn-square-purple {
+            background-color: var(--accent-purple);
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 4px; 
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 14px 32px;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 50px;
+        }
+        .btn-square-purple:hover {
+            background-color: #b04dff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(157, 0, 255, 0.6);
+        }
+
+        /* Botão Outline (Info - Genérico para o card principal) */
+        .btn-outline-white {
+            background-color: transparent;
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
             text-decoration: none;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid transparent;
-        }
-
-        .btn-primary {
-            background: var(--gradient-btn);
-            color: #fff;
-            box-shadow: 0 0 20px rgba(127, 0, 255, 0.4);
-        }
-        .btn-primary:hover {
-            box-shadow: 0 0 40px rgba(127, 0, 255, 0.6);
-            transform: translateY(-2px);
-        }
-
-        .btn-glass {
-            background: rgba(255,255,255,0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--border-glass);
-            color: #fff;
-        }
-        .btn-glass:hover {
-            background: rgba(255,255,255,0.15);
-            border-color: #fff;
-        }
-
-        /* --- NAVBAR --- */
-        nav {
-            position: fixed;
-            top: 0; width: 100%;
-            z-index: 1000;
-            padding: 20px 0;
-            transition: 0.3s;
-            backdrop-filter: blur(0px);
-        }
-        nav.scrolled {
-            padding: 15px 0;
-            background: rgba(3, 0, 20, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-glass);
-        }
-        .nav-content { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -1px; display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none;}
-        .logo i { color: var(--accent-cyan); }
-        .nav-links { display: flex; gap: 40px; }
-        .nav-links a { color: var(--text-gray); text-decoration: none; font-weight: 500; transition: 0.3s; }
-        .nav-links a:hover { color: #fff; }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            padding-top: 180px;
-            padding-bottom: 100px;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            padding: 6px 16px;
-            background: rgba(127, 0, 255, 0.15);
-            border: 1px solid rgba(127, 0, 255, 0.3);
-            border-radius: 30px;
-            color: #d8b4fe;
             font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 30px;
-            backdrop-filter: blur(5px);
-            animation: fadeInDown 0.8s ease-out;
-        }
-
-        .hero h1 {
-            font-size: 4.5rem;
-            line-height: 1.1;
-            font-weight: 800;
-            margin-bottom: 25px;
-            letter-spacing: -2px;
-            animation: fadeInUp 0.8s ease-out 0.2s backwards;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-gray);
-            max-width: 700px;
-            margin: 0 auto 50px;
-            animation: fadeInUp 0.8s ease-out 0.4s backwards;
-        }
-
-        .hero-btns {
-            display: flex;
-            gap: 20px;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.6);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
             justify-content: center;
-            animation: fadeInUp 0.8s ease-out 0.6s backwards;
         }
-
-        /* --- DASHBOARD MOCKUP (CSS 3D) --- */
-        .hero-visual {
-            margin-top: 80px;
-            perspective: 2000px;
+        .btn-outline-white:hover {
+            background-color: #fff;
+            color: #000;
+            border-color: #fff;
+            transform: translateY(-3px);
+        }
+ 
+        /* --- SEÇÃO SOBRE MIM --- */
+        .about-section {
+            background-color: #0f0f0f;
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
+            padding: 80px 20px;
+            margin-bottom: 0;
+        }
+        
+        .about-container {
+            max-width: 900px;
+            margin: 0 auto;
             display: flex;
+            align-items: flex-start; 
+            gap: 50px;
+        }
+ 
+        .about-avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: #151515;
+            border: 2px solid var(--accent-gold);
+            display: flex;
+            align-items: center;
             justify-content: center;
-            animation: fadeInUp 1s ease-out 0.8s backwards;
-        }
-
-        .dashboard-container {
-            width: 90%;
-            max-width: 1000px;
-            background: #0c0a1f;
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 20px;
-            box-shadow: 0 0 100px rgba(127, 0, 255, 0.15);
-            padding: 20px;
-            transform: rotateX(20deg) scale(0.9);
-            transition: transform 0.5s ease, box-shadow 0.5s ease;
-            position: relative;
-        }
-        
-        .dashboard-container:hover {
-            transform: rotateX(5deg) scale(0.95);
-            box-shadow: 0 0 120px rgba(0, 242, 234, 0.2);
-        }
-
-        .dash-header { display: flex; gap: 10px; margin-bottom: 20px; }
-        .dash-dot { width: 12px; height: 12px; border-radius: 50%; }
-        .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
-
-        .dash-grid {
-            display: grid;
-            grid-template-columns: 250px 1fr;
-            gap: 20px;
-            height: 500px;
-        }
-        
-        .dash-sidebar { background: rgba(255,255,255,0.03); border-radius: 12px; }
-        .dash-main { background: rgba(0,0,0,0.2); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 20px; }
-        
-        /* Fake UI Elements */
-        .ui-skeleton { background: rgba(255,255,255,0.05); border-radius: 6px; }
-        .ui-chart { flex: 1; border-radius: 12px; background: linear-gradient(180deg, rgba(127,0,255,0.1) 0%, transparent 100%); border-top: 1px solid rgba(127,0,255,0.3); position: relative; overflow: hidden;}
-        .ui-chart::after {
-            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 50%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%237f00ff" fill-opacity="0.3" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
-            background-size: cover;
-        }
-
-        /* --- FEATURES (BENTO GRID) --- */
-        .section-padding { padding: 120px 0; }
-        .section-header { text-align: center; margin-bottom: 80px; max-width: 600px; margin-left: auto; margin-right: auto; }
-        .section-header h2 { font-size: 2.5rem; margin-bottom: 15px; }
-        .section-header p { color: var(--text-gray); }
-
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(2, 300px);
-            gap: 24px;
-        }
-
-        .bento-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-glass);
-            border-radius: 24px;
-            padding: 40px;
-            position: relative;
+            flex-shrink: 0;
             overflow: hidden;
-            transition: 0.3s;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+        }
+ 
+        .about-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
-        .bento-card:hover {
-            background: rgba(255,255,255,0.06);
-            border-color: rgba(255,255,255,0.2);
-            transform: translateY(-5px);
-        }
-
-        .span-2 { grid-column: span 2; }
-        
-        .bento-icon {
-            width: 50px; height: 50px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem; margin-bottom: 20px;
+        .about-content h2 {
+            font-size: 2rem;
             color: #fff;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            line-height: 1;
         }
         
-        .icon-purple { background: linear-gradient(135deg, #7f00ff 0%, #e100ff 100%); box-shadow: 0 10px 20px rgba(127,0,255,0.3); }
-        .icon-cyan { background: linear-gradient(135deg, #00f2ea 0%, #0080ff 100%); box-shadow: 0 10px 20px rgba(0,242,234,0.3); }
-        
-        .bento-card h3 { font-size: 1.5rem; margin-bottom: 10px; }
-        .bento-card p { color: var(--text-gray); font-size: 0.95rem; }
-
-        /* --- LOGO SCROLL (MARQUEE) --- */
-        .logo-slider {
-            background: rgba(255,255,255,0.02);
-            border-top: 1px solid var(--border-glass);
-            border-bottom: 1px solid var(--border-glass);
-            padding: 40px 0;
-            overflow: hidden;
-            position: relative;
+        .about-content p {
+            color: #aaa;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
         }
-        
-        .logo-slider::before, .logo-slider::after {
-            content: ""; position: absolute; top: 0; width: 150px; height: 100%; z-index: 2;
-        }
-        .logo-slider::before { left: 0; background: linear-gradient(to right, var(--bg-deep), transparent); }
-        .logo-slider::after { right: 0; background: linear-gradient(to left, var(--bg-deep), transparent); }
-
-        .slide-track {
+ 
+        .skills-list {
             display: flex;
-            width: calc(200px * 10); /* 200px width * num logos */
-            animation: scroll 20s linear infinite;
+            gap: 10px;
+            flex-wrap: wrap;
         }
-        
-        .slide { width: 200px; display: flex; justify-content: center; align-items: center; }
-        .slide span { font-size: 1.5rem; font-weight: 800; color: #555; text-transform: uppercase; }
-
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-200px * 5)); }
+ 
+        .skill-tag {
+            background: rgba(255,255,255,0.05);
+            color: var(--accent-gold);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+ 
+        /* --- MODAIS (LIGHTBOX & TEXTO) --- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+            padding: 20px;
+        }
+ 
+        /* Lightbox de Imagem */
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 4px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+            animation: zoomIn 0.3s;
         }
 
-        /* --- CTA SECTION --- */
-        .cta-section {
-            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(127,0,255,0.1) 100%);
-            text-align: center;
-            padding: 150px 0;
+        /* Modal de Texto (Genérico) */
+        .info-modal-content {
+            background: #111;
+            border: 1px solid #333;
+            padding: 40px;
+            max-width: 700px;
+            width: 100%;
+            border-radius: 8px;
             position: relative;
+            animation: slideUp 0.4s ease;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
         }
-        
-        .cta-card {
-            background: linear-gradient(135deg, #0d0b21 0%, #151030 100%);
-            border: 1px solid var(--border-glass);
-            border-radius: 30px;
-            padding: 80px 40px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cta-glow {
-            position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(127,0,255,0.2) 0%, transparent 60%);
-            animation: rotate 10s linear infinite;
-        }
-        
-        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-        /* --- FOOTER --- */
-        footer {
-            border-top: 1px solid var(--border-glass);
-            padding: 80px 0 40px;
+        .info-modal-content h2 {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+        .info-modal-content h3 {
+            font-size: 1rem;
+            color: #888;
+            font-weight: 400;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 15px;
+        }
+
+        .info-block { margin-bottom: 20px; }
+        .info-label {
+            font-weight: 700;
+            text-transform: uppercase;
             font-size: 0.9rem;
-            color: var(--text-gray);
+            display: block;
+            margin-bottom: 5px;
+        }
+        .info-text {
+            color: #ccc;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+ 
+        @keyframes zoomIn {
+            from {transform:scale(0.8); opacity: 0;} 
+            to {transform:scale(1); opacity: 1;}
+        }
+        @keyframes slideUp {
+            from {transform:translateY(50px); opacity: 0;} 
+            to {transform:translateY(0); opacity: 1;}
+        }
+ 
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            color: #f1f1f1;
+            font-size: 30px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+            z-index: 100;
+        }
+        .close-btn:hover { color: var(--accent-red); }
+ 
+        /* --- GRID PADRÃO --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+ 
+        .browser-mockup {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+            border: 1px solid #333;
+        }
+        .browser-mockup:hover { transform: translateY(-5px); }
+        
+        .browser-header {
+            background: #252525;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border-bottom: 1px solid #333;
         }
         
-        .footer-grid {
-            display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 60px;
+        .preview-area {
+            height: 220px;
+            position: relative;
+            background-color: #111;
+            overflow: hidden; 
         }
-        .footer-col h4 { color: #fff; margin-bottom: 20px; font-size: 1.1rem; }
-        .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 12px; }
-        .footer-col ul li a { color: var(--text-gray); text-decoration: none; transition: 0.3s; }
-        .footer-col ul li a:hover { color: var(--accent-cyan); }
+ 
+        .preview-placeholder {
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: radial-gradient(#333 1px, transparent 1px); 
+            background-size: 10px 10px;
+        }
+ 
+        .overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 10;
+        }
+        .browser-mockup:hover .overlay { opacity: 1; }
+        
+        /* Container de botões para os mockups menores */
+        .overlay-btns {
+            display: flex;
+            gap: 10px;
+            transform: translateY(10px);
+            transition: transform 0.3s ease;
+        }
+        .browser-mockup:hover .overlay-btns { transform: translateY(0); }
+ 
+        /* Botão VIEW Padrão (Branco) */
+        .btn-view {
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            color: #000;
+            background: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
 
-        /* --- ANIMATIONS & SCROLL REVEAL --- */
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        /* Temas dos Botões */
+        .theme-gold .btn-view { background-color: var(--accent-gold); color: #000; }
+        .theme-gold .btn-view:hover { background-color: #e6c300; }
 
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        .theme-navy .btn-view { background-color: var(--accent-navy); color: #000; }
+        .theme-navy .btn-view:hover { background-color: #00cccc; }
 
-        /* --- RESPONSIVE --- */
+        .theme-red .btn-view { background-color: var(--accent-red); color: #000; }
+        .theme-red .btn-view:hover { background-color: #cc0000; }
+
+        .theme-purple .btn-view { background-color: var(--accent-purple); color: #fff; }
+        .theme-purple .btn-view:hover { background-color: #b04dff; }
+        
+        /* Botão Info redondo */
+        .btn-info-round {
+            padding: 12px 24px;
+            border-radius: 30px;
+            background: transparent;
+            border: 1px solid #fff;
+            color: #fff;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-info-round:hover { background: #fff; color: #000; }
+ 
+        .dot { width: 8px; height: 8px; border-radius: 50%; }
+        .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
+        
+        .card-info { padding: 20px; }
+        .card-info h3 { font-size: 1.1rem; margin-bottom: 5px; color: #fff; }
+        .card-info p { font-size: 0.8rem; color: #777; margin-bottom: 0; }
+        .tag { font-size: 0.65rem; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; display: inline-block; margin-top: 10px; }
+ 
+        .theme-red .tag { color: var(--accent-red); border: 1px solid var(--accent-red); }
+        .theme-navy .tag { color: var(--accent-navy); border: 1px solid var(--accent-navy); }
+        .theme-gold .tag { color: var(--accent-gold); border: 1px solid var(--accent-gold); }
+        .theme-purple .tag { color: var(--accent-purple); border: 1px solid var(--accent-purple); }
+        .theme-design .tag { color: #888; border: 1px dashed #444; }
+        .theme-design i { color: #333; }
+ 
+        footer { text-align: center; font-size: 0.8rem; color: #444; margin-top: 100px; padding-bottom: 60px; }
+ 
         @media (max-width: 900px) {
-            .hero h1 { font-size: 3rem; }
-            .dash-grid { grid-template-columns: 1fr; height: auto; }
-            .dash-sidebar { display: none; }
-            .bento-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
-            .span-2 { grid-column: span 1; }
-            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
-            .nav-links { display: none; }
+            .featured-wrapper { grid-template-columns: 1fr; }
+            .gallery-grid { height: auto; grid-template-rows: 150px 150px; }
+            .about-container { flex-direction: column; text-align: center; gap: 30px; align-items: center; }
+            .skills-list { justify-content: center; }
         }
     </style>
 </head>
 <body>
-
-    <div class="ambient-light">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
-    </div>
-
-    <nav id="navbar">
-        <div class="container nav-content">
-            <a href="Modern-SaaS-Template.html" class="logo">
-                <i class="fas fa-cube"></i> AURA
-            </a>
-            <div class="nav-links">
-                <a href="#features">Features</a> <a href="aura_faq.html">FAQ</a>  <a href="aura_pricing.html">Pricing</a> <a href="aura_contact.html">Contact</a> </div>
-            <a href="aura_login.html" class="btn btn-glass" style="padding: 10px 24px; border-radius: 12px;">Sign In</a>
-        </div>
-    </nav>
-
-    <section class="hero">
-        <div class="container">
-            <div class="hero-badge">v2.0 Available Now</div>
-            <h1 class="text-gradient">The Operating System<br>for your Workflow</h1>
-            <p>Aura unifies your tools, streamlines your processes, and empowers your team to build faster. Designed for modern companies.</p>
-            
-            <div class="hero-btns">
-                <a href="aura_login.html" class="btn btn-primary">Start for Free <i class="fas fa-arrow-right" style="margin-left: 10px;"></i></a>
-                <a href="aura_pricing.html" class="btn btn-glass"><i class="fas fa-play" style="margin-right: 10px;"></i> Watch Demo</a>
-            </div>
-
-            <div class="hero-visual">
-                <div class="dashboard-container">
-                    <div class="dash-header">
-                        <div class="dash-dot red"></div>
-                        <div class="dash-dot yellow"></div>
-                        <div class="dash-dot green"></div>
-                    </div>
-                    <div class="dash-grid">
-                        <div class="dash-sidebar">
-                            <div style="padding: 20px;">
-                                <div class="ui-skeleton" style="height: 10px; width: 60%; margin-bottom: 20px;"></div>
-                                <div class="ui-skeleton" style="height: 8px; width: 80%; margin-bottom: 15px; opacity: 0.5;"></div>
-                                <div class="ui-skeleton" style="height: 8px; width: 70%; margin-bottom: 15px; opacity: 0.5;"></div>
-                                <div class="ui-skeleton" style="height: 8px; width: 85%; margin-bottom: 15px; opacity: 0.5;"></div>
-                            </div>
-                        </div>
-                        <div class="dash-main">
-                            <div style="display:flex; justify-content:space-between;">
-                                <div class="ui-skeleton" style="height: 20px; width: 150px;"></div>
-                                <div class="ui-skeleton" style="height: 20px; width: 80px;"></div>
-                            </div>
-                            <div class="ui-chart"></div>
-                            <div style="display:flex; gap: 15px;">
-                                <div class="ui-skeleton" style="height: 80px; flex: 1;"></div>
-                                <div class="ui-skeleton" style="height: 80px; flex: 1;"></div>
-                                <div class="ui-skeleton" style="height: 80px; flex: 1;"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="logo-slider">
-        <div class="slide-track">
-            <div class="slide"><span>COMPANY</span></div>
-            <div class="slide"><span>BRAND</span></div>
-            <div class="slide"><span>LOGOTYPE</span></div>
-            <div class="slide"><span>STARTUP</span></div>
-            <div class="slide"><span>BUSINESS</span></div>
-            <div class="slide"><span>COMPANY</span></div>
-            <div class="slide"><span>BRAND</span></div>
-            <div class="slide"><span>LOGOTYPE</span></div>
-            <div class="slide"><span>STARTUP</span></div>
-            <div class="slide"><span>BUSINESS</span></div>
-        </div>
-    </div>
-
-    <section class="section-padding" id="features">
-        <div class="container">
-            <div class="section-header reveal">
-                <h2>Built for Scale</h2>
-                <p>Designed to grow with your business. All the essential tools you need in one powerful platform.</p>
-            </div>
-
-            <div class="bento-grid">
-                <div class="bento-card span-2 reveal">
-                    <div>
-                        <div class="bento-icon icon-purple"><i class="fas fa-bolt"></i></div>
-                        <h3>Smart Workflows</h3>
-                        <p>Create complex automations with our visual builder. Connect your favorite apps seamlessly.</p>
-                    </div>
-                    <div class="ui-skeleton" style="height: 100px; margin-top: 30px; opacity: 0.3;"></div>
-                </div>
-                <div class="bento-card reveal">
-                    <div class="bento-icon icon-cyan"><i class="fas fa-shield-alt"></i></div>
-                    <h3>Secure by Design</h3>
-                    <p>We prioritize your data privacy with industry-leading encryption standards.</p>
-                </div>
-                <div class="bento-card reveal">
-                    <div class="bento-icon" style="background: rgba(255,255,255,0.05);"><i class="fas fa-code-branch"></i></div>
-                    <h3>Easy Integration</h3>
-                    <p>Works perfectly with your existing tech stack.</p>
-                </div>
-                <div class="bento-card span-2 reveal">
-                    <div>
-                        <div class="bento-icon icon-purple"><i class="fas fa-chart-line"></i></div>
-                        <h3>Real-time Analytics</h3>
-                        <p>Gain valuable insights with our advanced reporting dashboard. Data-driven decisions made simple.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="container" style="padding-bottom: 100px;">
-        <div class="cta-card reveal">
-            <div class="cta-glow"></div>
-            <div style="position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; text-align: center;">
-                <h2 style="font-size: 3rem; margin-bottom: 20px;">Ready to Get Started?</h2>
-                <p style="color: #a1a1aa; margin-bottom: 40px; max-width: 600px;">Join thousands of teams enhancing their productivity with Aura.</p>
-                <a href="aura_pricing.html" class="btn btn-primary" style="padding: 18px 40px; font-size: 1.1rem;">Get Started Now</a>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <div class="logo" style="margin-bottom: 20px;">
-                        <i class="fas fa-cube"></i> AURA
-                    </div>
-                    <p>Next-generation software solutions for modern businesses.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Product</h4>
-                    <ul>
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="aura_faq.html">FAQ</a></li>
-                        <li><a href="aura_pricing.html">Pricing</a></li>
-                        <li><a href="#">Documentation</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="aura_contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Security</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div style="text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px;">
-                <p>&copy; 2025 Aura Template. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // --- SCROLL REVEAL LOGIC (Vanilla JS) ---
+ 
+    <header>
+        <h1>FEATURED <span style="font-weight: 300; opacity: 0.5;">PROJECTS</span></h1>
+        <p class="subtitle">Web Projects & Interactive Experiences</p>
+        <a href="https://github.com/tstelles" target="_blank" class="creator-signature">
+            <i class="fab fa-github"></i> tstelles
+        </a>
+    </header>
+ 
+    <div id="portfolio">
         
-        document.addEventListener('DOMContentLoaded', () => {
-            const reveals = document.querySelectorAll('.reveal');
+        <section class="category-section">
+            <h2 class="section-title" style="border-color: var(--accent-purple);">Published Sites</h2>
+            
+            <div class="featured-wrapper">
+                
+                <div class="cinematic-card">
+                    <div class="bg-site">
+                        <iframe 
+                           src="KingdomandQuill.html" 
+                           class="live-thumbnail">
+                        </iframe>
+                        <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 30%; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); pointer-events: none;"></div>
+                    </div>
+ 
+                    <div class="info-overlay">
+                        <i class="fas fa-feather-pointed" style="font-size: 3rem; color: var(--accent-purple); text-shadow: 0 0 10px rgba(157, 0, 255, 0.5); margin-bottom: 20px;"></i>
+                        <h3 style="color: #fff; font-size: 1.8rem; margin-bottom: 5px;">Kingdom & Quill</h3>
+                        <p style="color: #ddd; font-size: 1rem; font-style: italic; letter-spacing: 1px; margin-bottom: 10px;">
+                            Ink. Spirit. Legacy.
+                        </p>
+                        
+                        <div class="action-buttons">
+                            <a href="KingdomandQuill.html" target="_blank" class="btn-square-purple">
+                                Explorer
+                            </a>
+                            <button id="btn-open-info" class="btn-outline-white">
+                                Info
+                            </button>
+                        </div>
+                    </div>
+                </div>
+ 
+                <div class="gallery-grid">
+                    <div class="gallery-item" title="Literature" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/literature.jpg');"></div>
+                    <div class="gallery-item" title="Devotionals" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/Devotionals.jpg');"></div>
+                    <div class="gallery-item" title="Album" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/Album.jpg');"></div>
+                    <div class="gallery-item" title="WTNY" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/wtny.jpg');"></div>
+                </div>
+ 
+            </div>
+            
+        </section>
+ 
+        <section class="category-section">
+            <h2 class="section-title" style="border-color: var(--accent-red);">Designs & Pages</h2>
+            <div class="grid-container">
+                
+                <div class="browser-mockup theme-red">
+                    <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                    <div class="preview-area">
+                        <iframe src="red_metallic_template.html" class="live-thumbnail"></iframe>
+                        <div class="overlay">
+                            <div class="overlay-btns">
+                                <a href="red_metallic_template.html" target="_blank" class="btn-view">View</a>
+                                <button id="btn-open-red" class="btn-info-round">Info</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                       <h3>Red Metallic Edition</h3>
+                       <p>High-energy sales landing page.</p>
+                        <span class="tag">HTML5 / CSS3</span>
+                    </div>
+                </div>
+ 
+                <div class="browser-mockup theme-navy">
+                    <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                    <div class="preview-area">
+                        <iframe src="navy_metallic_template.html" class="live-thumbnail"></iframe>
+                        <div class="overlay">
+                             <div class="overlay-btns">
+                                <a href="navy_metallic_template.html" target="_blank" class="btn-view">View</a>
+                                <button id="btn-open-navy" class="btn-info-round">Info</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                       <h3>Navy Tech Edition</h3>
+                       <p>Corporate & Trust focused layout.</p>
+                        <span class="tag">HTML5 / CSS3</span>
+                    </div>
+                </div>
+ 
+                <div class="browser-mockup theme-gold">
+                    <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                    <div class="preview-area">
+                        <iframe src="gold_template.html" class="live-thumbnail"></iframe>
+                        <div class="overlay">
+                            <div class="overlay-btns">
+                                <a href="gold_template.html" target="_blank" class="btn-view">View</a>
+                                <button id="btn-open-gold" class="btn-info-round">Info</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                       <h3>Dark Gold Edition</h3>
+                       <p>Luxury & Premium product page.</p>
+                        <span class="tag">HTML5 / CSS3</span>
+                    </div>
+                </div>
 
-            const revealOnScroll = () => {
-                const windowHeight = window.innerHeight;
-                const elementVisible = 150;
+                <div class="browser-mockup theme-purple">
+                    <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                    <div class="preview-area">
+                        <iframe src="Modern-SaaS-Template.html" class="live-thumbnail"></iframe>
+                        <div class="overlay">
+                            <div class="overlay-btns">
+                                <a href="Modern-SaaS-Template.html" target="_blank" class="btn-view">View</a>
+                                <button id="btn-open-saas" class="btn-info-round">Info</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                       <h3>Aura | Modern SaaS</h3>
+                       <p>The Operating System for your Workflow.</p>
+                        <span class="tag">HTML5 / CSS3</span>
+                    </div>
+                </div>
+ 
+            </div>
+        </section>
+ 
+        <section class="category-section">
+            <h2 class="section-title" style="border-color: #555;">Complete Site Models</h2>
+            <div class="grid-container">
+                
+                <div class="browser-mockup theme-design">
+                    <div class="browser-header"><div class="dot" style="background:#444"></div><div class="dot" style="background:#444"></div></div>
+                    <div class="preview-placeholder">
+                        <i class="far fa-image" style="font-size: 2rem; opacity: 0.2;"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3 style="color: #666;">UI Concept #01</h3>
+                        <p>Dashboard interface mockup.</p>
+                        <span class="tag">Figma / Sketch</span>
+                    </div>
+                </div>
+ 
+                <div class="browser-mockup theme-design">
+                    <div class="browser-header"><div class="dot" style="background:#444"></div><div class="dot" style="background:#444"></div></div>
+                    <div class="preview-placeholder">
+                        <i class="far fa-image" style="font-size: 2rem; opacity: 0.2;"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3 style="color: #666;">Mobile App UI</h3>
+                       <p>Finance application concept.</p>
+                        <span class="tag">Adobe XD</span>
+                    </div>
+                </div>
+ 
+            </div>
+        </section>
+ 
+    </div>
+ 
+    <section class="about-section" id="about">
+        <div class="about-container">
+            
+            <div class="about-avatar">
+                <img src="tstelles-photo.png" alt="T.S. Telles" class="about-img">
+            </div>
+ 
+            <div class="about-content">
+                <h2>About <span style="color: var(--accent-gold);">Me</span></h2>
+                <p>
+                    I am T.S. Telles, a Front-End Developer and Creative Writer. I create and develop templates, websites, and interactive digital experiences. My focus is on delivering ready-to-use projects that are visually consistent, high-quality, and designed for end users and clients seeking practical, aesthetically polished solutions. All projects showcased here are examples of my professional work, demonstrating my skills in design, front-end development, and interactive interfaces.
+                </p>
+                
+                <div class="skills-list">
+                    <span class="skill-tag">HTML5 & CSS3 Development</span>
+                    <span class="skill-tag">Responsive Web Design</span>
+                    <span class="skill-tag">Interactive UI/UX Design</span>
+                    <span class="skill-tag">Web Templates & Landing Pages</span>
+                    <span class="skill-tag">Adobe InDesign, Photoshop & Lightroom</span>
+                    <span class="skill-tag">Video Editing</span>
+                </div>
+            </div>
+ 
+        </div>
+    </section>
+ 
+    <footer>
+        <p>© 2025 T.S. Telles Portfolio. All rights reserved.</p>
+    </footer>
+ 
+    <div id="lightbox" class="modal-overlay">
+        <span class="close-btn" id="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
 
-                reveals.forEach((reveal) => {
-                    const elementTop = reveal.getBoundingClientRect().top;
-                    if (elementTop < windowHeight - elementVisible) {
-                        reveal.classList.add('active');
-                    }
-                });
-            };
+    <div id="info-modal" class="modal-overlay">
+        <div class="info-modal-content" style="border-left: 4px solid var(--accent-purple);">
+            <span class="close-btn" id="close-info">&times;</span>
+            
+            <h2>Kingdom & Quill</h2>
+            <h3>Interactive Global Evangelization & Writing Platform</h3>
 
-            window.addEventListener('scroll', revealOnScroll);
-            revealOnScroll();
+            <div class="info-block">
+                <span class="info-label" style="color: var(--accent-purple);">Challenge:</span>
+                <p class="info-text">Design an engaging, interactive web platform for a Christian audience, featuring multilingual Bible versions for over ten countries, devotional and literary materials, and music across multiple platforms, while keeping navigation simple and intuitive for all users. The goal was to balance aesthetics with functionality, delivering an immersive experience.</p>
+            </div>
 
-            // Navbar Glass Effect on Scroll
-            const navbar = document.getElementById('navbar');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
-                }
-            });
+            <div class="info-block">
+                <span class="info-label" style="color: var(--accent-purple);">Approach:</span>
+                <p class="info-text">Developed a fully responsive HTML/CSS website with interactive elements and mockups. Focused on a clean layout, intuitive navigation, and a modern color palette to reflect creativity and professionalism. Integrated audio samples to allow users to preview content before selecting their preferred platforms.</p>
+            </div>
+
+            <div class="info-block">
+                <span class="info-label" style="color: var(--accent-purple);">Result:</span>
+                <p class="info-text">A polished, user-friendly web experience that showcases proficiency in front-end design, responsive layouts, and interactive, user-focused interfaces.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="info-modal-gold" class="modal-overlay">
+        <div class="info-modal-content" style="border-left: 4px solid var(--accent-gold);">
+            <span class="close-btn" id="close-info-gold">&times;</span>
+            
+            <h2 style="color: var(--accent-gold);">Gold Metallic</h2>
+            <h3>Premium Landing Page Template</h3>
+
+            <div class="info-block">
+                <p class="info-text" style="font-style: italic; color: #fff; margin-bottom: 20px;">A luxury-focused landing page template designed to communicate exclusivity, value, and premium positioning.</p>
+
+                <p class="info-text">Gold Metallic is ideal for high-end products, memberships, digital courses, and exclusive offers that require a strong sense of prestige and trust.</p>
+            </div>
+
+            <div class="info-block">
+                <span class="info-label" style="color: var(--accent-gold);">Technical Specs:</span>
+                <p class="info-text">Built with clean HTML, CSS, and lightweight animations, the template is fully responsive and easy to customize, making it suitable for marketers and developers who need a polished, conversion-oriented presentation without unnecessary complexity.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="info-modal-navy" class="modal-overlay">
+        <div class="info-modal-content" style="border-left: 4px solid var(--accent-navy);">
+            <span class="close-btn" id="close-info-navy">&times;</span>
+            
+            <h2 style="color: var(--accent-navy);">Navy Metallic</h2>
+            <h3>Tech & Authority Landing Page Template</h3>
+
+            <div class="info-block">
+                <p class="info-text" style="font-style: italic; color: #fff; margin-bottom: 20px;">A modern, high-contrast landing page template created to convey trust, technology, and professionalism.</p>
+
+                <p class="info-text">Navy Metallic is well-suited for SaaS products, digital services, software tools, and corporate-focused campaigns.</p>
+            </div>
+
+            <div class="info-block">
+                <span class="info-label" style="color: var(--accent-navy);">Features:</span>
+                <p class="info-text">The layout emphasizes clarity, hierarchy, and readability, combined with subtle metallic animation effects. Fully responsive and built with clean front-end code, this template offers a reliable foundation for professional and tech-oriented projects.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="info-modal-red" class="modal-overlay">
+        <div class="info-modal-content" style="border-left: 4px solid var(--accent-red);">
+            <span class="close-btn" id="close-info-red">&times;</span>
+            
+            <h2 style="color: var(--accent-red);">Red Metallic</h2>
+            <h3>High-Impact Sales Landing Page Template</h3>
+
+            <div class="info-block">
+                <p class="info-text" style="font-style: italic; color: #fff; margin-bottom: 20px;">A bold, high-energy landing page template designed to drive attention and action.</p>
+
+                <p class="info-text">Red Metallic is ideal for limited-time offers, launches, promotions, and conversion-focused sales pages where urgency plays a key role.</p>
+            </div>
+
+            <div class="info-block">
+                <span class="info-label" style="color: var(--accent-red);">Highlights:</span>
+                <p class="info-text">Featuring strong visual contrast, dynamic metallic effects, and a responsive layout, the template is optimized for impact while remaining clean, lightweight, and easy to adapt to different products and campaigns.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="info-modal-saas" class="modal-overlay">
+        <div class="info-modal-content" style="border-left: 4px solid var(--accent-purple);">
+            <span class="close-btn" id="close-info-saas">&times;</span>
+            
+            <h2 style="color: var(--accent-purple);">Aura | Modern SaaS</h2>
+            <h3>The Ultimate Workflow OS Template</h3>
+
+            <div class="info-block">
+                <p class="info-text" style="font-style: italic; color: #fff; margin-bottom: 20px;">A futuristic, dark-mode landing page designed for next-gen software companies.</p>
+
+                <p class="info-text">Aura combines "glassmorphism" aesthetics with high-performance rendering. It features a CSS-only 3D dashboard mockup, interactive bento-grids, and dynamic scroll animations without heavy libraries.</p>
+            </div>
+
+            <div class="info-block">
+                <span class="info-label" style="color: var(--accent-purple);">Key Features:</span>
+                <ul style="list-style: none; margin: 0; padding: 0;">
+                    <li class="info-text" style="margin-bottom: 5px;">• <b>CSS 3D Transformations:</b> Zero-asset dashboard visualization.</li>
+                    <li class="info-text" style="margin-bottom: 5px;">• <b>Bento Grid Layout:</b> Modern, responsive feature showcase.</li>
+                    <li class="info-text" style="margin-bottom: 5px;">• <b>Scroll Reveal:</b> Native Javascript intersection observers.</li>
+                    <li class="info-text">• <b>Full System:</b> Includes Home, Pricing, Contact, and FAQ pages.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+ 
+    <script>
+        // --- LÓGICA DO LIGHTBOX DE IMAGEM ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const closeLightboxBtn = document.getElementById('close-lightbox');
+ 
+        galleryItems.forEach(item => {
+           item.addEventListener('click', function() {
+               const style = window.getComputedStyle(this);
+               const bgImage = style.backgroundImage;
+               const url = bgImage.slice(5, -2);
+               lightbox.style.display = "flex";
+               lightboxImg.src = url;
+           });
         });
+ 
+        closeLightboxBtn.onclick = function() { lightbox.style.display = "none"; }
+        
+        // --- LÓGICA DO MODAL DE INFO (KINGDOM & QUILL) ---
+        const infoModal = document.getElementById('info-modal');
+        const btnOpenInfo = document.getElementById('btn-open-info');
+        const closeInfoBtn = document.getElementById('close-info');
+
+        btnOpenInfo.onclick = function() { infoModal.style.display = "flex"; }
+        closeInfoBtn.onclick = function() { infoModal.style.display = "none"; }
+
+        // --- LÓGICA DO MODAL DE INFO (GOLD) ---
+        const infoModalGold = document.getElementById('info-modal-gold');
+        const btnOpenGold = document.getElementById('btn-open-gold');
+        const closeInfoGoldBtn = document.getElementById('close-info-gold');
+
+        btnOpenGold.onclick = function() { infoModalGold.style.display = "flex"; }
+        closeInfoGoldBtn.onclick = function() { infoModalGold.style.display = "none"; }
+
+        // --- LÓGICA DO MODAL DE INFO (NAVY) ---
+        const infoModalNavy = document.getElementById('info-modal-navy');
+        const btnOpenNavy = document.getElementById('btn-open-navy');
+        const closeInfoNavyBtn = document.getElementById('close-info-navy');
+
+        btnOpenNavy.onclick = function() { infoModalNavy.style.display = "flex"; }
+        closeInfoNavyBtn.onclick = function() { infoModalNavy.style.display = "none"; }
+
+        // --- LÓGICA DO MODAL DE INFO (RED) ---
+        const infoModalRed = document.getElementById('info-modal-red');
+        const btnOpenRed = document.getElementById('btn-open-red');
+        const closeInfoRedBtn = document.getElementById('close-info-red');
+
+        btnOpenRed.onclick = function() { infoModalRed.style.display = "flex"; }
+        closeInfoRedBtn.onclick = function() { infoModalRed.style.display = "none"; }
+
+        // --- LÓGICA DO MODAL DE INFO (SAAS) ---
+        const infoModalSaas = document.getElementById('info-modal-saas');
+        const btnOpenSaas = document.getElementById('btn-open-saas');
+        const closeInfoSaasBtn = document.getElementById('close-info-saas');
+
+        btnOpenSaas.onclick = function() { infoModalSaas.style.display = "flex"; }
+        closeInfoSaasBtn.onclick = function() { infoModalSaas.style.display = "none"; }
+
+        // --- FECHAR QUALQUER MODAL CLICANDO FORA ---
+        window.onclick = function(event) {
+            if (event.target === lightbox) { lightbox.style.display = "none"; }
+            if (event.target === infoModal) { infoModal.style.display = "none"; }
+            if (event.target === infoModalGold) { infoModalGold.style.display = "none"; }
+            if (event.target === infoModalNavy) { infoModalNavy.style.display = "none"; }
+            if (event.target === infoModalRed) { infoModalRed.style.display = "none"; }
+            if (event.target === infoModalSaas) { infoModalSaas.style.display = "none"; }
+        }
     </script>
+ 
 </body>
 </html>

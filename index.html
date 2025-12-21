@@ -65,7 +65,7 @@
             margin-bottom: 30px; color: #fff; text-transform: uppercase; letter-spacing: 1px;
         }
 
-        /* --- FEATURED LAYOUT (USADO EM AMBAS AS SEÇÕES) --- */
+        /* --- FEATURED LAYOUT (ESTILO VITRINE - ESQUERDA/DIREITA) --- */
         .featured-wrapper {
             display: grid;
             grid-template-columns: 1fr 1fr; 
@@ -89,7 +89,7 @@
         .cinematic-card:hover .info-overlay { opacity: 1; animation: none; }
         @keyframes autoFade { 0%, 40% { opacity: 0; } 50%, 90% { opacity: 1; } 100% { opacity: 0; } }
 
-        /* GRID 2x2 (DIREITA) */
+        /* GRID 2x2 PADRÃO (USADO NA SEÇÃO 1) */
         .gallery-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -97,6 +97,29 @@
             gap: 15px;
             height: 350px; 
         }
+
+        /* --- NOVO: GRID ASSIMÉTRICO (3 em cima, 2 embaixo) PARA O AURA --- */
+        .gallery-grid-asymmetric {
+            display: grid;
+            /* Truque: Cria 6 colunas virtuais para permitir divisões de 3 e 2 */
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: 1fr 1fr; /* Duas linhas de altura igual */
+            gap: 15px;
+            height: 350px; /* Altura fixa para alinhar com o card da esquerda */
+        }
+
+        /* Regras para os itens dentro do grid assimétrico */
+        .gallery-grid-asymmetric .thumb-card:nth-child(1),
+        .gallery-grid-asymmetric .thumb-card:nth-child(2),
+        .gallery-grid-asymmetric .thumb-card:nth-child(3) {
+            grid-column: span 2; /* Os 3 primeiros ocupam 2 colunas cada (total 6) */
+        }
+
+        .gallery-grid-asymmetric .thumb-card:nth-child(4),
+        .gallery-grid-asymmetric .thumb-card:nth-child(5) {
+            grid-column: span 3; /* Os 2 últimos ocupam 3 colunas cada (total 6) */
+        }
+
 
         /* Item do Grid (Tipo Imagem) */
         .gallery-item {
@@ -228,6 +251,16 @@
         @media (max-width: 900px) {
             .featured-wrapper { grid-template-columns: 1fr; }
             .gallery-grid { height: auto; grid-template-rows: 150px 150px; }
+            
+            /* Ajuste para o grid assimétrico no mobile: empilhar tudo */
+            .gallery-grid-asymmetric { 
+                grid-template-columns: 1fr 1fr; /* Volta para 2 colunas no mobile ou 1 se preferir */
+                grid-template-rows: auto;
+                height: auto;
+            }
+            /* Reseta os spans no mobile */
+            .gallery-grid-asymmetric .thumb-card:nth-child(n) { grid-column: auto; height: 150px; }
+
             .about-container { flex-direction: column; text-align: center; gap: 30px; align-items: center; }
             .skills-list { justify-content: center; }
         }
@@ -296,18 +329,16 @@
                     </div>
                 </div>
 
-                <div class="gallery-grid">
+                <div class="gallery-grid-asymmetric">
                     
                     <div class="thumb-card" data-src="login.html">
                         <iframe src="login.html"></iframe>
                         <div class="thumb-label">Login</div>
                     </div>
-
                     <div class="thumb-card" data-src="pricing.html">
                         <iframe src="pricing.html"></iframe>
                         <div class="thumb-label">Pricing</div>
                     </div>
-
                     <div class="thumb-card" data-src="contact.html">
                         <iframe src="contact.html"></iframe>
                         <div class="thumb-label">Contact</div>
@@ -316,6 +347,10 @@
                     <div class="thumb-card" data-src="faq.html">
                         <iframe src="faq.html"></iframe>
                         <div class="thumb-label">FAQ</div>
+                    </div>
+                    <div class="thumb-card" data-src="error404.html">
+                        <iframe src="error404.html"></iframe>
+                        <div class="thumb-label">Error 404</div>
                     </div>
 
                 </div>

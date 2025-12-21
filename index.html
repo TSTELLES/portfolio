@@ -144,7 +144,7 @@
         .overlay-btns { display: flex; gap: 10px; transform: translateY(10px); transition: transform 0.3s ease; }
         .browser-mockup:hover .overlay-btns { transform: translateY(0); }
 
-        /* --- BOTÕES PADRÃO (Pill Shape) --- */
+        /* --- BOTÕES --- */
         .btn-view { padding: 12px 24px; border-radius: 30px; text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; color: #000; background: #fff; cursor: pointer; transition: background-color 0.3s ease; }
         .theme-gold .btn-view { background-color: var(--accent-gold); color: #000; }
         .theme-gold .btn-view:hover { background-color: #e6c300; }
@@ -230,7 +230,7 @@
             display: grid;
             grid-template-columns: 3fr 1fr; /* Principal grande, Coluna pequena */
             gap: 15px; 
-            align-items: start;
+            align-items: stretch; /* Garante que ambos tenham a mesma altura base */
             margin-bottom: 40px; 
         }
 
@@ -247,7 +247,8 @@
             border-radius: 6px;
             overflow: hidden;
             background: #151515;
-            height: 62px;
+            flex: 1; /* Altura flexível para preencher o espaço */
+            min-height: 0; /* Permite encolher se necessário */
             position: relative;
             cursor: pointer;
             transition: transform 0.2s, border-color 0.2s;
@@ -333,7 +334,8 @@
                         <div style="margin-left:auto; font-size:0.7rem; color:#666; margin-right:5px;">home.html</div>
                     </div>
                     
-                    <div class="preview-area" style="height: 350px;"> <iframe src="home.html" class="live-thumbnail"></iframe>
+                    <div class="preview-area" style="height: 300px;">
+                        <iframe src="home.html" class="live-thumbnail"></iframe>
                         
                         <div class="overlay">
                             <div class="overlay-btns">
@@ -618,10 +620,10 @@
         // --- NOVA LÓGICA: LIGHTBOX DE IFRAME (PARA AS MINIATURAS AURA) ---
         const iframeModal = document.getElementById('iframe-modal');
         const iframeTarget = document.getElementById('lightbox-iframe-target');
-        const miniBrowsers = document.querySelectorAll('.mini-browser');
+        const thumbCards = document.querySelectorAll('.mini-browser');
         const closeIframeBtn = document.getElementById('close-iframe-modal');
 
-        miniBrowsers.forEach(card => {
+        thumbCards.forEach(card => {
             card.addEventListener('click', function() {
                 const url = this.getAttribute('data-src');
                 if(url) {

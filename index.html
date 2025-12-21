@@ -171,7 +171,7 @@
         .theme-design .tag { color: #888; border: 1px dashed #444; }
         .theme-design i { color: #333; }
 
-        /* --- BOTÕES ACTION (AGORA UNIFORMIZADOS - 30px Radius) --- */
+        /* --- BOTÕES ACTION (UNIFORMIZADOS - 30px Radius) --- */
         .action-buttons { display: flex; gap: 15px; margin-top: 20px; }
         
         .btn-square-purple { 
@@ -225,11 +225,58 @@
 
         footer { text-align: center; font-size: 0.8rem; color: #444; margin-top: 100px; padding-bottom: 60px; }
 
+        /* --- AURA SHOWCASE (VITRINE EXTERNA COMPACTA) --- */
+        .aura-showcase {
+            display: grid;
+            grid-template-columns: 3fr 1fr; /* Principal grande, Coluna pequena */
+            gap: 15px; 
+            align-items: start;
+            margin-bottom: 40px; 
+        }
+
+        .aura-thumbnails {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            height: 100%;
+            justify-content: space-between; 
+        }
+
+        .mini-browser {
+            border: 1px solid #333;
+            border-radius: 6px;
+            overflow: hidden;
+            background: #151515;
+            height: 62px;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .mini-browser:hover {
+            transform: translateX(-5px);
+            border-color: var(--accent-purple);
+        }
+
+        .mini-browser iframe {
+            width: 500%; height: 500%; border: 0; transform: scale(0.2); transform-origin: top left; pointer-events: none; background: #000;
+        }
+
+        .mini-label {
+            position: absolute; bottom: 0; left: 0; width: 100%;
+            background: rgba(0,0,0,0.85); color: #ccc; font-size: 0.55rem; padding: 2px;
+            text-align: center; text-transform: uppercase; letter-spacing: 1px;
+            backdrop-filter: blur(2px); border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
         @media (max-width: 900px) {
             .featured-wrapper { grid-template-columns: 1fr; }
             .gallery-grid { height: auto; grid-template-rows: 150px 150px; }
             .about-container { flex-direction: column; text-align: center; gap: 30px; align-items: center; }
             .skills-list { justify-content: center; }
+            .aura-showcase { grid-template-columns: 1fr; }
+            .aura-thumbnails { flex-direction: row; overflow-x: auto; height: auto; padding-bottom: 10px; }
+            .mini-browser { min-width: 120px; height: 80px; }
         }
     </style>
 </head>
@@ -278,50 +325,61 @@
             
             <h3 style="color: #fff; margin-bottom: 20px; font-weight: 300;">Highlight Project: <span style="color:var(--accent-purple); font-weight:700;">AURA</span></h3>
             
-            <div class="featured-wrapper">
+            <div class="aura-showcase">
                 
-                <div class="cinematic-card">
-                    <div class="bg-site">
-                        <iframe src="home.html" class="live-thumbnail"></iframe>
-                        <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 20%; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); pointer-events: none;"></div>
+                <div class="browser-mockup theme-purple" style="height: 100%;">
+                    <div class="browser-header">
+                        <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                        <div style="margin-left:auto; font-size:0.7rem; color:#666; margin-right:5px;">home.html</div>
                     </div>
-                    <div class="info-overlay">
-                        <i class="fas fa-cube" style="font-size: 3rem; color: var(--accent-purple); text-shadow: 0 0 10px rgba(157, 0, 255, 0.5); margin-bottom: 20px;"></i>
-                        <h3 style="color: #fff; font-size: 1.8rem; margin-bottom: 5px;">Aura | SaaS Template</h3>
-                        <p style="color: #ddd; font-size: 1rem; font-style: italic; letter-spacing: 1px; margin-bottom: 10px;">The Operating System for your Workflow.</p>
-                        <div class="action-buttons">
-                            <a href="home.html" target="_blank" class="btn-square-purple">Live Demo</a>
-                            <button id="btn-open-saas" class="btn-outline-white">Info</button>
+                    
+                    <div class="preview-area" style="height: 350px;"> <iframe src="home.html" class="live-thumbnail"></iframe>
+                        
+                        <div class="overlay">
+                            <div class="overlay-btns">
+                                <a href="home.html" target="_blank" class="btn-view">Live Demo</a>
+                                <button id="btn-open-saas" class="btn-info-round">Info</button>
+                            </div>
                         </div>
+                    </div>
+
+                    <div class="card-info">
+                        <h3>Aura | Modern SaaS</h3>
+                        <p>The Operating System for your Workflow.</p>
+                        <span class="tag">HTML5 / CSS3</span>
                     </div>
                 </div>
 
-                <div class="gallery-grid">
+                <div class="aura-thumbnails">
                     
-                    <div class="thumb-card" data-src="login.html">
+                    <div class="mini-browser" data-src="login.html">
                         <iframe src="login.html"></iframe>
-                        <div class="thumb-label">Login</div>
+                        <div class="mini-label">Login</div>
                     </div>
 
-                    <div class="thumb-card" data-src="pricing.html">
+                    <div class="mini-browser" data-src="pricing.html">
                         <iframe src="pricing.html"></iframe>
-                        <div class="thumb-label">Pricing</div>
+                        <div class="mini-label">Pricing</div>
                     </div>
 
-                    <div class="thumb-card" data-src="contact.html">
-                        <iframe src="contact.html"></iframe>
-                        <div class="thumb-label">Contact</div>
-                    </div>
-
-                    <div class="thumb-card" data-src="faq.html">
+                    <div class="mini-browser" data-src="faq.html">
                         <iframe src="faq.html"></iframe>
-                        <div class="thumb-label">FAQ</div>
+                        <div class="mini-label">FAQ</div>
+                    </div>
+
+                    <div class="mini-browser" data-src="contact.html">
+                        <iframe src="contact.html"></iframe>
+                        <div class="mini-label">Contact</div>
+                    </div>
+
+                    <div class="mini-browser" data-src="error404.html"> <iframe src="error404.html"></iframe>
+                        <div class="mini-label">Error 404</div>
                     </div>
 
                 </div>
 
             </div>
-            <div class="grid-container">
+            <div class="grid-container" style="margin-top: 40px;">
                 <div class="browser-mockup theme-red">
                     <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
                     <div class="preview-area">
@@ -560,10 +618,10 @@
         // --- NOVA LÓGICA: LIGHTBOX DE IFRAME (PARA AS MINIATURAS AURA) ---
         const iframeModal = document.getElementById('iframe-modal');
         const iframeTarget = document.getElementById('lightbox-iframe-target');
-        const thumbCards = document.querySelectorAll('.thumb-card');
+        const miniBrowsers = document.querySelectorAll('.mini-browser');
         const closeIframeBtn = document.getElementById('close-iframe-modal');
 
-        thumbCards.forEach(card => {
+        miniBrowsers.forEach(card => {
             card.addEventListener('click', function() {
                 const url = this.getAttribute('data-src');
                 if(url) {

@@ -18,11 +18,11 @@
             --accent-purple: #9D00FF;
             --section-border: #222;
         }
- 
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         html { scroll-behavior: smooth; }
- 
+
         body {
             font-family: 'Poppins', sans-serif;
             background-color: var(--bg-dark);
@@ -30,7 +30,7 @@
             overflow-x: hidden;
             padding-bottom: 0; 
         }
- 
+
         /* --- HEADER --- */
         header {
             text-align: center;
@@ -39,7 +39,7 @@
             border-bottom: 1px solid var(--section-border);
             margin-bottom: 40px;
         }
- 
+
         h1 {
             font-size: 3rem;
             font-weight: 800;
@@ -47,14 +47,14 @@
             margin-bottom: 10px;
             text-transform: uppercase;
         }
- 
+
         .subtitle {
             color: #888;
             font-size: 1.1rem;
             max-width: 600px;
             margin: 0 auto;
         }
- 
+
         .creator-signature {
             display: inline-block;
             margin-top: 20px;
@@ -66,14 +66,14 @@
         }
         .creator-signature:hover { color: #fff; }
         .creator-signature i { margin-right: 8px; font-size: 1.1rem; }
- 
+
         /* --- LAYOUT GERAL --- */
         .category-section {
             max-width: 1200px;
             margin: 0 auto 80px; 
             padding: 0 20px;
         }
- 
+
         .section-title {
             font-size: 1.5rem;
             border-left: 4px solid var(--accent-gold);
@@ -83,7 +83,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
- 
+
         /* --- FEATURED LAYOUT --- */
         .featured-wrapper {
             display: grid;
@@ -92,7 +92,7 @@
             align-items: stretch; 
             margin-bottom: 30px;
         }
- 
+
         .gallery-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -100,7 +100,7 @@
             gap: 15px;
             height: 350px; 
         }
- 
+
         .gallery-item {
             background-color: #1a1a1a;
             border: 1px solid #333;
@@ -113,14 +113,14 @@
             background-position: center;
             background-repeat: no-repeat;
         }
- 
+
         .gallery-item:hover {
             border-color: var(--accent-purple);
             transform: scale(1.02);
             z-index: 2;
             box-shadow: 0 5px 15px rgba(157, 0, 255, 0.2);
         }
- 
+
         /* --- CINEMATIC FADE --- */
         .cinematic-card {
             position: relative;
@@ -132,14 +132,14 @@
             border: 1px solid #333;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
- 
+
         .cinematic-card .bg-site {
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
             z-index: 1;
         }
- 
+
         .cinematic-card .info-overlay {
             position: absolute;
             top: 0; left: 0;
@@ -157,19 +157,19 @@
             transition: opacity 0.5s ease;
             padding: 20px;
         }
- 
+
         @keyframes autoFade {
             0%, 40% { opacity: 0; }  
             50%, 90% { opacity: 1; } 
-            100% { opacity: 0; }     
+            100% { opacity: 0; }      
         }
- 
+
         .cinematic-card:hover .info-overlay {
             opacity: 1;
             animation: none;
         }
- 
-        /* --- Iframe Thumbnail --- */
+
+        /* --- Iframe Thumbnail Padrão --- */
         .live-thumbnail {
             width: 400%;   
             height: 400%; 
@@ -178,7 +178,48 @@
             transform-origin: 0 0;  
             pointer-events: none; 
         }
- 
+
+        /* --- NOVO CSS: SPLIT VIEW PARA O AURA --- */
+        .preview-split {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+
+        .preview-main {
+            flex: 75%; /* Ocupa 75% da largura */
+            height: 100%;
+            position: relative;
+            border-right: 1px solid #333;
+            overflow: hidden;
+        }
+
+        .preview-sidebar {
+            flex: 25%; /* Ocupa 25% da largura */
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            background: #080808;
+        }
+
+        .side-thumb {
+            flex: 1; /* Divide a altura igualmente entre os itens */
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid #333;
+        }
+        .side-thumb:last-child { border-bottom: none; }
+
+        /* Ajuste do iframe nas miniaturas laterais */
+        .side-thumb iframe {
+            width: 500%; 
+            height: 500%; 
+            border: 0;
+            transform: scale(0.2); 
+            transform-origin: top left; 
+            pointer-events: none;
+        }
+
         /* --- BOTÕES DO CARD PRINCIPAL --- */
         .action-buttons {
             display: flex;
@@ -186,7 +227,6 @@
             margin-top: 20px;
         }
 
-        /* Botão Roxo (Explorer) */
         .btn-square-purple {
             background-color: var(--accent-purple);
             color: #fff;
@@ -211,7 +251,6 @@
             box-shadow: 0 8px 20px rgba(157, 0, 255, 0.6);
         }
 
-        /* Botão Outline (Info - Genérico para o card principal) */
         .btn-outline-white {
             background-color: transparent;
             color: #fff;
@@ -235,7 +274,7 @@
             border-color: #fff;
             transform: translateY(-3px);
         }
- 
+
         /* --- SEÇÃO SOBRE MIM --- */
         .about-section {
             background-color: #0f0f0f;
@@ -252,7 +291,7 @@
             align-items: flex-start; 
             gap: 50px;
         }
- 
+
         .about-avatar {
             width: 180px;
             height: 180px;
@@ -266,7 +305,7 @@
             overflow: hidden;
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
         }
- 
+
         .about-img {
             width: 100%;
             height: 100%;
@@ -287,13 +326,13 @@
             margin-bottom: 20px;
             font-size: 0.95rem;
         }
- 
+
         .skills-list {
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
         }
- 
+
         .skill-tag {
             background: rgba(255,255,255,0.05);
             color: var(--accent-gold);
@@ -302,7 +341,7 @@
             font-size: 0.8rem;
             border: 1px solid rgba(255, 215, 0, 0.2);
         }
- 
+
         /* --- MODAIS (LIGHTBOX & TEXTO) --- */
         .modal-overlay {
             display: none;
@@ -318,8 +357,7 @@
             backdrop-filter: blur(5px);
             padding: 20px;
         }
- 
-        /* Lightbox de Imagem */
+
         .lightbox-content {
             max-width: 90%;
             max-height: 90%;
@@ -328,7 +366,6 @@
             animation: zoomIn 0.3s;
         }
 
-        /* Modal de Texto (Genérico) */
         .info-modal-content {
             background: #111;
             border: 1px solid #333;
@@ -368,7 +405,7 @@
             font-size: 0.95rem;
             line-height: 1.6;
         }
- 
+
         @keyframes zoomIn {
             from {transform:scale(0.8); opacity: 0;} 
             to {transform:scale(1); opacity: 1;}
@@ -377,7 +414,7 @@
             from {transform:translateY(50px); opacity: 0;} 
             to {transform:translateY(0); opacity: 1;}
         }
- 
+
         .close-btn {
             position: absolute;
             top: 20px;
@@ -390,14 +427,14 @@
             z-index: 100;
         }
         .close-btn:hover { color: var(--accent-red); }
- 
+
         /* --- GRID PADRÃO --- */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
         }
- 
+
         .browser-mockup {
             background: var(--card-bg);
             border-radius: 12px;
@@ -423,7 +460,7 @@
             background-color: #111;
             overflow: hidden; 
         }
- 
+
         .preview-placeholder {
             height: 220px;
             display: flex;
@@ -432,7 +469,7 @@
             background-image: radial-gradient(#333 1px, transparent 1px); 
             background-size: 10px 10px;
         }
- 
+
         .overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -447,7 +484,6 @@
         }
         .browser-mockup:hover .overlay { opacity: 1; }
         
-        /* Container de botões para os mockups menores */
         .overlay-btns {
             display: flex;
             gap: 10px;
@@ -455,8 +491,7 @@
             transition: transform 0.3s ease;
         }
         .browser-mockup:hover .overlay-btns { transform: translateY(0); }
- 
-        /* Botão VIEW Padrão (Branco) */
+
         .btn-view {
             padding: 12px 24px;
             border-radius: 30px;
@@ -483,7 +518,6 @@
         .theme-purple .btn-view { background-color: var(--accent-purple); color: #fff; }
         .theme-purple .btn-view:hover { background-color: #b04dff; }
         
-        /* Botão Info redondo */
         .btn-info-round {
             padding: 12px 24px;
             border-radius: 30px;
@@ -497,7 +531,7 @@
             transition: 0.3s;
         }
         .btn-info-round:hover { background: #fff; color: #000; }
- 
+
         .dot { width: 8px; height: 8px; border-radius: 50%; }
         .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
         
@@ -505,16 +539,16 @@
         .card-info h3 { font-size: 1.1rem; margin-bottom: 5px; color: #fff; }
         .card-info p { font-size: 0.8rem; color: #777; margin-bottom: 0; }
         .tag { font-size: 0.65rem; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; display: inline-block; margin-top: 10px; }
- 
+
         .theme-red .tag { color: var(--accent-red); border: 1px solid var(--accent-red); }
         .theme-navy .tag { color: var(--accent-navy); border: 1px solid var(--accent-navy); }
         .theme-gold .tag { color: var(--accent-gold); border: 1px solid var(--accent-gold); }
         .theme-purple .tag { color: var(--accent-purple); border: 1px solid var(--accent-purple); }
         .theme-design .tag { color: #888; border: 1px dashed #444; }
         .theme-design i { color: #333; }
- 
+
         footer { text-align: center; font-size: 0.8rem; color: #444; margin-top: 100px; padding-bottom: 60px; }
- 
+
         @media (max-width: 900px) {
             .featured-wrapper { grid-template-columns: 1fr; }
             .gallery-grid { height: auto; grid-template-rows: 150px 150px; }
@@ -524,7 +558,7 @@
     </style>
 </head>
 <body>
- 
+
     <header>
         <h1>FEATURED <span style="font-weight: 300; opacity: 0.5;">PROJECTS</span></h1>
         <p class="subtitle">Web Projects & Interactive Experiences</p>
@@ -532,7 +566,7 @@
             <i class="fab fa-github"></i> tstelles
         </a>
     </header>
- 
+
     <div id="portfolio">
         
         <section class="category-section">
@@ -548,7 +582,7 @@
                         </iframe>
                         <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 30%; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); pointer-events: none;"></div>
                     </div>
- 
+
                     <div class="info-overlay">
                         <i class="fas fa-feather-pointed" style="font-size: 3rem; color: var(--accent-purple); text-shadow: 0 0 10px rgba(157, 0, 255, 0.5); margin-bottom: 20px;"></i>
                         <h3 style="color: #fff; font-size: 1.8rem; margin-bottom: 5px;">Kingdom & Quill</h3>
@@ -566,18 +600,18 @@
                         </div>
                     </div>
                 </div>
- 
+
                 <div class="gallery-grid">
                     <div class="gallery-item" title="Literature" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/literature.jpg');"></div>
                     <div class="gallery-item" title="Devotionals" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/Devotionals.jpg');"></div>
                     <div class="gallery-item" title="Album" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/Album.jpg');"></div>
                     <div class="gallery-item" title="WTNY" style="background-image: url('https://raw.githubusercontent.com/TSTELLES/portfolio/main/wtny.jpg');"></div>
                 </div>
- 
+
             </div>
             
         </section>
- 
+
         <section class="category-section">
             <h2 class="section-title" style="border-color: var(--accent-red);">Designs & Pages</h2>
             <div class="grid-container">
@@ -599,7 +633,7 @@
                         <span class="tag">HTML5 / CSS3</span>
                     </div>
                 </div>
- 
+
                 <div class="browser-mockup theme-navy">
                     <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
                     <div class="preview-area">
@@ -617,7 +651,7 @@
                         <span class="tag">HTML5 / CSS3</span>
                     </div>
                 </div>
- 
+
                 <div class="browser-mockup theme-gold">
                     <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
                     <div class="preview-area">
@@ -637,26 +671,50 @@
                 </div>
 
                 <div class="browser-mockup theme-purple">
-                    <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                    <div class="browser-header">
+                        <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                        <div style="margin-left:auto; font-size:0.7rem; color:#666; margin-right:5px;">5 Pages included</div>
+                    </div>
+                    
                     <div class="preview-area">
-                        <iframe src="home.html" class="live-thumbnail"></iframe>
+                        <div class="preview-split">
+                            <div class="preview-main">
+                                <iframe src="home.html" class="live-thumbnail"></iframe>
+                            </div>
+                            <div class="preview-sidebar">
+                                <div class="side-thumb">
+                                    <iframe src="login.html"></iframe>
+                                </div>
+                                <div class="side-thumb">
+                                    <iframe src="contact.html"></iframe>
+                                </div>
+                                <div class="side-thumb">
+                                    <iframe src="faq.html"></iframe>
+                                </div>
+                                <div class="side-thumb">
+                                    <iframe src="404.html"></iframe>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="overlay">
                             <div class="overlay-btns">
-                                <a href="home.html" target="_blank" class="btn-view">View</a>
+                                <a href="home.html" target="_blank" class="btn-view">View Demo</a>
                                 <button id="btn-open-saas" class="btn-info-round">Info</button>
                             </div>
                         </div>
                     </div>
+
                     <div class="card-info">
-                       <h3>Aura | Modern SaaS</h3>
-                       <p>The Operating System for your Workflow.</p>
+                        <h3>Aura | Modern SaaS</h3>
+                        <p>The Operating System for your Workflow.</p>
                         <span class="tag">HTML5 / CSS3</span>
                     </div>
                 </div>
- 
+
             </div>
         </section>
- 
+
         <section class="category-section">
             <h2 class="section-title" style="border-color: #555;">Complete Site Models</h2>
             <div class="grid-container">
@@ -672,7 +730,7 @@
                         <span class="tag">Figma / Sketch</span>
                     </div>
                 </div>
- 
+
                 <div class="browser-mockup theme-design">
                     <div class="browser-header"><div class="dot" style="background:#444"></div><div class="dot" style="background:#444"></div></div>
                     <div class="preview-placeholder">
@@ -684,19 +742,19 @@
                         <span class="tag">Adobe XD</span>
                     </div>
                 </div>
- 
+
             </div>
         </section>
- 
+
     </div>
- 
+
     <section class="about-section" id="about">
         <div class="about-container">
             
             <div class="about-avatar">
                 <img src="tstelles-photo.png" alt="T.S. Telles" class="about-img">
             </div>
- 
+
             <div class="about-content">
                 <h2>About <span style="color: var(--accent-gold);">Me</span></h2>
                 <p>
@@ -712,14 +770,14 @@
                     <span class="skill-tag">Video Editing</span>
                 </div>
             </div>
- 
+
         </div>
     </section>
- 
+
     <footer>
         <p>© 2025 T.S. Telles Portfolio. All rights reserved.</p>
     </footer>
- 
+
     <div id="lightbox" class="modal-overlay">
         <span class="close-btn" id="close-lightbox">&times;</span>
         <img class="lightbox-content" id="lightbox-img">
@@ -828,19 +886,19 @@
                     <li class="info-text" style="margin-bottom: 5px;">• <b>CSS 3D Transformations:</b> Zero-asset dashboard visualization.</li>
                     <li class="info-text" style="margin-bottom: 5px;">• <b>Bento Grid Layout:</b> Modern, responsive feature showcase.</li>
                     <li class="info-text" style="margin-bottom: 5px;">• <b>Scroll Reveal:</b> Native Javascript intersection observers.</li>
-                    <li class="info-text">• <b>Full System:</b> Includes Home, Pricing, Contact, and FAQ pages.</li>
+                    <li class="info-text">• <b>Full System:</b> Includes Home, Pricing, Contact, Login, and FAQ pages.</li>
                 </ul>
             </div>
         </div>
     </div>
- 
+
     <script>
         // --- LÓGICA DO LIGHTBOX DE IMAGEM ---
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
         const galleryItems = document.querySelectorAll('.gallery-item');
         const closeLightboxBtn = document.getElementById('close-lightbox');
- 
+
         galleryItems.forEach(item => {
            item.addEventListener('click', function() {
                const style = window.getComputedStyle(this);
@@ -850,7 +908,7 @@
                lightboxImg.src = url;
            });
         });
- 
+
         closeLightboxBtn.onclick = function() { lightbox.style.display = "none"; }
         
         // --- LÓGICA DO MODAL DE INFO (KINGDOM & QUILL) ---
@@ -903,6 +961,6 @@
             if (event.target === infoModalSaas) { infoModalSaas.style.display = "none"; }
         }
     </script>
- 
+
 </body>
 </html>

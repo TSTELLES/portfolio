@@ -48,40 +48,21 @@
             text-transform: uppercase;
         }
 
-        .subtitle {
-            color: #888;
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+        .subtitle { color: #888; font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
 
         .creator-signature {
-            display: inline-block;
-            margin-top: 20px;
-            text-decoration: none;
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 0.9rem;
-            font-weight: 400;
-            transition: color 0.3s ease;
+            display: inline-block; margin-top: 20px; text-decoration: none; color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem; font-weight: 400; transition: color 0.3s ease;
         }
         .creator-signature:hover { color: #fff; }
         .creator-signature i { margin-right: 8px; font-size: 1.1rem; }
 
         /* --- LAYOUT GERAL --- */
-        .category-section {
-            max-width: 1200px;
-            margin: 0 auto 80px; 
-            padding: 0 20px;
-        }
+        .category-section { max-width: 1200px; margin: 0 auto 80px; padding: 0 20px; }
 
         .section-title {
-            font-size: 1.5rem;
-            border-left: 4px solid var(--accent-gold);
-            padding-left: 15px;
-            margin-bottom: 30px;
-            color: #fff;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-size: 1.5rem; border-left: 4px solid var(--accent-gold); padding-left: 15px;
+            margin-bottom: 30px; color: #fff; text-transform: uppercase; letter-spacing: 1px;
         }
 
         /* --- FEATURED LAYOUT (ESTILO VITRINE) --- */
@@ -95,51 +76,18 @@
 
         /* Esquerda: Card Grande */
         .cinematic-card {
-            position: relative;
-            width: 100%;
-            height: 350px;
-            border-radius: 12px;
-            overflow: hidden;
-            background-color: #000;
-            border: 1px solid #333;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative; width: 100%; height: 350px; border-radius: 12px; overflow: hidden;
+            background-color: #000; border: 1px solid #333; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
-
-        .cinematic-card .bg-site {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: 1;
-        }
-
+        .cinematic-card .bg-site { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
         .cinematic-card .info-overlay {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: 2;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2;
             background: linear-gradient(135deg, rgba(26,0,43,0.95), rgba(75,0,130,0.95));
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            opacity: 0; 
-            animation: autoFade 12s infinite ease-in-out;
-            transition: opacity 0.5s ease;
-            padding: 20px;
+            color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+            opacity: 0; animation: autoFade 12s infinite ease-in-out; transition: opacity 0.5s ease; padding: 20px;
         }
-
-        @keyframes autoFade {
-            0%, 40% { opacity: 0; }  
-            50%, 90% { opacity: 1; } 
-            100% { opacity: 0; }      
-        }
-
-        .cinematic-card:hover .info-overlay {
-            opacity: 1;
-            animation: none;
-        }
+        .cinematic-card:hover .info-overlay { opacity: 1; animation: none; }
+        @keyframes autoFade { 0%, 40% { opacity: 0; } 50%, 90% { opacity: 1; } 100% { opacity: 0; } }
 
         /* Direita: Grade 2x2 */
         .gallery-grid {
@@ -152,187 +100,70 @@
 
         /* Item da grade (Imagem estática) */
         .gallery-item {
-            background-color: #1a1a1a;
-            border: 1px solid #333;
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            background-color: #1a1a1a; border: 1px solid #333; border-radius: 8px; overflow: hidden;
+            position: relative; cursor: pointer; transition: transform 0.3s ease, border-color 0.3s ease;
+            background-size: cover; background-position: center; background-repeat: no-repeat;
         }
-        .gallery-item:hover {
-            border-color: var(--accent-purple);
-            transform: scale(1.02);
-            z-index: 2;
-            box-shadow: 0 5px 15px rgba(157, 0, 255, 0.2);
-        }
+        .gallery-item:hover { border-color: var(--accent-purple); transform: scale(1.02); z-index: 2; box-shadow: 0 5px 15px rgba(157, 0, 255, 0.2); }
 
-        /* Item da grade (Live HTML - NOVO PARA O AURA) */
+        /* Item da grade (Live HTML - AURA) */
         .thumb-card {
-            background-color: #111;
-            border: 1px solid #333;
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            background-color: #111; border: 1px solid #333; border-radius: 8px; overflow: hidden;
+            position: relative; transition: transform 0.3s ease, border-color 0.3s ease; cursor: pointer;
         }
-        .thumb-card:hover {
-            border-color: var(--accent-purple);
-            transform: scale(1.02);
-            z-index: 2;
-        }
+        .thumb-card:hover { border-color: var(--accent-purple); transform: scale(1.02); z-index: 2; box-shadow: 0 0 15px rgba(157, 0, 255, 0.3); }
         
-        /* Iframe ajustado para caber no quadradinho */
         .thumb-card iframe {
-            width: 400%;
-            height: 400%;
-            border: 0;
-            transform: scale(0.25);
-            transform-origin: 0 0;
-            pointer-events: none;
+            width: 400%; height: 400%; border: 0; transform: scale(0.25);
+            transform-origin: 0 0; pointer-events: none; /* Mouse ignora iframe, clica na div pai */
         }
 
-        /* Label flutuante no quadradinho */
         .thumb-label {
-            position: absolute;
-            bottom: 0; left: 0; width: 100%;
-            background: rgba(0,0,0,0.8);
-            color: #ccc;
-            font-size: 0.7rem;
-            padding: 5px;
-            text-align: center;
-            text-transform: uppercase;
-            font-weight: 600;
-            backdrop-filter: blur(2px);
-            border-top: 1px solid rgba(255,255,255,0.1);
+            position: absolute; bottom: 0; left: 0; width: 100%;
+            background: rgba(0,0,0,0.8); color: #ccc; font-size: 0.7rem; padding: 5px;
+            text-align: center; text-transform: uppercase; font-weight: 600;
+            backdrop-filter: blur(2px); border-top: 1px solid rgba(255,255,255,0.1);
         }
 
-        /* --- Iframe Geral (Card Grande) --- */
-        .live-thumbnail {
-            width: 400%;   
-            height: 400%; 
-            border: 0;
-            transform: scale(0.25); 
-            transform-origin: 0 0;  
-            pointer-events: none; 
-        }
+        .live-thumbnail { width: 400%; height: 400%; border: 0; transform: scale(0.25); transform-origin: 0 0; pointer-events: none; }
 
         /* --- GRID PADRÃO (Cards inferiores) --- */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
 
         .browser-mockup {
-            background: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease;
-            border: 1px solid #333;
+            background: var(--card-bg); border-radius: 12px; overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: transform 0.3s ease; border: 1px solid #333;
         }
         .browser-mockup:hover { transform: translateY(-5px); }
-        
-        .browser-header {
-            background: #252525;
-            padding: 10px 15px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            border-bottom: 1px solid #333;
-        }
-        
-        .preview-area {
-            height: 220px;
-            position: relative;
-            background-color: #111;
-            overflow: hidden; 
-        }
+        .browser-header { background: #252525; padding: 10px 15px; display: flex; align-items: center; gap: 6px; border-bottom: 1px solid #333; }
+        .preview-area { height: 220px; position: relative; background-color: #111; overflow: hidden; }
+        .preview-placeholder { height: 220px; display: flex; align-items: center; justify-content: center; background-image: radial-gradient(#333 1px, transparent 1px); background-size: 10px 10px; }
 
-        .preview-placeholder {
-            height: 220px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-image: radial-gradient(#333 1px, transparent 1px); 
-            background-size: 10px 10px;
-        }
-
-        .overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7);
-            display: flex;
-            flex-direction: column; 
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 10;
-        }
+        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; z-index: 10; }
         .browser-mockup:hover .overlay { opacity: 1; }
-        
-        .overlay-btns {
-            display: flex;
-            gap: 10px;
-            transform: translateY(10px);
-            transition: transform 0.3s ease;
-        }
+        .overlay-btns { display: flex; gap: 10px; transform: translateY(10px); transition: transform 0.3s ease; }
         .browser-mockup:hover .overlay-btns { transform: translateY(0); }
 
         /* --- BOTÕES --- */
-        .btn-view {
-            padding: 12px 24px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            color: #000;
-            background: #fff;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        /* Temas dos Botões */
+        .btn-view { padding: 12px 24px; border-radius: 30px; text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; color: #000; background: #fff; cursor: pointer; transition: background-color 0.3s ease; }
         .theme-gold .btn-view { background-color: var(--accent-gold); color: #000; }
         .theme-gold .btn-view:hover { background-color: #e6c300; }
-
         .theme-navy .btn-view { background-color: var(--accent-navy); color: #000; }
         .theme-navy .btn-view:hover { background-color: #00cccc; }
-
         .theme-red .btn-view { background-color: var(--accent-red); color: #000; }
         .theme-red .btn-view:hover { background-color: #cc0000; }
-
         .theme-purple .btn-view { background-color: var(--accent-purple); color: #fff; }
         .theme-purple .btn-view:hover { background-color: #b04dff; }
         
-        .btn-info-round {
-            padding: 12px 24px;
-            border-radius: 30px;
-            background: transparent;
-            border: 1px solid #fff;
-            color: #fff;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+        .btn-info-round { padding: 12px 24px; border-radius: 30px; background: transparent; border: 1px solid #fff; color: #fff; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; cursor: pointer; transition: 0.3s; }
         .btn-info-round:hover { background: #fff; color: #000; }
 
         .dot { width: 8px; height: 8px; border-radius: 50%; }
         .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
-        
         .card-info { padding: 20px; }
         .card-info h3 { font-size: 1.1rem; margin-bottom: 5px; color: #fff; }
         .card-info p { font-size: 0.8rem; color: #777; margin-bottom: 0; }
         .tag { font-size: 0.65rem; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; display: inline-block; margin-top: 10px; }
-
         .theme-red .tag { color: var(--accent-red); border: 1px solid var(--accent-red); }
         .theme-navy .tag { color: var(--accent-navy); border: 1px solid var(--accent-navy); }
         .theme-gold .tag { color: var(--accent-gold); border: 1px solid var(--accent-gold); }
@@ -340,27 +171,15 @@
         .theme-design .tag { color: #888; border: 1px dashed #444; }
         .theme-design i { color: #333; }
 
-        /* --- BOTÕES ACTION (Explorer/Info no card Cinematic) --- */
+        /* --- BOTÕES ACTION --- */
         .action-buttons { display: flex; gap: 15px; margin-top: 20px; }
-        .btn-square-purple {
-            background-color: var(--accent-purple); color: #fff; padding: 10px 24px; border-radius: 4px; 
-            font-weight: 700; text-transform: uppercase; text-decoration: none; font-size: 0.85rem; letter-spacing: 1px;
-            border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 5px 15px rgba(0,0,0,0.4); transition: all 0.3s ease;
-            cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
-        }
+        .btn-square-purple { background-color: var(--accent-purple); color: #fff; padding: 10px 24px; border-radius: 4px; font-weight: 700; text-transform: uppercase; text-decoration: none; font-size: 0.85rem; letter-spacing: 1px; border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 5px 15px rgba(0,0,0,0.4); transition: all 0.3s ease; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
         .btn-square-purple:hover { background-color: #b04dff; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(157, 0, 255, 0.6); }
-        .btn-outline-white {
-            background-color: transparent; color: #fff; padding: 10px 24px; border-radius: 4px;
-            font-weight: 700; text-transform: uppercase; text-decoration: none; font-size: 0.85rem; letter-spacing: 1px;
-            border: 1px solid rgba(255,255,255,0.6); transition: all 0.3s ease; cursor: pointer; display: inline-flex;
-            align-items: center; justify-content: center;
-        }
+        .btn-outline-white { background-color: transparent; color: #fff; padding: 10px 24px; border-radius: 4px; font-weight: 700; text-transform: uppercase; text-decoration: none; font-size: 0.85rem; letter-spacing: 1px; border: 1px solid rgba(255,255,255,0.6); transition: all 0.3s ease; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
         .btn-outline-white:hover { background-color: #fff; color: #000; border-color: #fff; transform: translateY(-3px); }
 
         /* --- SEÇÃO SOBRE MIM --- */
-        .about-section {
-            background-color: #0f0f0f; border-top: 1px solid #222; border-bottom: 1px solid #222; padding: 80px 20px; margin-bottom: 0;
-        }
+        .about-section { background-color: #0f0f0f; border-top: 1px solid #222; border-bottom: 1px solid #222; padding: 80px 20px; margin-bottom: 0; }
         .about-container { max-width: 900px; margin: 0 auto; display: flex; align-items: flex-start; gap: 50px; }
         .about-avatar { width: 180px; height: 180px; border-radius: 50%; background: #151515; border: 2px solid var(--accent-gold); display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; box-shadow: 0 0 20px rgba(255, 215, 0, 0.1); }
         .about-img { width: 100%; height: 100%; object-fit: cover; }
@@ -371,7 +190,13 @@
 
         /* --- MODAIS --- */
         .modal-overlay { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.95); justify-content: center; align-items: center; backdrop-filter: blur(5px); padding: 20px; }
+        
         .lightbox-content { max-width: 90%; max-height: 90%; border-radius: 4px; box-shadow: 0 0 30px rgba(0,0,0,0.8); animation: zoomIn 0.3s; }
+        
+        /* Modal para Iframe (Tamanho maior) */
+        .lightbox-iframe-wrapper { width: 90%; height: 85%; background: #000; border-radius: 8px; border: 1px solid #333; overflow: hidden; animation: zoomIn 0.3s; position: relative; }
+        .lightbox-iframe-wrapper iframe { width: 100%; height: 100%; border: none; }
+
         .info-modal-content { background: #111; border: 1px solid #333; padding: 40px; max-width: 700px; width: 100%; border-radius: 8px; position: relative; animation: slideUp 0.4s ease; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
         .info-modal-content h2 { font-size: 1.8rem; color: #fff; margin-bottom: 5px; }
         .info-modal-content h3 { font-size: 1rem; color: #888; font-weight: 400; margin-bottom: 30px; border-bottom: 1px solid #333; padding-bottom: 15px; }
@@ -459,22 +284,22 @@
 
                 <div class="gallery-grid">
                     
-                    <div class="thumb-card" onclick="window.open('login.html', '_blank')">
+                    <div class="thumb-card" data-src="login.html">
                         <iframe src="login.html"></iframe>
                         <div class="thumb-label">Login</div>
                     </div>
 
-                    <div class="thumb-card" onclick="window.open('pricing.html', '_blank')">
+                    <div class="thumb-card" data-src="pricing.html">
                         <iframe src="pricing.html"></iframe>
                         <div class="thumb-label">Pricing</div>
                     </div>
 
-                    <div class="thumb-card" onclick="window.open('contact.html', '_blank')">
+                    <div class="thumb-card" data-src="contact.html">
                         <iframe src="contact.html"></iframe>
                         <div class="thumb-label">Contact</div>
                     </div>
 
-                    <div class="thumb-card" onclick="window.open('faq.html', '_blank')">
+                    <div class="thumb-card" data-src="faq.html">
                         <iframe src="faq.html"></iframe>
                         <div class="thumb-label">FAQ</div>
                     </div>
@@ -536,7 +361,13 @@
                         <span class="tag">HTML5 / CSS3</span>
                     </div>
                 </div>
+            </div>
+        </section>
 
+        <section class="category-section">
+            <h2 class="section-title" style="border-color: #555;">Complete Site Models</h2>
+            <div class="grid-container">
+                
                 <div class="browser-mockup theme-design">
                     <div class="browser-header"><div class="dot" style="background:#444"></div><div class="dot" style="background:#444"></div></div>
                     <div class="preview-placeholder">
@@ -560,6 +391,7 @@
                         <span class="tag">Adobe XD</span>
                     </div>
                 </div>
+
             </div>
         </section>
 
@@ -594,6 +426,13 @@
     <div id="lightbox" class="modal-overlay">
         <span class="close-btn" id="close-lightbox">&times;</span>
         <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <div id="iframe-modal" class="modal-overlay">
+        <span class="close-btn" id="close-iframe-modal">&times;</span>
+        <div class="lightbox-iframe-wrapper">
+            <iframe id="lightbox-iframe-target"></iframe>
+        </div>
     </div>
 
     <div id="info-modal" class="modal-overlay">
@@ -703,6 +542,27 @@
         });
 
         closeLightboxBtn.onclick = function() { lightbox.style.display = "none"; }
+
+        // --- NOVA LÓGICA: LIGHTBOX DE IFRAME (PARA AS MINIATURAS AURA) ---
+        const iframeModal = document.getElementById('iframe-modal');
+        const iframeTarget = document.getElementById('lightbox-iframe-target');
+        const thumbCards = document.querySelectorAll('.thumb-card');
+        const closeIframeBtn = document.getElementById('close-iframe-modal');
+
+        thumbCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const url = this.getAttribute('data-src');
+                if(url) {
+                    iframeTarget.src = url;
+                    iframeModal.style.display = "flex";
+                }
+            });
+        });
+
+        closeIframeBtn.onclick = function() {
+            iframeModal.style.display = "none";
+            iframeTarget.src = ""; // Limpa o src
+        }
         
         // --- LÓGICA DO MODAL DE INFO (TODOS) ---
         function setupModal(modalId, btnId, closeId) {
@@ -723,6 +583,9 @@
         window.onclick = function(event) {
             if (event.target.classList.contains('modal-overlay')) {
                 event.target.style.display = "none";
+                if(event.target.id === 'iframe-modal') {
+                    iframeTarget.src = "";
+                }
             }
         }
     </script>

@@ -119,7 +119,7 @@
             border-bottom: 1px solid var(--border-glass);
         }
         .nav-content { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -1px; display: flex; align-items: center; gap: 10px; }
+        .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -1px; display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none;}
         .logo i { color: var(--accent-cyan); }
         .nav-links { display: flex; gap: 40px; }
         .nav-links a { color: var(--text-gray); text-decoration: none; font-weight: 500; transition: 0.3s; }
@@ -288,7 +288,7 @@
 
         .slide-track {
             display: flex;
-            width: calc(200px * 10);
+            width: calc(200px * 10); /* 200px width * num logos */
             animation: scroll 20s linear infinite;
         }
         
@@ -371,28 +371,24 @@
 
     <nav id="navbar">
         <div class="container nav-content">
-            <div class="logo">
+            <a href="Modern-SaaS-Template.html" class="logo">
                 <i class="fas fa-cube"></i> AURA
-            </div>
+            </a>
             <div class="nav-links">
-                <a href="#features">Features</a>
-                <a href="#integration">Solutions</a>
-                <a href="#pricing">Pricing</a>
-                <a href="#about">About</a>
-            </div>
-            <a href="#" class="btn btn-glass" style="padding: 10px 24px; border-radius: 12px;">Sign In</a>
+                <a href="#features">Features</a> <a href="aura_faq.html">FAQ</a>  <a href="aura_pricing.html">Pricing</a> <a href="aura_contact.html">Contact</a> </div>
+            <a href="aura_login.html" class="btn btn-glass" style="padding: 10px 24px; border-radius: 12px;">Sign In</a>
         </div>
     </nav>
 
     <section class="hero">
         <div class="container">
-            <div class="hero-badge">New Version 2.0</div>
+            <div class="hero-badge">v2.0 Available Now</div>
             <h1 class="text-gradient">The Operating System<br>for your Workflow</h1>
             <p>Aura unifies your tools, streamlines your processes, and empowers your team to build faster. Designed for modern companies.</p>
             
             <div class="hero-btns">
-                <a href="#" class="btn btn-primary">Start for Free <i class="fas fa-arrow-right" style="margin-left: 10px;"></i></a>
-                <a href="#" class="btn btn-glass"><i class="fas fa-play" style="margin-right: 10px;"></i> Watch Demo</a>
+                <a href="aura_login.html" class="btn btn-primary">Start for Free <i class="fas fa-arrow-right" style="margin-left: 10px;"></i></a>
+                <a href="aura_pricing.html" class="btn btn-glass"><i class="fas fa-play" style="margin-right: 10px;"></i> Watch Demo</a>
             </div>
 
             <div class="hero-visual">
@@ -487,7 +483,7 @@
             <div style="position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; text-align: center;">
                 <h2 style="font-size: 3rem; margin-bottom: 20px;">Ready to Get Started?</h2>
                 <p style="color: #a1a1aa; margin-bottom: 40px; max-width: 600px;">Join thousands of teams enhancing their productivity with Aura.</p>
-                <a href="#" class="btn btn-primary" style="padding: 18px 40px; font-size: 1.1rem;">Get Started Now</a>
+                <a href="aura_pricing.html" class="btn btn-primary" style="padding: 18px 40px; font-size: 1.1rem;">Get Started Now</a>
             </div>
         </div>
     </section>
@@ -504,19 +500,19 @@
                 <div class="footer-col">
                     <h4>Product</h4>
                     <ul>
-                        <li><a href="#">Features</a></li>
-                        <li><a href="#">Integrations</a></li>
-                        <li><a href="#">Updates</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="aura_faq.html">FAQ</a></li>
+                        <li><a href="aura_pricing.html">Pricing</a></li>
                         <li><a href="#">Documentation</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Company</h4>
                     <ul>
-                        <li><a href="#">About Us</a></li>
+                        <li><a href="#about">About Us</a></li>
                         <li><a href="#">Blog</a></li>
                         <li><a href="#">Careers</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="aura_contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">

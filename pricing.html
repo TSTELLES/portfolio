@@ -9,7 +9,7 @@
 
     <style>
         :root {
-            /* Same Aura Palette */
+            /* Aura Palette */
             --bg-deep: #030014;
             --bg-card: rgba(255, 255, 255, 0.03);
             --bg-glass: rgba(255, 255, 255, 0.05);
@@ -146,7 +146,7 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
             padding: 60px 0 100px;
-            align-items: center; /* Center vertically so the middle card can pop */
+            align-items: center;
         }
 
         .pricing-card {
@@ -165,12 +165,11 @@
             background: rgba(255,255,255,0.06);
         }
 
-        /* Featured Card Styling */
         .pricing-card.featured {
             background: linear-gradient(180deg, rgba(127, 0, 255, 0.1) 0%, rgba(3, 0, 20, 0.8) 100%);
             border: 1px solid var(--accent-purple);
             box-shadow: 0 0 40px rgba(127, 0, 255, 0.2);
-            padding: 50px 40px; /* Slightly larger */
+            padding: 50px 40px;
             z-index: 2;
             transform: scale(1.05);
         }
@@ -265,7 +264,6 @@
         /* --- FOOTER --- */
         footer { border-top: 1px solid var(--border-glass); padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 0.9rem; margin-top: 80px; }
 
-        /* Responsive */
         @media (max-width: 900px) {
             .pricing-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
             .pricing-card.featured { transform: scale(1); }
@@ -286,7 +284,7 @@
             </a>
             <div class="nav-links" style="display: flex;">
                 <a href="home.html">Home</a>
-                <a href="pricing.html" style="color:#fff;">Pricing</a>
+                <a href="faq.html">FAQ</a>
                 <a href="contact.html">Contact</a>
             </div>
         </div>
@@ -316,14 +314,12 @@
                 <div class="plan-name">Starter</div>
                 <div class="plan-price" data-monthly="0" data-yearly="0">$0<span>/mo</span></div>
                 <p class="plan-desc">Perfect for individuals and hobby projects.</p>
-                
                 <ul class="feature-list">
                     <li><i class="fas fa-check"></i> Up to 3 Projects</li>
                     <li><i class="fas fa-check"></i> Community Support</li>
                     <li><i class="fas fa-check"></i> 1GB Storage</li>
                     <li><i class="fas fa-check"></i> Basic Analytics</li>
                 </ul>
-                
                 <a href="#" class="btn-card btn-outline">Get Started</a>
             </div>
 
@@ -332,7 +328,6 @@
                 <div class="plan-name" style="color: var(--accent-purple);">Pro</div>
                 <div class="plan-price" data-monthly="29" data-yearly="24">$29<span>/mo</span></div>
                 <p class="plan-desc">For growing teams that need more power.</p>
-                
                 <ul class="feature-list">
                     <li><i class="fas fa-check"></i> Unlimited Projects</li>
                     <li><i class="fas fa-check"></i> Priority Support</li>
@@ -340,7 +335,6 @@
                     <li><i class="fas fa-check"></i> Advanced Analytics</li>
                     <li><i class="fas fa-check"></i> Remove Aura Branding</li>
                 </ul>
-                
                 <a href="#" class="btn-card btn-solid">Start Free Trial</a>
             </div>
 
@@ -348,7 +342,6 @@
                 <div class="plan-name">Enterprise</div>
                 <div class="plan-price" data-monthly="99" data-yearly="79">$99<span>/mo</span></div>
                 <p class="plan-desc">Custom solutions for large organizations.</p>
-                
                 <ul class="feature-list">
                     <li><i class="fas fa-check"></i> Everything in Pro</li>
                     <li><i class="fas fa-check"></i> Dedicated Account Manager</li>
@@ -356,7 +349,6 @@
                     <li><i class="fas fa-check"></i> Unlimited Storage</li>
                     <li><i class="fas fa-check"></i> Custom Contracts</li>
                 </ul>
-                
                 <a href="contact.html" class="btn-card btn-outline">Contact Sales</a>
             </div>
 
@@ -389,7 +381,6 @@
     </footer>
 
     <script>
-        // --- PRICING TOGGLE LOGIC ---
         const checkbox = document.getElementById('pricing-toggle-checkbox');
         const monthlyLabel = document.getElementById('monthly-label');
         const yearlyLabel = document.getElementById('yearly-label');
@@ -397,7 +388,6 @@
 
         checkbox.addEventListener('change', function() {
             if(this.checked) {
-                // Yearly Mode
                 yearlyLabel.classList.remove('dimmed');
                 monthlyLabel.classList.add('dimmed');
                 prices.forEach(price => {
@@ -405,7 +395,6 @@
                     price.innerHTML = `$${yearlyVal}<span>/mo</span>`;
                 });
             } else {
-                // Monthly Mode
                 monthlyLabel.classList.remove('dimmed');
                 yearlyLabel.classList.add('dimmed');
                 prices.forEach(price => {
@@ -415,7 +404,6 @@
             }
         });
 
-        // --- FAQ ACCORDION LOGIC ---
         const faqs = document.querySelectorAll('.faq-item');
         faqs.forEach(faq => {
             faq.querySelector('.faq-question').addEventListener('click', () => {

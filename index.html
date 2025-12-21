@@ -84,44 +84,16 @@
             letter-spacing: 1px;
         }
 
-        /* --- FEATURED LAYOUT --- */
+        /* --- FEATURED LAYOUT (ESTILO VITRINE) --- */
         .featured-wrapper {
             display: grid;
             grid-template-columns: 1fr 1fr; 
             gap: 20px;
             align-items: stretch; 
-            margin-bottom: 30px;
+            margin-bottom: 60px;
         }
 
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
-            gap: 15px;
-            height: 350px; 
-        }
-
-        .gallery-item {
-            background-color: #1a1a1a;
-            border: 1px solid #333;
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        .gallery-item:hover {
-            border-color: var(--accent-purple);
-            transform: scale(1.02);
-            z-index: 2;
-            box-shadow: 0 5px 15px rgba(157, 0, 255, 0.2);
-        }
-
-        /* --- CINEMATIC FADE --- */
+        /* Esquerda: Card Grande */
         .cinematic-card {
             position: relative;
             width: 100%;
@@ -169,7 +141,76 @@
             animation: none;
         }
 
-        /* --- Iframe Thumbnail Padrão --- */
+        /* Direita: Grade 2x2 */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 15px;
+            height: 350px; 
+        }
+
+        /* Item da grade (Imagem estática) */
+        .gallery-item {
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .gallery-item:hover {
+            border-color: var(--accent-purple);
+            transform: scale(1.02);
+            z-index: 2;
+            box-shadow: 0 5px 15px rgba(157, 0, 255, 0.2);
+        }
+
+        /* Item da grade (Live HTML - NOVO PARA O AURA) */
+        .thumb-card {
+            background-color: #111;
+            border: 1px solid #333;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .thumb-card:hover {
+            border-color: var(--accent-purple);
+            transform: scale(1.02);
+            z-index: 2;
+        }
+        
+        /* Iframe ajustado para caber no quadradinho */
+        .thumb-card iframe {
+            width: 400%;
+            height: 400%;
+            border: 0;
+            transform: scale(0.25);
+            transform-origin: 0 0;
+            pointer-events: none;
+        }
+
+        /* Label flutuante no quadradinho */
+        .thumb-label {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%;
+            background: rgba(0,0,0,0.8);
+            color: #ccc;
+            font-size: 0.7rem;
+            padding: 5px;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 600;
+            backdrop-filter: blur(2px);
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* --- Iframe Geral (Card Grande) --- */
         .live-thumbnail {
             width: 400%;   
             height: 400%; 
@@ -179,64 +220,7 @@
             pointer-events: none; 
         }
 
-        /* --- NOVO CSS: AURA SHOWCASE (VITRINE EXTERNA COMPACTA) --- */
-        .aura-showcase {
-            display: grid;
-            grid-template-columns: 3fr 1fr; /* Principal grande, Coluna pequena */
-            gap: 15px; /* Gap reduzido */
-            align-items: start;
-            margin-bottom: 40px; 
-        }
-
-        .aura-thumbnails {
-            display: flex;
-            flex-direction: column;
-            gap: 10px; /* Gap reduzido para caber melhor */
-            height: 100%;
-            justify-content: space-between; /* Espalha as miniaturas na altura */
-        }
-
-        .mini-browser {
-            border: 1px solid #333;
-            border-radius: 6px;
-            overflow: hidden;
-            background: #151515;
-            height: 62px; /* Altura fixa menor para as miniaturas */
-            position: relative;
-            cursor: pointer;
-            transition: transform 0.2s, border-color 0.2s;
-        }
-
-        .mini-browser:hover {
-            transform: translateX(-5px);
-            border-color: var(--accent-purple);
-        }
-
-        .mini-browser iframe {
-            width: 500%; /* Aumenta o conteúdo */
-            height: 500%;
-            border: 0;
-            transform: scale(0.2); /* Reduz mais o zoom para caber */
-            transform-origin: top left;
-            pointer-events: none;
-            background: #000;
-        }
-
-        .mini-label {
-            position: absolute;
-            bottom: 0; left: 0; width: 100%;
-            background: rgba(0,0,0,0.85);
-            color: #ccc;
-            font-size: 0.55rem;
-            padding: 2px;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            backdrop-filter: blur(2px);
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-
-        /* --- GRID PADRÃO (Para os outros cards) --- */
+        /* --- GRID PADRÃO (Cards inferiores) --- */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -255,7 +239,7 @@
         
         .browser-header {
             background: #252525;
-            padding: 8px 15px;
+            padding: 10px 15px;
             display: flex;
             align-items: center;
             gap: 6px;
@@ -344,7 +328,7 @@
         .dot { width: 8px; height: 8px; border-radius: 50%; }
         .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
         
-        .card-info { padding: 15px 20px; }
+        .card-info { padding: 20px; }
         .card-info h3 { font-size: 1.1rem; margin-bottom: 5px; color: #fff; }
         .card-info p { font-size: 0.8rem; color: #777; margin-bottom: 0; }
         .tag { font-size: 0.65rem; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; display: inline-block; margin-top: 10px; }
@@ -407,10 +391,6 @@
             .gallery-grid { height: auto; grid-template-rows: 150px 150px; }
             .about-container { flex-direction: column; text-align: center; gap: 30px; align-items: center; }
             .skills-list { justify-content: center; }
-            /* Responsividade da Vitrine Aura */
-            .aura-showcase { grid-template-columns: 1fr; }
-            .aura-thumbnails { flex-direction: row; overflow-x: auto; height: auto; padding-bottom: 10px; }
-            .mini-browser { min-width: 120px; height: 80px; }
         }
     </style>
 </head>
@@ -457,65 +437,52 @@
         <section class="category-section">
             <h2 class="section-title" style="border-color: var(--accent-red);">Designs & Pages</h2>
             
-            <div style="margin-bottom: 60px;">
+            <h3 style="color: #fff; margin-bottom: 20px; font-weight: 300;">Highlight Project: <span style="color:var(--accent-purple); font-weight:700;">AURA</span></h3>
+            
+            <div class="featured-wrapper">
                 
-                <div class="aura-showcase">
-                    
-                    <div class="browser-mockup theme-purple" style="height: 100%;">
-                        <div class="browser-header">
-                            <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
-                            <div style="margin-left:auto; font-size:0.7rem; color:#666; margin-right:5px;">home.html</div>
-                        </div>
-                        
-                        <div class="preview-area" style="height: 350px;"> <iframe src="home.html" class="live-thumbnail"></iframe>
-                            
-                            <div class="overlay">
-                                <div class="overlay-btns">
-                                    <a href="home.html" target="_blank" class="btn-view">View Live</a>
-                                    <button id="btn-open-saas" class="btn-info-round">Info</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card-info">
-                            <h3>Aura | Modern SaaS</h3>
-                            <p>The Operating System for your Workflow.</p>
-                            <span class="tag">HTML5 / CSS3</span>
+                <div class="cinematic-card">
+                    <div class="bg-site">
+                        <iframe src="home.html" class="live-thumbnail"></iframe>
+                        <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 20%; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); pointer-events: none;"></div>
+                    </div>
+                    <div class="info-overlay">
+                        <i class="fas fa-cube" style="font-size: 3rem; color: var(--accent-purple); text-shadow: 0 0 10px rgba(157, 0, 255, 0.5); margin-bottom: 20px;"></i>
+                        <h3 style="color: #fff; font-size: 1.8rem; margin-bottom: 5px;">Aura | SaaS Template</h3>
+                        <p style="color: #ddd; font-size: 1rem; font-style: italic; letter-spacing: 1px; margin-bottom: 10px;">The Operating System for your Workflow.</p>
+                        <div class="action-buttons">
+                            <a href="home.html" target="_blank" class="btn-square-purple">View Demo</a>
+                            <button id="btn-open-saas" class="btn-outline-white">Info</button>
                         </div>
                     </div>
+                </div>
 
-                    <div class="aura-thumbnails">
-                        
-                        <div class="mini-browser" title="Login Page">
-                            <iframe src="login.html"></iframe>
-                            <div class="mini-label">Login</div>
-                        </div>
+                <div class="gallery-grid">
+                    
+                    <div class="thumb-card" onclick="window.open('login.html', '_blank')">
+                        <iframe src="login.html"></iframe>
+                        <div class="thumb-label">Login</div>
+                    </div>
 
-                        <div class="mini-browser" title="Pricing Page">
-                            <iframe src="pricing.html"></iframe>
-                            <div class="mini-label">Pricing</div>
-                        </div>
+                    <div class="thumb-card" onclick="window.open('pricing.html', '_blank')">
+                        <iframe src="pricing.html"></iframe>
+                        <div class="thumb-label">Pricing</div>
+                    </div>
 
-                        <div class="mini-browser" title="FAQ Page">
-                            <iframe src="faq.html"></iframe>
-                            <div class="mini-label">FAQ</div>
-                        </div>
+                    <div class="thumb-card" onclick="window.open('contact.html', '_blank')">
+                        <iframe src="contact.html"></iframe>
+                        <div class="thumb-label">Contact</div>
+                    </div>
 
-                        <div class="mini-browser" title="Contact Page">
-                            <iframe src="contact.html"></iframe>
-                            <div class="mini-label">Contact</div>
-                        </div>
-
-                        <div class="mini-browser" title="Error 404 Page">
-                            <iframe src="404.html"></iframe>
-                            <div class="mini-label">Error 404</div>
-                        </div>
-
+                    <div class="thumb-card" onclick="window.open('faq.html', '_blank')">
+                        <iframe src="faq.html"></iframe>
+                        <div class="thumb-label">FAQ</div>
                     </div>
 
                 </div>
+
             </div>
-            <div class="grid-container" style="margin-top: 40px;">
+            <div class="grid-container">
                 <div class="browser-mockup theme-red">
                     <div class="browser-header"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
                     <div class="preview-area">

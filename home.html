@@ -29,6 +29,8 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-deep);
@@ -80,6 +82,7 @@
             position: relative;
             overflow: hidden;
             border: 1px solid transparent;
+            cursor: pointer;
         }
 
         .btn-primary {
@@ -342,6 +345,37 @@
         .footer-col ul li a { color: var(--text-gray); text-decoration: none; transition: 0.3s; }
         .footer-col ul li a:hover { color: var(--accent-cyan); }
 
+        /* --- MODAL VIDEO STYLES --- */
+        .modal-overlay {
+            display: none; /* Hidden by default */
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); z-index: 2000;
+            justify-content: center; align-items: center;
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease;
+        }
+        .modal-content {
+            position: relative; width: 90%; max-width: 800px;
+            background: #000; border: 1px solid var(--border-glass);
+            border-radius: 16px; overflow: hidden;
+            box-shadow: 0 0 50px rgba(127, 0, 255, 0.3);
+        }
+        .video-wrapper {
+            position: relative; padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+        }
+        .video-wrapper iframe {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        }
+        .close-modal {
+            position: absolute; top: -40px; right: 0;
+            color: #fff; font-size: 30px; cursor: pointer; transition: 0.3s;
+        }
+        .close-modal:hover { color: var(--accent-pink); }
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+
         /* --- ANIMATIONS & SCROLL REVEAL --- */
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
@@ -376,8 +410,8 @@
             </a>
             <div class="nav-links">
                 <a href="#features">Features</a>
-                <a href="faq.html">FAQ</a>
                 <a href="pricing.html">Pricing</a>
+                <a href="faq.html">FAQ</a>
                 <a href="contact.html">Contact</a>
             </div>
             <a href="login.html" class="btn btn-glass" style="padding: 10px 24px; border-radius: 12px;">Sign In</a>
@@ -392,7 +426,7 @@
             
             <div class="hero-btns">
                 <a href="login.html" class="btn btn-primary">Start for Free <i class="fas fa-arrow-right" style="margin-left: 10px;"></i></a>
-                <a href="pricing.html" class="btn btn-glass"><i class="fas fa-play" style="margin-right: 10px;"></i> Watch Demo</a>
+                <a href="#" id="watch-demo-btn" class="btn btn-glass"><i class="fas fa-play" style="margin-right: 10px;"></i> Watch Demo</a>
             </div>
 
             <div class="hero-visual">
@@ -487,7 +521,7 @@
             <div style="position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; text-align: center;">
                 <h2 style="font-size: 3rem; margin-bottom: 20px;">Ready to Get Started?</h2>
                 <p style="color: #a1a1aa; margin-bottom: 40px; max-width: 600px;">Join thousands of teams enhancing their productivity with Aura.</p>
-                <a href="pricing.html" class="btn btn-primary" style="padding: 18px 40px; font-size: 1.1rem;">Get Started Now</a>
+                <a href="login.html" class="btn btn-primary" style="padding: 18px 40px; font-size: 1.1rem;">Get Started Now</a>
             </div>
         </div>
     </section>
@@ -505,26 +539,22 @@
                     <h4>Product</h4>
                     <ul>
                         <li><a href="#features">Features</a></li>
-                        <li><a href="faq.html">FAQ</a></li>
                         <li><a href="pricing.html">Pricing</a></li>
-                        <li><a href="#">Documentation</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Company</h4>
                     <ul>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="login.html">Sign In</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Legal</h4>
-                    <ul>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Security</a></li>
+                    <ul style="opacity: 0.5;">
+                        <li style="margin-bottom: 12px; cursor: not-allowed;">Privacy Policy</li>
+                        <li style="margin-bottom: 12px; cursor: not-allowed;">Terms of Service</li>
                     </ul>
                 </div>
             </div>
@@ -534,9 +564,17 @@
         </div>
     </footer>
 
+    <div id="video-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="video-wrapper">
+                <iframe id="video-frame" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // --- SCROLL REVEAL LOGIC (Vanilla JS) ---
-        
+        // --- SCROLL REVEAL LOGIC ---
         document.addEventListener('DOMContentLoaded', () => {
             const reveals = document.querySelectorAll('.reveal');
 
@@ -562,6 +600,38 @@
                     navbar.classList.add('scrolled');
                 } else {
                     navbar.classList.remove('scrolled');
+                }
+            });
+
+            // --- VIDEO MODAL LOGIC (FINAL) ---
+            const modal = document.getElementById('video-modal');
+            const btn = document.getElementById('watch-demo-btn');
+            const close = document.querySelector('.close-modal');
+            const iframe = document.getElementById('video-frame');
+            
+            // LINK DO SEU VÍDEO (Substitua o ID 'LXb3EKWsInQ' se quiser outro)
+            const videoUrl = "https://www.youtube.com/embed/LXb3EKWsInQ?autoplay=1&mute=0"; 
+
+            if(btn) {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault(); 
+                    modal.style.display = 'flex';
+                    iframe.src = videoUrl; // Carrega o vídeo ao abrir
+                });
+            }
+
+            const closeModal = () => {
+                modal.style.display = 'none';
+                iframe.src = ''; // Para o vídeo ao fechar
+            }
+
+            if(close) {
+                close.addEventListener('click', closeModal);
+            }
+
+            window.addEventListener('click', (e) => {
+                if(e.target === modal) {
+                    closeModal();
                 }
             });
         });

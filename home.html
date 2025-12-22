@@ -603,26 +603,26 @@
                 }
             });
 
-            // --- VIDEO MODAL LOGIC (FINAL) ---
+            // --- VIDEO MODAL LOGIC ---
             const modal = document.getElementById('video-modal');
             const btn = document.getElementById('watch-demo-btn');
             const close = document.querySelector('.close-modal');
             const iframe = document.getElementById('video-frame');
             
-            // LINK DO SEU VÍDEO (Substitua o ID 'LXb3EKWsInQ' se quiser outro)
+            // DEMO VIDEO LINK (Replace ID 'LXb3EKWsInQ' with your own video ID)
             const videoUrl = "https://www.youtube.com/embed/LXb3EKWsInQ?autoplay=1&mute=0"; 
 
             if(btn) {
                 btn.addEventListener('click', (e) => {
                     e.preventDefault(); 
                     modal.style.display = 'flex';
-                    iframe.src = videoUrl; // Carrega o vídeo ao abrir
+                    iframe.src = videoUrl; // Load video on click
                 });
             }
 
             const closeModal = () => {
                 modal.style.display = 'none';
-                iframe.src = ''; // Para o vídeo ao fechar
+                iframe.src = ''; // Stop video on close
             }
 
             if(close) {

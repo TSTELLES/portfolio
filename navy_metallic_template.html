@@ -8,18 +8,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-
     <style>
         /* -------------------------------------------------------------------
-        * COLOR VARIABLES (LUXO / AZUL MARINHO ULTRA-ESCURO) - FINALIZADO
+        * COLOR VARIABLES (LUXURY / ULTRA-DARK NAVY) - FINALIZED
         * ------------------------------------------------------------------- */
         :root {
-            --blue-light: #00FFFF;        /* Ciano Brilhante / Azul Claro */
-            --blue-dark: #0077A0;         /* Azul Metálico Escuro (Bordas e Sombra) */
-            --shine-color: #A0FFFF;       /* Brilho Frio, com toque branco-azulado */
+            --blue-light: #00FFFF;        /* Bright Cyan / Light Blue */
+            --blue-dark: #0077A0;         /* Dark Metallic Blue (Borders and Shadow) */
+            --shine-color: #A0FFFF;       /* Cold Shine, with bluish-white touch */
             --cta-color: #00FFFF;         
-            --bg-dark: #02020B;           /* Fundo AZUL MARINHO QUASE PRETO */
-            --bg-card: #0A0A1F;           /* Cor do Card em contraste escuro */
+            --bg-dark: #02020B;           /* ULTRA-DARK NAVY Background */
+            --bg-card: #0A0A1F;           /* Dark Contrast Card Color */
             --text-light: #f8f9fa;
             --font-main: 'Poppins', sans-serif;
             --border-radius: 12px;
@@ -50,20 +49,20 @@
         }
         
         /* -------------------------------------------------------------------
-        * EFEITO BRILHO AZUL (TEXT SHADOW) - NITIDEZ MÁXIMA
+        * BLUE SHINE EFFECT (TEXT SHADOW) - MAXIMUM SHARPNESS
         * ------------------------------------------------------------------- */
         .text-gold-shine {
-            /* Cor base */
+            /* Base color */
             color: var(--blue-light) !important;
-            /* Efeito de brilho AJUSTADO: Nitidez máxima para o tema Tech */
+            /* ADJUSTED shine effect: Max sharpness for Tech theme */
             text-shadow: 
-                0 0 1px var(--shine-color),   /* Brilho de ponto (Cintilância) */
-                0 0 4px var(--blue-dark);     /* Sombra controlada */
+                0 0 1px var(--shine-color),   /* Point shine (Sparkle) */
+                0 0 4px var(--blue-dark);     /* Controlled shadow */
             transition: text-shadow 0.3s ease-in-out; 
         }
 
         /* -------------------------------------------------------------------
-        * CHUVA METÁLICA (AZUL)
+        * METALLIC RAIN (BLUE)
         * ------------------------------------------------------------------- */
         
         @keyframes fall {
@@ -131,7 +130,7 @@
         }
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; /* Proporção 16:9 */
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
             height: 0;
             overflow: hidden;
             background-color: var(--bg-card);
@@ -156,7 +155,7 @@
             border-radius: var(--border-radius);
             margin-bottom: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            border-left: 5px solid var(--blue-light); /* Cor de Destaque Azul/Ciano */
+            border-left: 5px solid var(--blue-light); /* Highlight Color Blue/Cyan */
             text-align: left;
         }
         
@@ -168,12 +167,12 @@
 
         .testimonial-card .author {
             font-weight: 700;
-            color: var(--blue-light); /* Cor de Destaque Azul/Ciano */
+            color: var(--blue-light); /* Highlight Color Blue/Cyan */
             display: block;
         }
         
         .stars {
-            color: var(--blue-light); /* Cor de Destaque Azul/Ciano */
+            color: var(--blue-light); /* Highlight Color Blue/Cyan */
             font-size: 1.2rem;
             margin-bottom: 10px;
         }
@@ -226,7 +225,7 @@
         .btn-cta {
             display: block; 
             padding: 18px 40px; 
-            /* Gradiente para Azul Metálico */
+            /* Gradient for Metallic Blue */
             background: linear-gradient(145deg, var(--blue-light), var(--blue-dark), var(--blue-light));
             color: #121212 !important; 
             border: none;
@@ -236,7 +235,7 @@
             font-weight: 700;
             text-transform: uppercase;
             cursor: pointer;
-            box-shadow: 0 6px 20px rgba(0, 86, 122, 0.5); /* Sombra Azul controlada */
+            box-shadow: 0 6px 20px rgba(0, 86, 122, 0.5); /* Controlled Blue Shadow */
             transition: all 0.3s ease;
             width: 100%;
             max-width: 450px;
@@ -246,7 +245,7 @@
 
         .btn-cta:hover {
             transform: scale(1.03);
-            box-shadow: 0 8px 30px rgba(0, 255, 255, 0.7); /* Brilho Ciano no hover */
+            box-shadow: 0 8px 30px rgba(0, 255, 255, 0.7); /* Cyan Shine on hover */
         }
 
         /* Lists and Benefits */
@@ -263,8 +262,8 @@
         }
         ul h6::before {
             content: "•";
-            /* Aplica brilho nos bullets de lista */
-            color: var(--blue-light); /* Alterado */
+            /* Applies shine to list bullets */
+            color: var(--blue-light); 
             text-shadow: 0 0 3px var(--shine-color);
             font-weight: bold;
             display: inline-block;
@@ -294,17 +293,17 @@
             padding: 35px;
             border-radius: var(--border-radius);
             margin-bottom: 20px;
-            border: 3px solid var(--blue-dark); /* Alterado */
+            border: 3px solid var(--blue-dark); 
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .combo-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0, 255, 255, 0.3); /* Alterado */
+            box-shadow: 0 12px 25px rgba(0, 255, 255, 0.3); 
         }
         
         .combo-card h4, .combo-card h2 {
-            color: var(--blue-light); /* Alterado */
+            color: var(--blue-light); 
         }
         .combo-card h2 {
             font-size: 3.5rem; 
@@ -337,7 +336,7 @@
             opacity: 0.7;
             transition: opacity 0.3s;
         }
-        /* Aplica brilho aos ícones de pagamento no hover */
+        /* Applies shine to payment icons on hover */
         .payment-icons i:hover {
             opacity: 1;
             text-shadow: 0 0 3px var(--shine-color); 
@@ -402,7 +401,7 @@
             
             <h5 style="text-align: center;">UNLOCK YOUR FULL POTENTIAL AND DISCOVER WHY THIS PRODUCT IS DIFFERENT FROM ANY OTHER FORMULA...</h5>
             
-            <a class="btn-cta" href="#oferta" target="_blank" style="margin-bottom: 0;">ACCESS THE PREMIUM FORMULA NOW</a>
+            <a class="btn-cta" href="#offer" target="_blank" style="margin-bottom: 0;">ACCESS THE PREMIUM FORMULA NOW</a>
         </section>
         
         <section class="section-dark">
@@ -425,7 +424,7 @@
             <div class="video-wrapper">
                 <div class="video-container">
                     <iframe 
-                        src="https://www.youtube.com/embed/VIDEO_ID_AQUI?rel=0&showinfo=0&controls=1" 
+                        src="https://www.youtube.com/embed/VIDEO_ID_HERE?rel=0&showinfo=0&controls=1" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                         allowfullscreen
                         title="Premium Product Demonstration Video"
@@ -454,7 +453,7 @@
                 </div>
             </div>
             
-            <a class="btn-cta" href="#oferta" target="_blank">ACCESS THE PREMIUM FORMULA NOW</a>
+            <a class="btn-cta" href="#offer" target="_blank">ACCESS THE PREMIUM FORMULA NOW</a>
         </section>
         
         <section class="section-dark" id="social-proof" style="padding: 30px 0;">
@@ -486,7 +485,7 @@
                 </div>
             </div>
         </section>
-        <section class="section-dark" id="oferta">
+        <section class="section-dark" id="offer">
             <h2 style="text-align: center;">Secure your <span class="text-gold-shine">Exclusive Promotional Combos</span></h2>
             <p style="text-align: center; color: #aaa;">View the EXCLUSIVE 40% OFF PROMOTION available only through this page + LIMITED TIME DISCOUNT while supplies last!</p>
 
@@ -525,7 +524,7 @@
         <section class="section-dark" style="text-align: center;">
             <h3 class="text-gold-shine">FULL GUARANTEE ASSURANCE!</h3>
             <h6>We are so confident in our solution that if you do not achieve the expected results within this timeframe (60 DAYS), you can request a full refund. Simple and Risk-Free! </h6>
-            <a class="btn-cta" href="#oferta" target="_blank">ACCESS THE PREMIUM FORMULA NOW</a>
+            <a class="btn-cta" href="#offer" target="_blank">ACCESS THE PREMIUM FORMULA NOW</a>
         </section>
 
         <footer>

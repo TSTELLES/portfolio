@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aura – Premium Website Template</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;700;800&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+  <style>
+    /* RESET */
+    *{margin:0;padding:0;box-sizing:border-box}
+
+    body{
+      font-family:'Inter',sans-serif;
+      background:#050505;
+      color:#fff;
+      overflow-x:hidden;
+    }
+
+    a{text-decoration:none;color:inherit}
+
+    .container{
+      max-width:1200px;
+      margin:auto;
+      padding:0 20px;
+    }
+
+    /* AMBIENT LIGHT */
+    .ambient-light .orb{
+      position:absolute;
+      width:320px;
+      height:320px;
+      border-radius:50%;
+      filter:blur(130px);
+      opacity:.6;
+      z-index:-1;
+    }
+
+    .orb-1{background:#6cf;top:-120px;left:-120px}
+    .orb-2{background:#9f6;top:240px;right:-120px}
+    .orb-3{background:#f6f;bottom:-120px;left:40%}
+
+    /* NAVBAR */
+    nav{
+      position:fixed;
+      top:0;
+      width:100%;
+      z-index:1000;
+      backdrop-filter:blur(12px);
+      background:rgba(5,5,5,.6);
+      transition:.3s;
+    }
+
+    .nav-content{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      height:70px;
+    }
+
+    .logo{
+      font-family:'Outfit',sans-serif;
+      font-weight:800;
+      font-size:20px;
+    }
+
+    .nav-links a{
+      margin:0 14px;
+      color:#ccc;
+      font-size:14px;
+    }
+
+    /* BUTTONS */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:14px 26px;
+      border-radius:30px;
+      font-weight:500;
+      transition:.2s;
+    }
+
+    .btn-primary{
+      background:linear-gradient(90deg,#6cf,#9f6);
+      color:#000;
+    }
+
+    .btn-glass{
+      border:1px solid rgba(255,255,255,.2);
+      color:#fff;
+      background:rgba(255,255,255,.04);
+    }
+
+    .btn:hover{transform:translateY(-2px)}
+
+    /* HERO */
+    .hero{
+      padding:170px 0 130px;
+      text-align:center;
+    }
+
+    .hero-badge{
+      display:inline-block;
+      padding:6px 16px;
+      border-radius:20px;
+      background:rgba(255,255,255,.08);
+      font-size:13px;
+      margin-bottom:24px;
+    }
+
+    .text-gradient{
+      font-family:'Outfit',sans-serif;
+      font-size:58px;
+      line-height:1.1;
+      background:linear-gradient(90deg,#6cf,#9f6);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    .hero p{
+      max-width:620px;
+      margin:24px auto 0;
+      font-size:18px;
+      color:#bbb;
+    }
+
+    .hero-btns{
+      margin-top:44px;
+    }
+
+    /* SECTIONS */
+    section{
+      padding:120px 0;
+    }
+
+    .section-title{
+      text-align:center;
+      font-family:'Outfit',sans-serif;
+      font-size:36px;
+      margin-bottom:16px;
+    }
+
+    .section-sub{
+      text-align:center;
+      color:#aaa;
+      margin-bottom:60px;
+    }
+
+    /* PRICING */
+    .pricing-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:30px;
+    }
+
+    .price-card{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:20px;
+      padding:36px;
+      text-align:center;
+    }
+
+    .price{
+      font-size:42px;
+      font-family:'Outfit',sans-serif;
+      margin:20px 0;
+    }
+
+    /* FOOTER */
+    footer{
+      padding:60px 0;
+      border-top:1px solid rgba(255,255,255,.08);
+      text-align:center;
+      color:#888;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- AMBIENT LIGHT -->
+<div class="ambient-light">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="container nav-content">
+    <div class="logo"><i class="fa-solid fa-cube"></i> AURA</div>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#checkout">Checkout</a>
+    </div>
+    <a href="#login" class="btn btn-glass">Sign In</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">v2.0 Available Now</div>
+    <h1 class="text-gradient">
+      The Operating System<br/>for your Workflow
+    </h1>
+    <p>
+      Aura unifies your tools, streamlines your processes,
+      and turns complexity into clarity.
+    </p>
+
+    <div class="hero-btns">
+      <a href="#checkout" class="btn btn-primary">
+        Start for Free <i class="fa-solid fa-arrow-right"></i>
+      </a>
+      <a href="#demo" class="btn btn-glass">
+        <i class="fa-solid fa-play"></i> Watch Demo
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <h2 class="section-title">Simple Pricing</h2>
+    <p class="section-sub">One plan. No surprises.</p>
+
+    <div class="pricing-grid">
+      <div class="price-card">
+        <h3>Starter</h3>
+        <div class="price">$19</div>
+        <p>Perfect for individuals</p>
+        <a href="#checkout" class="btn btn-primary">Choose Plan</a>
+      </div>
+
+      <div class="price-card">
+        <h3>Pro</h3>
+        <div class="price">$49</div>
+        <p>For teams and businesses</p>
+        <a href="#checkout" class="btn btn-primary">Choose Plan</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHECKOUT (PRONTO PARA BACK-END) -->
+<section id="checkout">
+  <div class="container" style="max-width:520px;text-align:center">
+    <h2 class="section-title">Checkout</h2>
+    <p class="section-sub">Payment gateway ready</p>
+
+    <!-- ACTION preparada para back-end -->
+    <form method="post" action="/checkout/pay">
+      <input type="hidden" name="plan" value="pro"/>
+
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">
+        Pay Now
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    © 2025 Aura Template — Full Website Version
+  </div>
+</footer>
+
+<script>
+  // NAVBAR SCROLL EFFECT
+  window.addEventListener("scroll",()=>{
+    const nav=document.getElementById("navbar");
+    nav.style.background=window.scrollY>40
+      ?"rgba(5,5,5,.85)"
+      :"rgba(5,5,5,.6)";
+  });
+</script>
+
+</body>
+</html>
